@@ -458,10 +458,10 @@ SMODS.Joker {
 	config =
 		{ extra = { splash = 5 } },
 		{ immutable = { max_spawn = 100 } }, -- idk how to fix it lol
-	rarity = 1,
+	rarity = 2,
 	atlas = "crp_jokers",
 	pos = { x = 4, y = 0 },
-	cost = 1,
+	cost = 6,
 	blueprint_compat = true,
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.splash } }
