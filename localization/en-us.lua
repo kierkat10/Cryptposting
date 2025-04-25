@@ -136,6 +136,12 @@ return {
 					"You get {C:chips}one{}.",
 				},
 			},
+			j_crp_water_bottle = {
+				name = "Water Bottle",
+				text = {
+					"Creates #1# Splashes when sold.",
+				},
+			},
 		},
 		Tag = {
 			tag_crp_common_tag = {
