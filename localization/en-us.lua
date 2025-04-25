@@ -130,6 +130,12 @@ return {
 					"{C:mult}+#1#{} Mult",
 				},
 			},
+			j_crp_chip = {
+				name = "chip",
+				text = {
+					"You get {C:chips}one{}.",
+				},
+			},
 		},
 		Tag = {
 			tag_crp_common_tag = {

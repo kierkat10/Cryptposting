@@ -433,5 +433,24 @@ SMODS.Joker {
 	end
 }
 
+SMODS.Joker {
+	key = "chip",
+	config = { extra = { a_chips = 1 } },
+	rarity = 1,
+	atlas = "crp_jokers",
+	pos = { x = 0, y = 4 },
+	cost = 1,
+	blueprint_compat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.a_chips } }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			return {
+				chips = card.ability.extra.a_chips
+			}
+		end
+	end
+}
 ----------------------------------------------
 ------------MOD CODE END----------------------
