@@ -80,6 +80,21 @@ return {
 					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
 				},
 			},
+			j_crp_vermillion = {
+				name = "Vermillion Joker",
+				text = {
+					"{X:mult,C:white}X#1#{} Mult",
+					"When bought, replace a random",
+					"Joker with the default {C:attention}Joker{}",
+				},
+			},
+			j_crp_pillaring = {
+				name = "Pillaring Joker",
+				text = {
+					"Cards already played this",
+					"{C:attention}Ante{} give {C:mult}+#1#{} Mult when scored",
+				},
+			},
 			j_crp_joker_of_all_trades = {
 				name = "Joker of all Trades",
 				text = {
@@ -229,6 +244,21 @@ return {
 					"{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
 				},
 			},
+			j_crp_victoriam = {
+				name = "Victoriam",
+				text = {
+					"{X:dark_edition,C:white}^0.1{} Mult for every {C:edition}win{} on this profile",
+					"{C:inactive}(Excludes seeded runs and Challenge runs)",
+					"(Currently {X:dark_edition,C:white}^#1#{C:inactive} Mult)",
+				},
+			},
+			j_crp_participation_trophy = {
+				name = "Participation Trophy",
+				text = {
+					"{C:mult}+0.1{} Mult for every {C:red}loss{} on this profile",
+					"(Currently {C:mult}+#1#{C:inactive} Mult)",
+				},
+			},
 			j_crp_semicolon = {
 				name = "Semicolon",
 				text = {
@@ -266,6 +296,12 @@ return {
 					"{C:inactive}(Currently {C:dark_edition}+#8#{C:inactive} Joker slot#<s>8# and {C:attention}+#9#{C:inactive} consumable slot#<s>9#){}"
 				},
 			},
+			j_crp_money_card = {
+				name = "Money Card",
+				text = {
+					"{X:money,C:white}X$1.1{} at end of round",
+				},
+			},
 			j_crp_exodiac = {
 				name = "Exodiac",
 				text = {
@@ -300,6 +336,14 @@ return {
 					"This {C:attention}Joker{} gains {C:white,X:dark_edition}^#2#{} Mult",
 					"when {C:white,X:dark_edition}^Mult{} is triggered",
 					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
+				},
+			},
+			j_crp_cryptposted = {
+				name = "Cryptposted Joker",
+				text = {
+					"{X:edition,C:dark_edition}{X}#1#{} Mult",
+					"{C:attention}X{} = The amount of",
+					"{C:attention}Cryptposting Jokers{} owned",
 				},
 			},
 			j_crp_bulgoes_hiking_journey = {

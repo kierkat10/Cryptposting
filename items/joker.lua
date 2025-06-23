@@ -372,6 +372,75 @@ SMODS.Joker {
 } ]]--
 
 SMODS.Joker {
+	key = "vermillion",
+	name = "Vermillion Joker",
+	pos = { x = 3, y = 0 },
+	config = { extra = { Xmult = 3 } },
+	rarity = 2,
+	cost = 6,
+	atlas = "crp_placeholders",
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult } }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		if not from_debuff then
+			for i=1, #G.jokers.cards do
+				eligible_cards = {}
+				if not G.jokers.cards[i] == card and not G.jokers.cards[i].ability.eternal then
+					eligible_cards[#eligible_cards+1] = G.jokers.cards[i]
+				end
+			end
+			if #eligible_cards > 0 then
+				local option = pseudorandom_element(eligible_cards, pseudoseed("crp_vermillion"))
+			end
+			for i=1, #G.jokers.cards do
+				if G.jokers.cards[i] == option then idx = i end
+			end
+			if idx and G.jokers.cards[idx] then
+				G.jokers.cards[idx]:start_dissolve()
+				G.jokers.cards[idx]:remove_from_deck()
+				SMODS.add_card({key = "j_joker"})
+			end
+		end
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main or context.forcetrigger then
+			return { xmult = lenient_bignum(card.ability.extra.Xmult) }
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "pillaring",
+	name = "Pillaring Joker",
+	pos = { x = 2, y = 0 },
+	config = { extra = { mult = 4 } },
+	rarity = 1,
+	cost = 4,
+	atlas = "crp_placeholders",
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.mult } }
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante then
+			return { mult = lenient_bignum(card.ability.extra.mult) }
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "joker_of_all_trades",
 	name = "Joker of all Trades",
 	config = { extra = { chips = 150, mult = 15, dollars = 3 } },
@@ -1220,6 +1289,61 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "victoriam",
+	name = "Victoriam",
+	config = { extra = { Emult_mod = 0.1 } },
+	rarity = "cry_exotic",
+	atlas = "crp_placeholders",
+	pos = { x = 7, y = 0 },
+	cost = 50,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum( 1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod ) } }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main or context.forcetrigger then
+			return {
+				message = "^" .. lenient_bignum( 1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod ) .. " Mult",
+				Emult_mod = lenient_bignum( 1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod ),
+				colour = G.C.DARK_EDITION,
+				card = card
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker", "Glitchkat10" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "participation_trophy",
+	name = "Participation Trophy",
+	config = { extra = { mult_mod = 0.1 } },
+	rarity = 1,
+	atlas = "crp_placeholders",
+	pos = { x = 2, y = 0 },
+	cost = 3,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum( G.PROFILES[G.SETTINGS.profile].career_stats.c_losses * card.ability.extra.mult_mod ) } }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main or context.forcetrigger then
+			return {
+				mult = lenient_bignum( G.PROFILES[G.SETTINGS.profile].career_stats.c_losses * card.ability.extra.mult_mod )
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Unknown" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "semicolon",
 	name = "Semicolon",
 	config = { extra = {  } },
@@ -1541,6 +1665,28 @@ SMODS.Joker { -- IT'S ALIVE
 }
 
 SMODS.Joker {
+	key = "money_card",
+	name = "Money Card",
+	config = { extra = { Xmoney = 1.1 } },
+	rarity = 2,
+	atlas = "crp_placeholders",
+	pos = { x = 3, y = 0 },
+	cost = 6,
+	blueprint_compat = false,
+	demicoloncompat = false, -- haven't figured out how to do demicolon yet
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.Xmoney) } }
+	end,
+	calc_dollar_bonus = function(self, card)
+		return math.floor(G.GAME.dollars * (card.ability.extra.Xmoney - 1))
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "exodiac",
 	name = "Exodiac",
 	config = { extra = { EEEmult = 1.13 } },
@@ -1697,6 +1843,43 @@ SMODS.Joker {
 		idea = { "Poker The Poker" },
 		code = { "Rainstar" },
 		custom = { key = "alt",text = "Exponentia" }
+	}
+}
+
+SMODS.Joker {
+	key = "cryptposted",
+	name = "Cryptposted Joker",
+	config = { immutable = { arrows = 0 }, extra = { hypermult = 2 } },
+	rarity = "crp_2exomythic4me",
+	atlas = "crp_placeholders",
+	pos = { x = 11, y = 0 },
+	cost = 400,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = card.ability.extra.hypermult }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main or context.forcetrigger then
+			card.ability.immutable.arrows = 0
+			for i=1, #G.jokers.cards do
+				if G.jokers.cards[i].config.center.mod.id == "cryptposting" then
+					card.ability.immutable.arrows = card.ability.immutable.arrows + 1
+				end
+			end
+			return {
+				hypermult_mod = {
+					lenient_bignum(card.ability.immutable.arrows),
+					lenient_bignum(card.ability.extra.hypermult)
+				},
+				message = "{" .. tostring(lenient_bignum(card.ability.immutable.arrows)) .. "}" .. lenient_bignum(card.ability.extra.hypermult) .. " Mult",
+				colour = G.C.EDITION,
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "wilfredlam0418" }
 	}
 }
 
