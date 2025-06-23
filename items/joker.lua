@@ -1310,7 +1310,7 @@ SMODS.Joker {
 				card = card
 			}
 		end
-	end
+	end,
 	crp_credits = {
 		idea = { "Poker The Poker", "Glitchkat10" },
 		code = { "wilfredlam0418" }
