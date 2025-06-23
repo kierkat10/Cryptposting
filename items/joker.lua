@@ -1336,7 +1336,7 @@ SMODS.Joker {
 				mult = lenient_bignum( G.PROFILES[G.SETTINGS.profile].career_stats.c_losses * card.ability.extra.mult_mod )
 			}
 		end
-	end
+	end,
 	crp_credits = {
 		idea = { "Unknown" },
 		code = { "wilfredlam0418" }
