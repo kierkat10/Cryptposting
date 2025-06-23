@@ -395,7 +395,7 @@ SMODS.Joker {
 			if #eligible_cards > 0 then
 				local option = pseudorandom_element(eligible_cards, pseudoseed("crp_vermillion"))
 			end
-			for i=1, #G.jokers.cards, do
+			for i=1, #G.jokers.cards do
 				if G.jokers.cards[i] == option then idx = i end
 			end
 			if idx and G.jokers.cards[idx] then
