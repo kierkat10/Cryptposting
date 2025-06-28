@@ -13,17 +13,21 @@ SMODS.PokerHand {
 	},
 	visible = false,
 	evaluate = function(hand)
-		local ranks = {nil, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+		local ranks = {nil, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 		for _, card in ipairs(hand) do
 			ranks[card:get_id()] = (ranks[card:get_id()] or 0) + 1
 		end
+		local consecutive = false
 		local scoring_ranks = {}
 		for i = 1, #ranks do
-			if (ranks[i] or 0) >= 2 and (ranks[i + 1] or 0) >= 2 then
-				scoring_ranks[#scoring_ranks + 1] = i
-				scoring_ranks[#scoring_ranks + 1] = i + 1
+			if (ranks[i] or 0) >= 2 then
+				consecutive = true
+			else
+				consecutive = false
+				if #scoring_ranks < 2 then scoring_ranks = {} end
 			end
 		end
-		return {} -- i'll work on it later
+		if #scoring_ranks < 2 then scoring_ranks = {} end
+		return {} -- i'll work on it tomorrow
 	end
 }

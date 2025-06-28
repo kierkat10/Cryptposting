@@ -141,8 +141,7 @@ SMODS.Joker {
 
 -- tetrationa's effect
 local scie = SMODS.calculate_individual_effect
-function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
-	local ret = scie(effect, scored_card, key, amount, from_edition)
+SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
 	if
 		(
 			key == "e_mult"
@@ -168,40 +167,71 @@ function SMODS.calculate_individual_effect(effect, scored_card, key, amount, fro
 			})
 		end
 	end
+	local ret = scie(effect, scored_card, key, amount, from_edition)
 	return ret
 end
--- commented out due to not being able to scale
---[[
-SMODS.Joker {
-	key = "tetrationa",
-	name = "Tetrationa",
-	config = { extra = { EEmult = 1, EEmult_mod = 0.3 } },
-	rarity = "crp_mythic",
-	atlas = "crp_placeholder",
-	pos = { x = 8, y = 0 },
-	cost = 100,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	perishable_compat = false,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.EEmult), lenient_bignum(card.ability.extra.EEmult_mod) } }
-	end,
-	calculate = function(self, card, context)
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
-				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
-				colour = G.C.DARK_EDITION,
-				card = card
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "Poker The Poker" },
-		code = { "Rainstar" }
-	}
-}
-]]--
+
+--SMODS.Joker {
+--	key = "tetrationa",
+--	name = "Tetrationa",
+--	config = { extra = { EEmult = 1, EEmult_mod = 0.3 } },
+--	rarity = "crp_mythic",
+--	atlas = "crp_placeholder",
+--	pos = { x = 8, y = 0 },
+--	cost = 100,
+--	blueprint_compat = true,
+--	demicoloncompat = true,
+--	perishable_compat = false,
+--	loc_vars = function(self, info_queue, card)
+--		return { vars = { lenient_bignum(card.ability.extra.EEmult), lenient_bignum(card.ability.extra.EEmult_mod) } }
+--	end,
+--	calculate = function(self, card, context)
+--		if (context.joker_main) or context.forcetrigger then
+--			return {
+--				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
+--				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
+--				colour = G.C.DARK_EDITION,
+--				card = card
+--			}
+--		end
+--	end,
+--	update = function(self, card, dt)
+--		local scie = SMODS.calculate_individual_effect
+--		SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
+--			if
+--				(
+--					key == "e_mult"
+--					or key == "emult"
+--					or key == "Emult"
+--					or key == "e_mult_mod"
+--					or key == "emult_mod"
+--					or key == "Emult_mod"
+--				)
+--				and amount ~= 1
+--				and mult
+--			then
+--				for k, v in pairs(find_joker("j_crp_tetrationa")) do
+--					local old = v.ability.extra.EEmult
+--					v.ability.extra.EEmult = lenient_bignum(to_big(v.ability.extra.EEmult) + v.ability.extra.EEmult_mod)
+--					card_eval_status_text(v, "extra", nil, nil, nil, {
+--						message = '^^' .. number_format(v.ability.extra.EEmult) .. ' Mult',
+--					})
+--					Cryptid.apply_scale_mod(v, v.ability.extra.EEmult_mod, old, v.ability.extra.EEmult, {
+--						base = { { "extra", "EEmult" } },
+--						scaler = { { "extra", "EEmult_mod" } },
+--						scaler_base = { v.ability.extra.EEmult_mod },
+--					})
+--				end
+--			end
+--			local ret = scie(effect, scored_card, key, amount, from_edition)
+--			return ret
+--		end
+--	end,
+--	crp_credits = {
+--		idea = { "Poker The Poker" },
+--		code = { "Rainstar" }
+--	}
+--}
 
 SMODS.Joker {
     key = "bulgoeship_card",

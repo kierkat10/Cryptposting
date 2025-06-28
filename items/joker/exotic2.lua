@@ -66,8 +66,7 @@ SMODS.Joker {
 
 -- potentia's scaling effect
 local scie = SMODS.calculate_individual_effect
-function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
-	local ret = scie(effect, scored_card, key, amount, from_edition)
+SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
 	if
 		(
 			key == "e_mult"
@@ -97,45 +96,77 @@ function SMODS.calculate_individual_effect(effect, scored_card, key, amount, fro
 			})
 		end
 	end
+	local ret = scie(effect, scored_card, key, amount, from_edition)
 	return ret
 end
--- commented out due to not being able to scale
---[[
-SMODS.Joker {
-	key = "potentia",
-	name = "Potentia",
-	config = { extra = { Emult = 1, Emult_mod = 0.3 } },
-	rarity = "crp_exotic_2",
-	atlas = "crp_placeholder",
-	pos = { x = 7, y = 0 },
-	cost = 100,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	perishable_compat = false,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.Emult), lenient_bignum(card.ability.extra.Emult_mod) } }
-	end,
-	calculate = function(self, card, context)
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				message = "^" .. lenient_bignum(card.ability.extra.Emult) .. " Mult",
-				Emult_mod = lenient_bignum(card.ability.extra.Emult),
-				colour = G.C.DARK_EDITION,
-				card = card
-			}
-		end
-	end,
-	-- still stolen from cryptids exponentia
-	init = function(self)
-		-- Hook for scaling
-	end,
-	crp_credits = {
-		idea = { "Poker The Poker" },
-		code = { "Rainstar" },
-		custom = { key = "alt",text = "Exponentia" }
-	}
-}
-]]--
+
+--SMODS.Joker {
+--	key = "potentia",
+--	name = "Potentia",
+--	config = { extra = { Emult = 1, Emult_mod = 0.3 } },
+--	rarity = "crp_exotic_2",
+--	atlas = "crp_placeholder",
+--	pos = { x = 7, y = 0 },
+--	cost = 100,
+--	blueprint_compat = true,
+--	demicoloncompat = true,
+--	perishable_compat = false,
+--	loc_vars = function(self, info_queue, card)
+--		return { vars = { lenient_bignum(card.ability.extra.Emult), lenient_bignum(card.ability.extra.Emult_mod) } }
+--	end,
+--	calculate = function(self, card, context)
+--		if (context.joker_main) or context.forcetrigger then
+--			return {
+--				message = "^" .. lenient_bignum(card.ability.extra.Emult) .. " Mult",
+--				Emult_mod = lenient_bignum(card.ability.extra.Emult),
+--				colour = G.C.DARK_EDITION,
+--				card = card
+--			}
+--		end
+--	end,
+--	-- still stolen from cryptids exponentia
+--	update = function(self, card, dt)
+--		local scie = SMODS.calculate_individual_effect
+--		SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
+--			if
+--				(
+--					key == "e_mult"
+--					or key == "emult"
+--					or key == "Emult"
+--					or key == "e_mult_mod"
+--					or key == "emult_mod"
+--					or key == "Emult_mod"
+--				)
+--				and amount ~= 1
+--				and mult
+--			then
+--				for k, v in pairs(find_joker("j_crp_potentia")) do
+--					local old = v.ability.extra.Emult
+--					v.ability.extra.Emult = lenient_bignum(to_big(v.ability.extra.Emult) + v.ability.extra.Emult_mod)
+--					card_eval_status_text(v, "extra", nil, nil, nil, {
+--						message = localize({
+--							type = "variable",
+--							key = "a_powmult",
+--							vars = { number_format(v.ability.extra.Emult) },
+--						}),
+--					})
+--					Cryptid.apply_scale_mod(v, v.ability.extra.Emult_mod, old, v.ability.extra.Emult, {
+--						base = { { "extra", "Emult" } },
+--						scaler = { { "extra", "Emult_mod" } },
+--						scaler_base = { v.ability.extra.Emult_mod },
+--					})
+--				end
+--			end
+--			local ret = scie(effect, scored_card, key, amount, from_edition)
+--			return ret
+--		end
+--	end,
+--	crp_credits = {
+--		idea = { "Poker The Poker" },
+--		code = { "Rainstar" },
+--		custom = { key = "alt",text = "Exponentia" }
+--	}
+--}
 
 SMODS.Joker {
 	key = "repetitio",

@@ -15,7 +15,7 @@ SMODS.Atlas {
 SMODS.Joker {
 	key = "joker_2",
 	name = "Joker 2",
-	config = { extra = { chips = 4 } },
+	config = { extra = { chips = 40 } },
 	rarity = "crp_joker",
 	atlas = "crp_joker",
 	pos = { x = 7, y = 0 },
@@ -233,6 +233,35 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "joker_9",
+	name = "Joker 9",
+	config = { extra = { level_ups = 4 } },
+	rarity = "crp_joker",
+	atlas = "crp_joker",
+	pos = { x = 7, y = 3 },
+	cost = 10,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.level_ups) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+            return {
+                card = self,
+                level_up = lenient_bignum(card.ability.extra.level_ups),
+                message = localize('k_level_up_ex')
+            }
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		art = { "Glitchkat10" },
+		code = { "Glitchkat10" }
+	}
+}
+
+SMODS.Joker {
 	key = "joker?",
 	name = "Joker?",
 	config = { extra = { mult = 4 } },
@@ -256,6 +285,7 @@ SMODS.Joker {
 				and next(SMODS.find_card("j_crp_joker_6"))
 				and next(SMODS.find_card("j_crp_joker_7"))
 				and next(SMODS.find_card("j_crp_joker_8"))
+				and next(SMODS.find_card("j_crp_joker_9"))
 				and next(SMODS.find_card("j_crp_joker_0")) 
 			then
 				return {

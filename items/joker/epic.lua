@@ -89,7 +89,7 @@ SMODS.Joker {
 	rarity = "cry_epic",
 	atlas = "crp_placeholder",
 	pos = { x = 5, y = 0 },
-	cost = 19,
+	cost = 20,
 	blueprint_compat = false,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)

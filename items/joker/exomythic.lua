@@ -141,7 +141,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "richard_tarlton",
 	name = "Richard Tarlton",
-	config = { extra = { EEmult = 23, EEmult_mod = 23 } },
+	config = { extra = { EEmult = 1, EEmult_mod = 23 } },
 	rarity = "crp_exomythic",
 	atlas = "crp_placeholder",
 	pos = { x = 9, y = 0 },
@@ -153,7 +153,7 @@ SMODS.Joker {
 	end,
 	calculate = function(self, card, context)
 		if (context.discard and not context.other_card.debuff and not context.blueprint) or context.forcetrigger then
-			card.ability.EEmult = lenient_bignum(card.ability.extra.EEmult) + lenient_bignum(card.ability.extra.EEmult_mod)
+			card.ability.extra.EEmult = lenient_bignum(card.ability.extra.EEmult) + lenient_bignum(card.ability.extra.EEmult_mod)
 			return {
 				message = localize("k_upgrade_ex"),
 				colour = G.C.DARK_EDITION,
@@ -173,5 +173,75 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "SageSeraph" },
 		code = { "wilfredlam0418" },
+	}
+}
+
+SMODS.Joker {
+	key = "fiorello_giraud",
+	name = "Fiorello Giraud",
+	config = { extra = { EEEmult = 1, EEEmult_mod = 1 } },
+	rarity = "crp_exomythic",
+	atlas = "crp_placeholder",
+	pos = { x = 9, y = 0 },
+	cost = 200,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.EEEmult), lenient_bignum(card.ability.extra.EEEmult_mod) } }
+	end,
+	calculate = function(self, card, context)
+        if context.remove_playing_cards then
+            for k, v in ipairs(context.removed) do
+                if v:is_face() then
+					card.ability.extra.EEEmult = lenient_bignum(card.ability.extra.EEEmult) + lenient_bignum(card.ability.extra.EEEmult_mod)
+                end
+            end
+			return {
+				message = localize("k_upgrade_ex"),
+				colour = G.C.DARK_EDITION,
+				card = card
+			}
+		end
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				message = "^^^" .. lenient_bignum(card.ability.extra.EEEmult) .. " Mult",
+				EEmult_mod = lenient_bignum(card.ability.extra.EEEmult),
+				colour = G.C.EDITION,
+				card = card
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "SageSeraph" },
+		code = { "Rainstar" },
+	}
+}
+
+SMODS.Joker {
+	key = "jean_antoine",
+	name = "Jean-Antoine d'Anglerais",
+	config = { extra = { retriggers = math.min(14, 14) } },
+	rarity = "crp_exomythic",
+	atlas = "crp_joker",
+	pos = { x = 3, y = 8 },
+	soul_pos = { x = 4, y = 8 },
+	cost = 200,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.retriggers) } }
+	end,
+	calculate = function(self, card, context)
+        if context.setting_blind and G.GAME.blind and G.GAME.blind.boss and not G.GAME.blind.disabled then
+			for i = 1, card.ability.extra.retriggers do
+            	G.GAME.blind:disable()
+            	play_sound('timpani')
+            	card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('ph_boss_disabled')})
+			end
+		end
+	end,
+	crp_credits = {
+		idea = { "SageSeraph" },
+		code = { "Rainstar" },
 	}
 }

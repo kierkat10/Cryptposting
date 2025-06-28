@@ -195,3 +195,76 @@ SMODS.Joker {
 		code = { "wilfredlam0418" }
 	}
 }
+
+SMODS.Joker {
+	key = "eternity",
+	name = "Eternity",
+	config = { extra = { echipsmult = 1000000, echipsmultmod = 1, jokerpowmod = 0.1, jokerslots = 1e100, active = false, echipsmultold = 1000000, jokerexponentiation = 1 } },
+	rarity = "crp_2exomythic4me",
+	atlas = "crp_placeholders",
+	pos = { x = 11, y = 0 },
+	cost = 400,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.echipsmult), lenient_bignum(card.ability.extra.echipsmultmod), lenient_bignum(card.ability.extra.jokerpowmod), lenient_bignum(card.ability.extra.jokerslots), card.ability.extra.active, lenient_bignum(card.ability.extra.echipsmultold), lenient_bignum(card.ability.extra.jokerexponentiation) } }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.active = true
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		card.ability.extra.active = false
+	end,
+	update = function(self, card, dtt)
+		if card.ability.extra.active == true and card.ability.extra.echipsmult >= 1 then
+			card.ability.extra.echipsmult = card.ability.extra.echipsmult - card.ability.extra.echipsmultmod
+			card.ability.extra.jokerexponentiation = card.ability.extra.jokerexponentiation + card.ability.extra.jokerpowmod
+		elseif card.ability.extra.active == true and card.ability.extra.echipsmult <= 0 then
+			card.ability.extra.echipsmult = card.ability.extra.echipsmultold
+			G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.jokerslots
+			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_top-up_tag"))
+			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_better_top-up_tag"))
+			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_better_top-up_tag"))
+			--add_tag(Tag(best_top-up_tag))
+		else
+			return
+		end
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				Emult_mod = card.ability.extra.echipsmult,
+				Echip_mod = card.ability.extra.echipsmult,
+				message = "^" .. lenient_bignum(card.ability.extra.echipsmult) .. " Chips & Mult",
+				colour = G.C.EDITION,
+			}
+		end
+        if (context.ending_shop and not context.blueprint and not context.retrigger_joker) or context.forcetrigger then
+            for i, v in pairs(G.jokers.cards) do
+                local check = false
+                if not Card.no(G.jokers.cards[i], "immutable", true) and (G.jokers.cards[i].config.center.key ~= "j_crp_eternity" or context.forcetrigger) then
+                    Cryptid.with_deck_effects(v, function(card2)
+                        Cryptid.misprintize(card2, { min=card.ability.extra.jokerexponentiation, max=card.ability.extra.jokerexponentiation }, nil, true, "^", 1)
+                    end)
+                    check = true
+                end
+			    if check then
+				    card_eval_status_text(
+					context.blueprint_card or G.jokers.cards[i],
+					"extra",
+					nil,
+					nil,
+					nil,
+					{ message = localize("k_upgrade_ex"), colour = G.C.GREEN }
+				    )
+                end
+            end
+            card.ability.extra.jokerexponentiation = 1
+        end
+	end,
+	crp_credits = {
+		idea = { "PurplePickle" },
+		code = { "Rainstar" }
+	}
+}
+

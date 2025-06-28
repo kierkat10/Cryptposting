@@ -13,6 +13,25 @@ return {
 					"Randomized blind size (1-6)",
 				},
 			},
+			bl_crp_chance = {
+				name = "The Chance",
+				text = {
+					"Play only 1 hand, no discards",
+				},
+			},
+			bl_crp_skill = {
+				name = "The Skill",
+				text = {
+					"All listed probablities have a",
+					"0% chance of occuring",
+				},
+			},
+			bl_crp_evil_plant = {
+				name = "The EVIL Plant",
+				text = {
+					"Debuffs everything but face cards",
+				},
+			},
 			["bl_crp_small...?"] = {
 				name = "Small Blind...?",
 				text = {
@@ -321,6 +340,19 @@ return {
 					"{C:inactive}\"Fqt in MY milk?!\"{}",
 				},
 			},
+			j_crp_eternity = {
+				name = "Eternity",
+				text = {
+					"{C:edition, X:dark_edition}^#1#{} Chips & Mult",
+					"Every frame, a {C:attention}little bird{} comes to sharpen its beak,",
+					"removing {C:edition, X:dark_edition}^#2#{}, but giving {C:edition, X:dark_edition}+^#3#{} to all joker values",
+					"at the end of round",
+					"When it reaches {C:edition, X:dark_edition}^0{}, resets back to {C:edition, X:dark_edition}^#6#{}",
+					"{C:mult}and a single day of eternity passes...{}",
+					"{C:inactive}(Active: #5#)",
+					"{C:inactive}(Currently {C:edition, X:dark_edition}+^#7#{})"
+				},
+			},
 			j_crp_joker_2 = {
 				name = "Joker 2",
 				text = {
@@ -362,6 +394,12 @@ return {
 				name = "Joker 8",
 				text = {
 					"{C:white,X:chips}X#1#{} Chip#<s>1#",
+				},
+			},
+			j_crp_joker_9 = {
+				name = "Joker 9",
+				text = {
+					"{C:attention}+#1#{} Levels to played hand",
 				},
 			},
 			["j_crp_joker?"] = {
@@ -455,9 +493,8 @@ return {
 			j_crp_perdurantes = {
 				name = "Perdurantes",
 				text = {
-					"Gains {C:white,X:dark_edition}^#2#{} Mult for every {C:attention}#3#{}",
-					"trigges#<s>3# of this {C:attention}Joker",
-					"{C:inactive}(Currently {C:attention}#4#{C:inactive} trigger#<s>4# and {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
+					"Gains {C:white,X:dark_edition}^#2#{} Mult for every {C:attention}#3#{} triggers",
+					"{C:inactive}(Currently {C:attention}#4#{C:inactive} triggers and {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
 				},
 			},
 			j_crp_jolly_of_joker = {
@@ -486,7 +523,6 @@ return {
 					"{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult){}",
 				},
 			},
-			--[[
 			j_crp_potentia = {
 				name = "Potentia",
 				text = {
@@ -495,7 +531,6 @@ return {
 					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
 				},
 			},
-			]]--
 			j_crp_repetitio = {
 				name = "Repetitio",
 				text = {
@@ -529,7 +564,6 @@ return {
 					"{C:dark_edition,X:edition}^^^#1#{} Mult",
 				},
 			},
-			--[[
 			j_crp_tetrationa = {
 				name = "Tetrationa",
 				text = {
@@ -538,7 +572,6 @@ return {
 					"{C:inactive}(Currently {C:edition,X:dark_edition}^^#1#{C:inactive} Mult){}"
 				},
 			},
-			]]--
 			j_crp_bulgoeship_card = {
 				name = "{C:edition}Bulgoe{}ship Card",
 				text = {
@@ -578,6 +611,15 @@ return {
 					"cost extra",
 				},
 			},
+			j_crp_jean_antoine = {
+				name = "Jean-Antoine d'Anglerais",
+				text = {
+					"Disables {C:white,X:dark_edition}ALL{} blinds (excluding Cursed blinds) {C:attention}#1#{} times",
+					"{C:inactive}14 fucking chicots{}",
+					"{C:inactive}this is technically wip since literally none of the{}",
+					"{C:inactive}rarity blinds exist{}",
+				},
+			},
 			j_crp_fevrial = {
 				name = "Fevrial",
 				text = {
@@ -590,6 +632,13 @@ return {
 				text = {
 					"Gains {C:edition,X:dark_edition}^^#2#{} Mult per discarded card",
 					"{C:inactive}(Currently {C:edition,X:dark_edition}^^#1#{C:inactive} Mult)",
+				},
+			},
+			j_crp_fiorello_giraud = {
+				name = "Fiorello Giraud",
+				text = {
+					"Gains {C:edition,X:dark_edition}^^^#2#{} Mult per destroyed face card",
+					"{C:inactive}(Currently {C:edition,X:dark_edition}^^^#1#{C:inactive} Mult)",
 				},
 			},
 			j_crp_infinitum = {
@@ -630,7 +679,7 @@ return {
 				name = "playerrWon",
 				text = {
 					"{C:dark_edition,X:edition}#4#N#5##2#{} Mult",
-					"{C:dark_edition,X:edition}N{} increases by {C:attention}#3#{} at",
+					"{C:attention}N{} increases by {C:attention}#3#{} at",
 					"end of round",
 					"{C:inactive}(Currently {}{C:attention}#1#{}{C:inactive}){}",
 				},
@@ -1032,6 +1081,36 @@ return {
 					"{C:attention}#6# 7{}s played or discarded",
 				},
 			}, ]]--
+			e_crp_really_negative = {
+				name = "Really Negative",
+				text = {
+					"{C:Attention}+#1#{} Joker Slots",
+				},
+			},
+			e_crp_super_negative = {
+				name = "Super Negative",
+				text = {
+					"{C:Attention}+#1#{} Joker Slots",
+				},
+			},
+			e_crp_photon_readings_negative = {
+				name = "Photon Readings Negative",
+				text = {
+					"{C:Attention}+#1#{} Joker Slots",
+				},
+			},
+			e_crp_photon_readings_really_negative = {
+				name = "Photon Readings are REALLY FUCKING NEGATIVE HOLY SHIT",
+				text = {
+					"{C:Attention}+#1#{} Joker Slots",
+				},
+			},
+			e_crp_photon_readings_gone = {
+				name = "Photon Readings are gone.",
+				text = {
+					"{C:Attention}+#1#{} Joker Slots",
+				},
+			},
 		},
 		Voucher = {
 			v_crp_patience = {
@@ -1076,6 +1155,22 @@ return {
 					"Creates {C:attention}#1#{} {C:dark_edition}Negative{} {C:crp_exomythic}ExoMythic{} {C:attention}Joker#<s>1#{}",
 					"and {C:attention}#2#{} {C:dark_edition}Negative{} {C:crp_2exomythic4me}2ExoMythic4Me{} {C:attention}Joker#<s>2#{}",
 					"{C:inactive}\"Took ya long enough.\""
+				},
+			},
+		},
+		Other = {
+			p_crp_very_rare_pack = {
+				name = "Very Rare Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#{}",
+					"Very Rare Consumables",
+				},
+			},
+			p_crp_very_balanced_pack = {
+				name = "Very Balanced Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#{}",
+					"{C:crp_exomythic}ExoMythic{} Jokers",
 				},
 			},
 		}

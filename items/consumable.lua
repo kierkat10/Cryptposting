@@ -15,6 +15,7 @@ SMODS.Consumable {
 	key = "prayer",
 	set = "Spectral",
 	pos = { x = 0, y = 0 },
+	config = { extra = { money = 0 } },
 	soul_pos = { x = 2, y = 0, extra = { x = 1, y = 0 }},
 	cost = 15,
 	unlocked = true,

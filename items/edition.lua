@@ -49,7 +49,7 @@ SMODS.Edition {
 		end
 	end,
 	-- gee i wonder where i stole this from
-	init = function(self)
+	on_apply = function(card)
 		--Change name of cards with Jolly edition
 		local gcui = generate_card_ui
 		function generate_card_ui(
@@ -161,7 +161,7 @@ SMODS.Edition {
 		end
 	end,
 	-- gee i still wonder where i stole this from
-	init = function(self)
+	on_apply = function(card)
 		--Change name of cards with Jolly edition
 		local gcui = generate_card_ui
 		function generate_card_ui(
@@ -273,7 +273,7 @@ SMODS.Edition {
 		end
 	end,
 	-- gee i once again still wonder where i stole this from
-	init = function(self)
+	on_apply = function(card)
 		--Change name of cards with Jolly edition
 		local gcui = generate_card_ui
 		function generate_card_ui(
@@ -385,7 +385,7 @@ SMODS.Edition {
 		end
 	end,
 	-- gee i once again, for the fourth time, still wonder where i stole this from
-	init = function(self)
+	on_apply = function(card)
 		--Change name of cards with Jolly edition
 		local gcui = generate_card_ui
 		function generate_card_ui(
