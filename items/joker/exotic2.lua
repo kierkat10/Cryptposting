@@ -187,7 +187,7 @@ SMODS.Joker {
 			if context.cardarea == G.play then
 				return {
 					message = localize("k_again_ex"),
-					repetitions = to_number(math.min(lenient_bignum(card.ability.immutable.max_retriggers), lenient_bignum(card.ability.extra.retriggers))),
+					repetitions = tonumber(math.min(lenient_bignum(card.ability.immutable.max_retriggers), lenient_bignum(card.ability.extra.retriggers))),
 					card = card,
 				}
 			end
@@ -252,6 +252,7 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "PurplePickle", "Glitchkat10" },
 		code = { "ScarredOut" },
-		custom = { key = "alt", text = "Redeo" }
+		custom = {key = "alt",
+				  text = "Redeo"}
 	}
 }

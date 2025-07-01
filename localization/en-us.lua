@@ -29,7 +29,8 @@ return {
 			bl_crp_evil_plant = {
 				name = "The EVIL Plant",
 				text = {
-					"Debuffs everything but face cards",
+					"Debuffs everything but",
+					"face cards",
 				},
 			},
 			["bl_crp_small...?"] = {
@@ -44,6 +45,51 @@ return {
 					"",
 				},
 			},
+			bl_crp_joker = {
+				name = "The Joker",
+				text = {
+					"+4 blind requirement"
+				}
+			},
+			bl_crp_gloom = {
+				name = "The Gloom",
+				text = {
+					"All Jolly Jokers are debuffed"
+				}
+			},
+			bl_crp_monochrome_m = {
+				name = "Monochrome M",
+				text = {
+					"All non-Jolly Jokers are debuffed",
+					"Must play only Pairs"
+				}
+			},
+			bl_crp_eternal_eclipse = {
+				name = "Eternal Eclipse",
+				text = {
+					"+X0.1 blind requirement for each",
+					"Planet card used this run"
+				}
+			},
+			bl_crp_roadblock = {
+				name = "The Roadblock (L+)",
+				text = {
+					"Comically large blind requirement"
+				},
+			},
+			bl_crp_epioxus = {
+				name = "Epioxus (EM+)",
+				text = {
+					"X10 Ante when defeated"
+				},
+			},
+			bl_crp_calamitus = {
+				name = "Calamitus (EM+)",
+				text = {
+					"All Diamond, Heart, Spade and Club",
+					"cards are debuffed"
+				},
+			}
 		},
 		Joker = {
 			j_crp_bulgoe_bot = {
@@ -99,13 +145,6 @@ return {
 				name = "None Joker",
 				text = {
 					"",
-				},
-			},
-			["j_crp_three"] = {
-				name = "3.",
-				text = {
-					"{C:attention}+#2#{} 3s",
-					"{C:inactive}(Currently {C:attention}#1#{C:inactive} 3s)",
 				},
 			},
 			["j_crp_:3"] = {
@@ -181,16 +220,6 @@ return {
 					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chip#<s>1#)",
 				},
 			},
-			--[[
-			j_crp_bulgoelatro = {
-				name = "{C:edition}Bulgoe{}latro",
-				text = {
-					"{C:mult}+#1#{} Mult for every owned",
-					"{C:edition}Bulgoe{}-themed Joker",
-					"(Currently {C:mult}+#2#{} Mult)",
-				},
-			},
-			]]
 			j_crp_one_mans_trash = {
 				name = "One Man's Trash",
 				text = {
@@ -477,7 +506,8 @@ return {
 				name = "Chibidoki",
 				text = {
 					"{C:crp_unrare}Unrare{} and higher rarity {C:attention}Jokers{}",
-					"give {C:white,B:1}X#1#{} Chips and Mult"
+					"give {C:white,B:1}X#1#{} Chips and Mult", -- plasma deck colors
+					"{C:inactive,s:0.8}This Joker is currently slightly unfinished{}"
 				}
 			},
 			j_crp_normalis = {
@@ -510,18 +540,9 @@ return {
 			j_crp_victoriam = {
 				name = "Victoriam",
 				text = {
-					"{C:white,X:dark_edition}^#1#{} Chips for every {C:edition,X:grey}win{} on this profile",
+					"{C:white,X:dark_edition}^0.1{} Mult for every {C:edition,X:grey}win{} on this profile",
 					"{C:inactive,s:0.8}(Excludes seeded runs and Challenge runs)",
-					"{C:inactive}(Currently {C:white,X:dark_edition}^#2#{C:inactive} Chips)",
-				},
-			},
-			j_crp_splittum = {
-				name = "Splittum",
-				text = {
-					"When a {C:attention}Joker{} is sold, create {C:attention}#1# {C:dark_edition}Negative{}",
-					"{C:attention}Jokers{} of one rarity below the sold {C:attention}Joker{}",
-					"{C:inactive}(Some rarities do not apply)",
-					"{C:inactive}\"generic video game slime enemy\""
+					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Mult)",
 				},
 			},
 			j_crp_duplex = {
@@ -816,15 +837,6 @@ return {
 					"{C:red}Destroy{} all {C:attention}Jokers{} and {C:attention}consumables{}, bypassing {C:red}all effects{}",
 					"Reset deck to a standard {C:attention}52{} card deck",
 					"Decrease {C:blue}hands{} and {C:red}discards{} by {C:attention}27{}"
-				}
-			},
-		},
-		Code = {
-			c_crp_decrement = {
-				name = "://DECREMENT",
-				text = {
-					"{C:attention}-#1#{} Ante if current {C:attention}Ante{}",
-					"is a multiple of hand size"
 				}
 			},
 		},
@@ -1249,6 +1261,7 @@ return {
 			k_crp_hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe = "HyperExoMythicEpicAwesomeUncommon2MExotic2GigaOmegaAlphaOmnipotranscendant2ExoMythic4meCipe",
 			k_crp_supa_rare = "supa rare",
 			k_crp_all = "All",
+			bl_crp_debuff_monochrome_m = "Must play Pairs"
 		},
 		labels = {
 			crp_overloaded = "Overloaded",
@@ -1272,4 +1285,3 @@ return {
 		}
 	}
 }
-
