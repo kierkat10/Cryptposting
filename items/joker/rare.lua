@@ -25,11 +25,11 @@ SMODS.Joker {
 	demicoloncompat = true,
 	perishable_compat = false,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.death_prevention_enabled, card.ability.extra.score_percentage, card.ability.extra.xchips, card.ability.extra.xchips_mod, card.ability.extra.stones } }
+		return { vars = { card.ability.extra.death_prevention_enabled, lenient_bignum(card.ability.extra.score_percentage), lenient_bignum(card.ability.extra.xchips), lenient_bignum(card.ability.extra.xchips_mod), lenient_bignum(card.ability.extra.stones) } }
 	end,
 	calculate = function(self, card, context)
 		-- ill be honest i just stole like most of the things here from cryptid lmao
-		if context.game_over and to_big(G.GAME.chips / G.GAME.blind.chips) <= to_big(card.ability.extra.score_percentage / 100) and card.ability.extra.death_prevention_enabled == true then
+		if context.game_over and to_big(G.GAME.chips / G.GAME.blind.chips) <= to_big(lenient_bignum(card.ability.extra.score_percentage) / 100) and card.ability.extra.death_prevention_enabled == true then
 			G.E_MANAGER:add_event(Event({
 				func = function()
 					G.hand_text_area.blind_chips:juice_up()
@@ -51,8 +51,8 @@ SMODS.Joker {
 		if (context.joker_main) or context.forcetrigger then
 			return {
 				card = card,
-				Xchip_mod = lenient_bignum(card.ability.extra.xchips),
-				message = "X" .. number_format(card.ability.extra.xchips),
+				Xchips = lenient_bignum(card.ability.extra.xchips),
+				message = "X" .. number_format(lenient_bignum(card.ability.extra.xchips)),
 				colour = G.C.CHIPS,
 			}
 		end
@@ -112,15 +112,14 @@ SMODS.Joker {
 					{ message = localize("k_eaten_ex"), colour = G.C.CHIPS }
 				)
 			else
-				card.ability.extra.xchips =
-					lenient_bignum(to_big(card.ability.extra.xchips) - card.ability.extra.xchips_mod)
+				card.ability.extra.xchips = lenient_bignum(to_big(card.ability.extra.xchips) - lenient_bignum(card.ability.extra.xchips_mod))
 				card_eval_status_text(
 					card,
 					"extra",
 					nil,
 					nil,
 					nil,
-					{ message = "-X" .. number_format(card.ability.extra.xchips_mod) .. "Chips", colour = G.C.CHIPS }
+					{ message = "-X" .. number_format(lenient_bignum(card.ability.extra.xchips_mod)) .. "Chips", colour = G.C.CHIPS }
 				)
 			end
 		end

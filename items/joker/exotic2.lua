@@ -252,7 +252,6 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "PurplePickle", "Glitchkat10" },
 		code = { "ScarredOut" },
-		custom = {key = "alt",
-				  text = "Redeo"}
+		custom = { key = "alt", text = "Redeo" }
 	}
 }

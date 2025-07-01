@@ -84,7 +84,7 @@ SMODS.Joker {
         }
     },
     crp_credits = {
-        idea = { "Poker The Poker","Glitchkat10" },
+        idea = { "Poker The Poker", "Glitchkat10" },
         art = { "MarioFan597" },
         code = { "Glitchkat10" }
     }
@@ -171,7 +171,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "victoriam",
 	name = "Victoriam",
-	config = { extra = { Emult_mod = 0.1 } },
+	config = { extra = { Echip_mod = 0.1 } },
 	rarity = "cry_exotic",
 	atlas = "crp_placeholders",
 	pos = { x = 7, y = 0 },
@@ -179,13 +179,13 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod) } }
+		return { vars = { lenient_bignum(card.ability.extra.Echip_mod), lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Echip_mod) } }
 	end,
 	calculate = function(self, card, context)
 		if context.joker_main or context.forcetrigger then
 			return {
-				message = "^" .. lenient_bignum( 1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod ) .. " Mult",
-				Emult_mod = lenient_bignum( 1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * card.ability.extra.Emult_mod ),
+				message = "^" .. number_format(lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * lenient_bignum(card.ability.extra.Echip_mod))) .. " Chips",
+				Echip_mod = lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * lenient_bignum(card.ability.extra.Echip_mod)),
 				colour = G.C.DARK_EDITION,
 				card = card
 			}
