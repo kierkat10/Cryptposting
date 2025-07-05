@@ -8,6 +8,19 @@ function Blind:disable() -- hook to not let legendary blinds+ be disabled unless
 	end
 	-- else, don't disable blind
 end
+-- Pokios effect hook
+ogupdate = Game.update
+function Game:update(dt)
+	ogupdate(self, dt)
+	if G.GAME.blind then -- prevent exploding if theres no blind active
+		if G.GAME.blind.name == "Pokios (EM+)" then -- if blind is pokios...
+			if not next(SMODS.find_card("j_crp_jean_antoine")) then -- and no jean...
+				G.GAME.blind.chips = G.GAME.blind.chips ^ 2 -- destroy the game
+				G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+			end
+		end
+	end
+end
 SMODS.Atlas {
 	key = "blind",
     atlas_table = "ANIMATION_ATLAS",
@@ -172,9 +185,11 @@ SMODS.Blind {
 	mult = 1,
 	set_blind = function(self)
 		G.GAME.blind.chips = G.GAME.blind.chips + 4
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 	end,
 	disable = function(self)
 		G.GAME.blind.chips = G.GAME.blind.chips - 4
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 	end,
 	boss_colour = HEX("f7343e"),
     crp_credits = {
@@ -190,7 +205,7 @@ SMODS.Blind {
 	atlas = "blind",
 	mult = 2,
 	recalc_debuff = function(self, card, from_blind)
-		if (card.area == G.jokers) and not G.GAME.blind.disabled and card:is_jolly() then -- since this is a cryptid addon we'll use cryptids function for this
+		if (card.area == G.jokers) and not G.GAME.blind.disabled and (card:is_jolly() or (Cryptid.safe_get(card.config.center, "pools", "M"))) then -- since this is a cryptid addon we'll use cryptids function for this
 			return true
 		end
 		return false
@@ -208,12 +223,12 @@ SMODS.Blind {
 	boss = { min = 2, max = 10, showdown = true},
 	atlas = "blind",
 	mult = 0.13,
-	disable = function(self)
-		
-	end,
 	recalc_debuff = function(self, card, from_blind)
-		if (card.area == G.jokers) and not G.GAME.blind.disabled and not (card:is_jolly()) and not card.key == "j_chicot" and not card.key == "j_crp_jean_antoine" then -- since this is a cryptid addon we'll use cryptids function for this
-			return true -- also manually doing that sucks but whatever
+		if (card.area == G.jokers) and not G.GAME.blind.disabled and (card:is_jolly() or (Cryptid.safe_get(card.config.center, "pools", "M"))) then -- since this is a cryptid addon we'll use cryptids function for this
+			return false
+		end
+		if (card.area == G.jokers) and not card.key == "j_chicot" and not card.key == "j_crp_jean_antoine" then
+			return true
 		end
 		return false
 	end,
@@ -250,6 +265,7 @@ SMODS.Blind {
 			planets_used = 0
 		end
 		G.GAME.blind.chips = G.GAME.blind.chips * (1 + (planets_used * sizeperplanet))
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 	end,
 	disable = function(self)
 		local planets_used -- set variable up
@@ -260,6 +276,7 @@ SMODS.Blind {
 			planets_used = 0
 		end
 		G.GAME.blind.chips = G.GAME.blind.chips / (1 + (planets_used * sizeperplanet)) -- NOTE: this will probably reduce further if you use a planet card during a blind, but the only way i can think of to do that is luchador so i don't feel like fixing it rn
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 	end,
 	boss_colour = HEX("4fb1db"),
     crp_credits = {
@@ -336,6 +353,7 @@ SMODS.Blind {
 	boss = { min = 2, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
+	dollars = 1222,
 	in_pool = function(self)
 		if G.jokers then
 			for _, joker in pairs(G.jokers.cards) do
@@ -351,8 +369,7 @@ SMODS.Blind {
 	atlas = "blind",
 	defeat = function(self) -- filthy evil fucked up hack in the next line
 		if not next(SMODS.find_card("j_crp_jean_antoine")) then  -- not sure how i would go about using disable for this so we'll just do it like this for now
-			local anteval = G.GAME.round_resets.ante * 10
-			ease_ante(anteval)
+			ease_ante(G.GAME.round_resets.ante * 10)
 		end
 	end,
 	boss_colour = HEX("b8bf11"),
@@ -368,6 +385,7 @@ SMODS.Blind {
 	boss = { min = 2, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
+	dollars = 1600,
 	in_pool = function(self)
 		if G.jokers then
 			for _, joker in pairs(G.jokers.cards) do
@@ -390,6 +408,87 @@ SMODS.Blind {
 	boss_colour = HEX("ff0055"),
     crp_credits = {
 		idea = { "Grahkon" },
+		code = {"ScarredOut"}
+	}
+}
+SMODS.Blind {
+	key = "pokios",
+	name = "Pokios (EM+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10 },
+	blindrarity = "ExoMythic",
+	mult = 2,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exomyth_blind_keys[rarity] then
+					return true
+				end
+			end
+		end
+		-- if we're out of the loop then there isn't a joker that allows this to spawn
+		return false
+	end,
+	atlas = "blind",
+	-- effect of this boss is in the hook at the top of this file (can't do what eternity did, trust me I tried that)
+	boss_colour = HEX("2b7037"),
+    crp_credits = {
+		idea = { "Unknown" },
+		code = {"ScarredOut"}
+	}
+}
+SMODS.Blind {
+	key = "quettus",
+	name = "Quettus (S, EM+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10, showdown = true },
+	blindrarity = "ExoMythic",
+	mult = 1,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exomyth_blind_keys[rarity] then
+					-- now we do a "is this a showdown ante" check
+					if G.GAME.round_resets.ante % G.GAME.win_ante == 0 then
+						return true
+					end
+				end
+			end
+		end
+		-- if we're out of the loop then there isn't a joker that allows this to spawn
+		return false
+	end,
+	set_blind = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips ^ 10 -- scoring req effect
+		if not next(SMODS.find_card("j_crp_jean_antoine")) then -- reuse code to check if rarity is legendary or above
+			if G.jokers then -- jean still solos (it'd be lame if your boss disabling joker didn't disable the boss)
+				for _, joker in pairs(G.jokers.cards) do
+					local rarity = joker.config.center.rarity
+					if type(rarity) == "number" and rarity >= 4 then
+						if not (joker.ability.cry_absolute or joker.ability.eternal) then -- still check for eternal so theres interesting counterplay to this
+							-- KILL............
+							joker:start_dissolve()
+						end
+					elseif type(rarity) == "string" and valid_leg_blind_keys[rarity] then
+						if not (joker.ability.cry_absolute or joker.ability.eternal) then
+							-- KILL............
+							joker:start_dissolve()
+						end
+					end
+				end
+			end
+		end
+	end,
+	disable = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips ^ 0.1 -- reverse the effect
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips) -- make sure it shows up
+	end,
+	atlas = "blind",
+	boss_colour = HEX("000000"),
+    crp_credits = {
+		idea = { "Unknown" },
 		code = {"ScarredOut"}
 	}
 }
