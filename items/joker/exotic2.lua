@@ -249,8 +249,6 @@ SMODS.Joker {
 	}
 }
 
--- does not give echips for some reason
---[[
 SMODS.Joker {
 	key = "peripheria_ad_diametrum",
 	name = "Peripheria ad Diametrum",
@@ -278,7 +276,7 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		if (context.joker_main and G.GAME.current_round.hands_played == 0) or context.forcetrigger then
 			return {
-				Echips_mod = lenient_bignum(tonumber(card.ability.immutable.pi[card.ability.immutable.digit])) or 1,
+				Echip_mod = lenient_bignum(tonumber(card.ability.immutable.pi[card.ability.immutable.digit])) or 1,
 				message = "^" .. number_format(lenient_bignum(tonumber(card.ability.immutable.pi[card.ability.immutable.digit] or 1))) .. " Chips",
 				colour = G.C.DARK_EDITION
 			}
@@ -297,4 +295,3 @@ SMODS.Joker {
 		custom = { key = "alt", text = "Circulus Pistoris" }
 	}
 }
-]]--

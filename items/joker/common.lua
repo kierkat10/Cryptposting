@@ -304,6 +304,29 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "the_joker_that_decided",
+	name = "The Joker That Decided He Wanted to Test the Limits for How Long a Joker Name Could Be by Putting His Effect in His Name With Said Effect Being That He Gives One Mult When Any Playing Card Is Scored Also He Wanted to Let You Know That He Wants You to Have a Nice Day So He Put That in His Name Too Just to Inflate How Long His Name Is",
+	config = { immutable = { mult = 1 } },
+	rarity = 1,
+	atlas = "crp_placeholder",
+	pos = { x = 2, y = 0 },
+	cost = 4,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	calculate = function(self, card, context)
+		if (context.individual and context.cardarea == G.play) or context.forcetrigger then
+			return {
+				mult = lenient_bignum(card.ability.immutable.mult)
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Psychomaniac14" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "skibidi_toilet",
 	name = "Skibidi Toilet",
 	config = {},

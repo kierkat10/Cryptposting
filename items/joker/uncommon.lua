@@ -89,6 +89,26 @@ SMODS.Joker {
 	}
 }
 
+SMOS.Joker {
+	key = "q_big",
+	name = "Q",
+	rarity = 3,
+	atlas = "crp_placeholder",
+	pos = { x = 4, y = 0 },
+	cost = 8
+	blueprint_compat = true,
+	demicoloncompat = true,
+	calculate = function()
+		if (context.setting_blind and context.blind.boss) or context.forcetrigger then
+			SMODS.add_card({ key = "j_zany", edition = "e_negative" })
+		end
+	end,
+	crp_credits = {
+		idea = { "Superb_thing" },
+		code = { "wilfredlam0418" }
+	}
+}
+
 SMODS.Joker {
 	key = "money_card",
 	name = "Money Card",
@@ -215,7 +235,7 @@ SMODS.Joker {
 	config = { extra = { money = 1, mult = 2, hand_size = 2, chips = 50 } },
 	rarity = 2,
 	atlas = "crp_placeholder",
-	pos = { x = 3, y = 0},
+	pos = { x = 3, y = 0 },
 	cost = 7,
 	pools = { Meme = true },
 	blueprint_compat = true,
@@ -243,6 +263,35 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "wilfredlam0418" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "fun_coin",
+	name = "fun coin",
+	config = { extra = { gain = 4, loss = 3, xmult = 2 } },
+	rarity = 2,
+	atlas = "crp_placeholder",
+	pos = { x = 3, y = 0 },
+	cost = 7,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.gain, card.ability.extra.loss, card.ability.extra.xmult } }
+	end,
+	calculate = function(self, card, context)
+		if context.before or context.forcetrigger then
+			ease_dollars(card.ability.gain and pseudorandom("crp_fun_coin") > 0.5 or -card.ability.loss)
+		end
+		if (context.joker_main and G.GAME.dollars < 0) or context.forcetrigger then
+			return {
+				xmult = card.ability.extra.xmult
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "PurplePickle" },
 		code = { "wilfredlam0418" }
 	}
 }

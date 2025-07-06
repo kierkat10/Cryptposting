@@ -74,3 +74,31 @@ SMODS.Joker {
 		code = { "wilfredlam0418" },
 	}
 }
+
+SMODS.Joker {
+	key = "coughing_baby_vs_hydrogen_bomb",
+	name = "Coughing Baby vs. Hydrogen Bomb",
+	config = { extra = { EEmult = 2 } },
+	rarity = "cry_epic",
+	atlas = "crp_placeholder",
+	pos = { x = 5, y = 0 },
+	cost = 20,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	loc_vars = function(self, info-queue, card)
+		return { vars = { card.ability.extra.EEmult } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main and G.GAME.blind.config.blind.key == "bl_small") or context.forcetrigger then
+			return {
+				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
+				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
+				colour = G.C.DARK_EDITION
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "PurplePickle" },
+		code = { "wilfredlam0418" },
+	}
+}

@@ -129,6 +129,30 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "chi_cot",
+	name = "Chi Cot",
+	rarity = "crp_trash",
+	atlas = "crp_placeholder",
+	pos = { x = 1, y = 0 },
+	cost = 0,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	calculate = function()
+		if context.setting_blind and G.GAME.blind.config.blind.key = "bl_small" then
+			G.GAME.blind:disable()
+			return {
+				message = "Blind Disabled!",
+				colour = G.C.FILTER
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "ScarredOut" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "three",
 	name = "3.",
 	config = { extra = { threes = 0, threes_mod = 3 } },
