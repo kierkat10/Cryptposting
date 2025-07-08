@@ -652,3 +652,42 @@ SMODS.Joker {
 	}
 }
 --]]
+
+SMODS.Joker{ --Executioner
+    name = "Executioner",
+    key = "executioner",
+    config = {
+        extra = {
+        }
+    },
+pos = {
+        x = 1,
+        y = 0
+    },
+    cost = 6,
+    rarity = 3,
+    blueprint_compat = true,
+demicolon_compat = true,
+    eternal_compat = true,
+loc_vars = function(self, info_queue, card)
+        return {vars = {}}
+    end,
+
+    calculate = function(self, card, context)
+        if context.destroy_card and context.destroy_card.should_destroy and not context.blueprint then
+            return { remove = true }
+        end
+        if context.individual and context.cardarea == G.play and not context.blueprint then
+            context.other_card.should_destroy = false
+            if context.other_card:is_face() then
+                context.other_card.should_destroy = true
+                return {
+                    message = "Destroyed!"
+                }
+            end
+        end,
+	crp_credits = {
+		idea = { "Psychomaniac14" },
+		code = { "lunarisillustratez" }
+    end --please work please work
+}

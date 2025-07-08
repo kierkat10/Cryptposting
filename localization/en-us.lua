@@ -406,6 +406,20 @@ return {
 					"{C:attention}#3# {C:chips}#4#"
 				}
 			},
+			j_crp_jollymoon = {
+				name = "Piano Falling over the Jolly Moon",
+				text = {
+					"{C:mult}+#1# Mult{}",
+					"Levels up {C:attention}Pair{} when this Joker is triggered"
+				}
+			},
+			j_crp_waldo = {
+				name = "Waldo"
+				text = {
+					"{C:Mult}+#1# Mult{}"
+					"{C:inactive}\"You found me!\""
+				}
+			}, --it;s official, we waldoing it.
 			j_crp_fun_coin = {
 				name = "fun coin",
 				text = {
@@ -475,6 +489,12 @@ return {
 					"Earn {C:money}$#3#{} at end of round",
 					"{C:mult}+4{} Mult",
 					"{C:chips}+5{} Chip#<s>5#",
+				}
+			},
+			j_crp_executioner = {
+				name = "Executioner"
+				text = {
+					"{C:attention}Destroys {}all scoring Face Cards"
 				}
 			},
 			j_crp_coughing_baby_vs_hydrogen_bomb = {

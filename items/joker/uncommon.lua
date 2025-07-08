@@ -340,3 +340,73 @@ SMODS.Joker {
 		code = { "wilfredlam0418", "Glitchkat10" }
 	}
 }
+
+SMODS.Joker{ --Piano Falling from the Jolly Moon
+    name = "Piano Falling from the Jolly Moon",
+    key = "jollymoon",
+    config = {
+        extra = {
+            Pair = 0,
+            mult = 8,
+            levels = 1
+      pos = { x = 0, y = 0 },
+    cost = 5,
+    rarity = 2,
+    blueprint_compat = true,
+demicolon_compat = true,
+    eternal_compat = true,
+loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.mult}}
+    end,
+
+    calculate = function(self, card, context)
+        if context.cardarea == G.jokers and context.joker_main then
+                local target_hand = "Pair"
+                return {
+                    mult = card.ability.extra.mult,
+                    extra = {
+                        level_up = card.ability.extra.levels,
+                level_up_hand = target_hand,
+                            message = localize('k_level_up_ex'),
+                        colour = G.C.RED
+                        }
+                }
+        end
+    end,
+	crp_credits={
+	idea = { "Glitchkat10" },
+	code = { "lunarisillustratez" }
+	}			
+}
+
+
+ SMODS.Joker{ --Waldo
+    name = "Waldo",
+    key = "waldo",
+    config = {
+        extra = {
+            mult = 10
+        }
+    },
+    pos = { x = 2, y = 0 },
+    cost = 5,
+    rarity = 2,
+    blueprint_compat = true,
+    eternal_compat = true,
+demicoloncompat = true,
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.mult}}
+    end,
+
+    calculate = function(self, card, context)
+        if context.cardarea == G.jokers and context.joker_main then
+                return {
+                    mult = card.ability.extra.mult
+                }
+        end
+    end,
+crp_credits={
+	idea = { "aqrlr" },
+	code = { "lunarisillustratez" }
+	}
+}
