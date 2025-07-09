@@ -29,27 +29,27 @@ SMODS.Joker {
 	end,
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
-			if card.ability.extra.operator <= -1 then
+			if to_big(card.ability.extra.operator) <= to_big(-1) then
 				return {
 					mult = lenient_bignum(card.ability.extra.mult),
 				}
-			elseif card.ability.extra.operator == 0 then
+			elseif to_big(card.ability.extra.operator) == to_big(0) then
 				return {
 					Xmult = lenient_bignum(card.ability.extra.mult),
 				}
-			elseif card.ability.extra.operator == 1 then
+			elseif to_big(card.ability.extra.operator) == to_big(1) then
 				return {
 					Emult_mod = lenient_bignum(card.ability.extra.mult),
 					message = "^" .. lenient_bignum(card.ability.extra.mult) .. " Mult",
 					colour = G.C.DARK_EDITION
 				}
-			elseif card.ability.extra.operator == 2 then
+			elseif to_big(card.ability.extra.operator) == to_big(2) then
 				return {
 					EEmult_mod = lenient_bignum(card.ability.extra.mult),
 					message = "^^" .. lenient_bignum(card.ability.extra.mult) .. " Mult",
 					colour = G.C.DARK_EDITION
 				}
-			elseif card.ability.extra.operator == 3 then
+			elseif to_big(card.ability.extra.operator) == to_big(3) then
 				return {
 					EEEmult_mod = lenient_bignum(card.ability.extra.mult),
 					message = "^^^" .. lenient_bignum(card.ability.extra.mult) .. " Mult",
@@ -61,17 +61,14 @@ SMODS.Joker {
 						lenient_bignum(card.ability.extra.operator),
 						lenient_bignum(card.ability.extra.mult)
 					},
-					message = "{" .. lenient_bignum(card.ability.extra.operator) .. "}" .. lenient_bignum(card.ability.extra.mult) .. " Mult",
+					message = "{" .. number_format(lenient_bignum(card.ability.extra.operator)) .. "}" .. number_format(lenient_bignum(card.ability.extra.mult)) .. " Mult",
 					colour = G.C.EDITION
 				}
 			end
 		end
-
-		local roll = pseudorandom("quetta_m")
-		local chance = lenient_bignum(card.ability.immutable.numerator) / lenient_bignum(card.ability.immutable.denominator)
 		if (context.before and context.scoring_name == "Pair" and not context.blueprint) or context.forcetrigger then
-			if roll <= chance then
-				card.ability.extra.operator = card.ability.extra.operator + card.ability.extra.operator_increase
+			if to_big(pseudorandom("quetta_m")) <= to_big(lenient_bignum(card.ability.immutable.numerator) / lenient_bignum(card.ability.immutable.denominator)) then
+				card.ability.extra.operator = lenient_bignum(card.ability.extra.operator) + lenient_bignum(card.ability.extra.operator_increase)
 				return {
 					message = "Upgraded!",
 					card = card
@@ -88,7 +85,7 @@ SMODS.Joker {
 
 SMODS.Joker {
 	key = "playerrwon",
-	name = "playerWon",
+	name = "playerrWon",
 	config = { extra = { arrows = 1, placebo = 9, arrows_scale = 1, mult = 1e300 }, immutable = { max = 9827 } },
 	rarity = "crp_22exomythic4mecipe",
 	atlas = "crp_placeholder",
@@ -111,7 +108,7 @@ SMODS.Joker {
 					lenient_bignum(math.ceil(lenient_bignum(math.min(lenient_bignum(card.ability.extra.arrows), lenient_bignum(card.ability.immutable.max))))), -- do you like parentheses
 					lenient_bignum(card.ability.extra.mult)
 				},
-				message = "{" .. lenient_bignum(math.min(lenient_bignum(card.ability.extra.arrows), lenient_bignum(card.ability.immutable.max))) .. "}" .. lenient_bignum(card.ability.extra.placebo) .. " Mult",
+				message = "{" .. number_format(lenient_bignum(math.min(lenient_bignum(card.ability.extra.arrows), lenient_bignum(card.ability.immutable.max)))) .. "}" .. number_format(lenient_bignum(card.ability.extra.placebo)) .. " Mult",
 				colour = G.C.EDITION,
 			}
 		end

@@ -20,7 +20,7 @@ SMODS.Back {
     loc_vars = function(self, info_queue)
 		return { vars = { lenient_bignum(self.config.hand_size), lenient_bignum(self.config.discards) * -1 } }
 	end,
-	crp_credits = {
+	crp_credits = { -- does not appear in-game, but is useful for when somebody asks who made what
 		idea = { "Poker The Poker" },
 		art = { "GudUsername" },
 		code = { "Glitchkat10" }
@@ -29,10 +29,7 @@ SMODS.Back {
 
 SMODS.Back {
     key = "brown",
-    config = {
-        hands = -1,
-        cardselectionlimit = 2
-    },
+    config = { hands = -1, cardselectionlimit = 2 },
     loc_vars = function(self, info_queue)
         return { vars = { lenient_bignum(self.config.hands) * -1, lenient_bignum(self.config.cardselectionlimit)} }
     end,
@@ -55,9 +52,9 @@ SMODS.Back {
         y = 0
     },
     crp_credits = {
-        idea = {"Poker the Poker"},
-        art = {"GudUsername"},
-        code = {"ScarredOut"}
+        idea = { "Poker the Poker" },
+        art = { "GudUsername" },
+        code = { "ScarredOut" }
     }
 }
 
@@ -94,9 +91,6 @@ SMODS.Back {
 SMODS.Back {
     key = "creativemode",
     config = { consumables = { "c_cry_pointer" } },
-    loc_vars = function(self, info_queue)
-        -- info_queue[#info_queue+1] = G.P_CENTERS.c_cry_pointer
-    end,
     atlas = "crp_placeholders",
     pos = { x = 4, y = 2 },
     crp_credits = {

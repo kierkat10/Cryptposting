@@ -80,42 +80,9 @@ local exomythicepicawesomeuncommon2mexotic22exomythic4mecipe_gradient = SMODS.Gr
 	cycle = 2
 })
 
-local hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe_gradient = SMODS.Gradient({
-	key="hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe",
-	colours = {
-		HEX("989898"),
-		HEX("272727"),
-		HEX("ff6600"),
-		HEX("708b91"), 
-		HEX("1e9eba"),
-		HEX("ffff00"),
-		HEX("ef0098"),
-		HEX("00ffff"),
-		HEX("4bc292"),
-		HEX("708b91"), 
-		HEX("1e9eba"),
-		HEX("708b91"), 
-		HEX("1e9eba"),
-		HEX("989898"),
-		HEX("272727"),
-		HEX("ff6600"),
-		HEX("708b91"), 
-		HEX("1e9eba"),
-		HEX("ffff00"),
-		HEX("ef0098")
-	},
-	cycle = 1
-})
-
 SMODS.Rarity({
 	key = "abysmal",
 	badge_colour = HEX("49011c"),
-	pools = { ["Joker"] = true },
-})
-
-SMODS.Rarity({
-	key = "self-insert",
-	badge_colour = HEX("982700"),
 	pools = { ["Joker"] = true },
 })
 
@@ -135,16 +102,6 @@ SMODS.Rarity({
 	in_shop = true,
 	default_weight = 0.005,
 	pools = { ["Joker"] = true },
-	get_weight = function(self, weight, object_type)
-		return weight
-	end
-})
-
-SMODS.Rarity({
-	key = "edgy",
-	badge_colour = HEX("606060"),
-	pools = { ["Joker"] = true },
-	default_weight = 0.004, -- at some point, this will be as common as, well, common, but it will be very low for the time being due to there not being very many common 2 jokers
 	get_weight = function(self, weight, object_type)
 		return weight
 	end
@@ -183,6 +140,16 @@ SMODS.Rarity({
 	badge_colour = G.C.RARITY[3],
 	pools = { ["Joker"] = true },
 	default_weight = 0.004, -- see: common 2
+	get_weight = function(self, weight, object_type)
+		return weight
+	end
+})
+
+SMODS.Rarity({
+	key = "refined",
+	badge_colour = HEX("ef005d"),
+	pools = { ["Joker"] = true },
+	default_weight = 0.003,
 	get_weight = function(self, weight, object_type)
 		return weight
 	end
@@ -278,11 +245,6 @@ SMODS.Rarity({
 SMODS.Rarity({
 	key = "exomythicepicawesomeuncommon2mexotic22exomythic4mecipe",
 	badge_colour = exomythicepicawesomeuncommon2mexotic22exomythic4mecipe_gradient,
-})
-
-SMODS.Rarity({
-	key = "hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe",
-	badge_colour = hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe_gradient,
 })
 
 SMODS.Rarity({

@@ -22,6 +22,7 @@ SMODS.Joker {
 	cost = 0,
 	blueprint_compat = true,
 	demicoloncompat = true,
+	pools = { Bulgoe = true },
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -67,4 +68,41 @@ SMODS.Joker {
 		code = { "wilfredlam0418" },
 	}
 }
-      
+
+-- tries to kill itself like a thousand times when cursed jokers detected, even in the collection
+--[[
+SMODS.Joker {
+	key = "evil_riff_raff",
+	name = "EVIL Riff-Raff",
+	config = { extra = { cards = 2 } },
+	rarity = "crp_abysmal",
+	atlas = "crp_placeholder",
+	evil = "j_riff_raff",
+	pos = { x = 0, y = 0 },
+	cost = 0,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.cards) } }
+	end,
+	calculate = function(self, card, context)
+		if context.setting_blind or context.forcetrigger then
+			for i = 1, card.ability.extra.cards do
+				if #G.jokers.cards < G.jokers.config.card_limit or context.forcetrigger then
+					SMODS.add_card({ set = "Joker", rarity = "cry_cursed" })
+				end
+			end
+		end
+	end,
+	update = function(self, card)
+		if #Cryptid.advanced_find_joker(nil, "cry_cursed", nil, nil, true) >= 10 then
+			card:start_dissolve()
+			card:remove_from_deck()
+		end
+	end,
+	crp_credits = {
+		idea = { "wilfredlam0418" },
+		code = { "wilfredlam0418" }
+	}
+}
+]]--

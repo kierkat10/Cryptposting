@@ -17,8 +17,8 @@ SMODS.Joker {
 	name = "Jonkler",
     config = { immutable = { arrows = 25000, EEEmult = 1 } },
     rarity = "crp_trash",
-    atlas = "crp_placeholders",
-    pos = { x = 1, y = 0 },
+    atlas = "crp_joker",
+    pos = { x = 8, y = 3 },
     cost = 0,
     blueprint_compat = true,
 	demicoloncompat = true,
@@ -125,5 +125,58 @@ SMODS.Joker {
 		idea = { "Psychomaniac14" },
 		art = { "Psychomaniac14" },
 		code = { "Glitchkat10" }
+	}
+}
+
+SMODS.Joker {
+	key = "chi_cot",
+	name = "Chi Cot",
+	rarity = "crp_trash",
+	atlas = "crp_placeholder",
+	pos = { x = 1, y = 0 },
+	cost = 0,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	calculate = function(self, card, context)
+		if context.setting_blind and G.GAME.blind.config.blind.key == "bl_small" then
+			G.GAME.blind:disable()
+			return {
+				message = "Blind Disabled!",
+				colour = G.C.FILTER
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "ScarredOut" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "three",
+	name = "3.",
+	config = { extra = { threes = 0, threes_mod = 3 } },
+	rarity = "crp_trash",
+	atlas = "crp_joker",
+	pos = { x = 4, y = 2 },
+	cost = 0,
+	blueprint_compat = false,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.threes), lenient_bignum(card.ability.extra.threes_mod) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			card.ability.extra.threes = lenient_bignum(card.ability.extra.threes) + lenient_bignum(card.ability.extra.threes_mod)
+			return {
+				message = "+" .. lenient_bignum(card.ability.extra.threes_mod) .. " 3s",
+				colour = G.C.FILTER
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "lunarisillustratez" },
+		art = { "lunarisillustratez" },
+		code = { "wilfredlam0418" }
 	}
 }

@@ -118,6 +118,7 @@ SMODS.Joker {
 	cost = 20,
 	blueprint_compat = true,
 	demicoloncompat = true,
+	pools = { Bulgoe = true },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { "27!" } }
 	end,
@@ -145,46 +146,40 @@ SMODS.Joker {
 	name = "Chibidoki",
     pos = { x = 8, y = 6 },
 	soul_pos = { x = 9, y = 6 },
-    config = {
-        extra = {
-            Xchipsmult = 2.25,
-        },
-    },
+    config = { extra = { Xchipsmult = 2.25 } },
     atlas = "crp_joker",
     rarity = 4,
     cost = 20,
     blueprint_compat = true,
     demicoloncompat = true,
     loc_vars = function(self, info_queue, center)
-        return {
-            vars = {
-                number_format(lenient_bignum(center.ability.extra.Xchipsmult)),
-				colours = {
-					{ 0.8, 0.45, 0.85, 1 }
-				}
-            },
-        }
+        return { vars = { number_format(lenient_bignum(center.ability.extra.Xchipsmult)), colours = { { 0.8, 0.45, 0.85, 1 } } } }
     end,
     calculate = function(self, card, context)
         -- trigger when another qualifying joker triggers
         if context.other_joker and context.other_joker.ability.set == "Joker" and context.other_joker ~= card then
             local valid_rare_keys = {
-                ["cry_epic"] = true,
-                ["cry_exotic"] = true,
-                ["cry_candy"] = true,
-                ["crp_mythic"] = true,
-                ["crp_exomythic"] = true,
-                ["crp_2exomythic4me"] = true,
+				["crp_unrare"] = true,
+				[3] = true,
+				["crp_rare_2"] = true,
+				["cry_candy"] = true,
+				["crp_meat"] = true,
+				["crp_joker"] = true,
+				["cry_epic"] = true,
+				["crp_cipe"] = true,
+				["crp_incredible"] = true,
+				[4] = true,
+				["crp_awesome"] = true,
+				["cry_exotic"] = true,
+				["crp_exotic_2"] = true,
+				["crp_mythic"] = true,
+				["crp_exomythic"] = true,
+				["crp_2exomythic4me"] = true,
                 ["crp_22exomythic4mecipe"] = true,
                 ["crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe"] = true,
-                ["crp_hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe"] = true,
                 ["crp_m"] = true,
-                ["crp_rare_2"] = true,
-                ["crp_awesome"] = true,
-                ["crp_cipe"] = true,
-                ["crp_exotic_2"] = true,
-                ["crp_unrare"] = true,
-                ["crp_meat"] = true,
+                
+				
             }
             
             local rarity = context.other_joker.config.center.rarity
@@ -208,11 +203,12 @@ SMODS.Joker {
                     }))
                 end
                 return {
-					message = "X" .. lenient_bignum(card.ability.extra.Xchipsmult) .. " Chips and Mult",
+					message = "X" .. number_format(lenient_bignum(card.ability.extra.Xchipsmult)) .. " Chips and Mult",
 					sound = "xchips",
-					Xchip_mod = lenient_bignum(card.ability.extra.Xchipsmult),
-					Xmult_mod = lenient_bignum(card.ability.extra.Xchipsmult),
-					colour = { 0.8, 0.45, 0.85, 1 }, -- plasma deck colors
+					Xchips = lenient_bignum(card.ability.extra.Xchipsmult),
+					Xmult = lenient_bignum(card.ability.extra.Xchipsmult),
+					remove_default_message = true,
+					colour = { 0.8, 0.45, 0.85, 1 } -- plasma deck colors
                 }
             end
         end

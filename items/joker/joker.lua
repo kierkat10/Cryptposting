@@ -15,7 +15,7 @@ SMODS.Atlas {
 SMODS.Joker {
 	key = "joker_2",
 	name = "Joker 2",
-	config = { extra = { chips = 40 } },
+	config = { extra = { chips = 4 } },
 	rarity = "crp_joker",
 	atlas = "crp_joker",
 	pos = { x = 7, y = 0 },
@@ -108,8 +108,8 @@ SMODS.Joker {
 	config = { extra = { EEmult = 4 } },
 	rarity = "crp_joker",
 	atlas = "crp_joker",
-	pos = { x = 1, y = 2 },
-	soul_pos = { x = 2, y = 2, extra = { x = 3, y = 2 } },
+	pos = { x = 0, y = 1 },
+	soul_pos = { x = 1, y = 1, extra = { x = 3, y = 2 } },
 	cost = (4^4)/(math.sqrt(4)),
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -321,6 +321,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_joker
 		return { vars = { lenient_bignum(card.ability.extra.create) } }
 	end,
 	calculate = function(self, card, context)

@@ -7,6 +7,7 @@ SMODS.Atlas {
 
 SMODS.Tag {
 	key = "common_tag",
+	name = "Common Tag",
 	atlas = "crp_tags",
 	pos = { x = 0, y = 0 },
 	config = { type = "store_joker_create" },
@@ -46,6 +47,7 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "legendary_tag",
+	name = "Legendary Tag",
 	atlas = "crp_tags",
 	pos = { x = 1, y = 0 },
 	min_ante = 3,
@@ -86,6 +88,7 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "exotic_tag",
+	name = "Exotic Tag",
 	atlas = "crp_tags",
 	pos = { x = 2, y = 0 },
 	min_ante = 4,
@@ -126,6 +129,7 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "mythic_tag",
+	name = "Mythic Tag",
 	atlas = "crp_tags",
 	pos = { x = 7, y = 0 },
 	min_ante = 5,
@@ -166,17 +170,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "better_better_top-up_tag",
+	name = "Better Better Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 0, y = 1 },
 	config = { extra = { amount = 2 } },
-	min_ante = 3,
+	min_ante = 8,
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -200,17 +205,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "better_better_better_top-up_tag",
+	name = "Better Better Better Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 1, y = 1 },
-	min_ante = 4,
+	min_ante = 13,
 	config = { extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -234,17 +240,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "better_better_better_better_top-up_tag",
+	name = "Better Better Better Better Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 2, y = 1 },
-	min_ante = 5,
-	config = { extra = { amount = 2 } },
+	min_ante = 27,
+	config = { extra = { amount = 1 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -268,17 +275,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "better_better_better_better_better_top-up_tag",
+	name = "Better Better Better Better Better Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 3, y = 1 },
-	min_ante = 6,
-	config = { extra = { amount = 2 } },
+	min_ante = 39,
+	config = { extra = { amount = 1 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -302,17 +310,18 @@ SMODS.Tag {
 
 SMODS.Tag {
     key = "better_better_better_better_better_better_top-up_tag",
+    name = "Better Better Better Better Better Better Top-Up Tag",
     atlas = "crp_tags",
     pos = { x = 5, y = 1 },
-	min_ante = 7,
-    config = { extra = { amount = 2 } },
+	min_ante = 69,
+    config = { extra = { amount = 1 } },
     loc_vars = function(self, info_queue, tag)
-        return { vars = { tag.config.extra.amount } }
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
     end,
     apply = function(self, tag, context)
         if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
         					set = "Joker",
@@ -336,17 +345,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "better_better_better_better_better_better_better_top-up_tag",
+	name = "Better Better Better Better Better Better Better Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 2, y = 2 },
-	min_ante = 8,
-	config = { extra = { amount = 2 } },
+	min_ante = 98,
+	config = { extra = { amount = 1 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -370,17 +380,18 @@ SMODS.Tag {
 
 SMODS.Tag {
     key = "better_better_better_better_better_better_better_better_top-up_tag",
+    name = "Better Better Better Better Better Better Better Better Top-Up Tag",
     atlas = "crp_tags",
     pos = { x = 4, y = 2 },
-	min_ante = 8,
-    config = { extra = { amount = 2 } },
+	min_ante = 270,
+    config = { extra = { amount = 1 } },
     loc_vars = function(self, info_queue, tag)
-        return { vars = { tag.config.extra.amount } }
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
     end,
     apply = function(self, tag, context)
         if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
         					set = "Joker",
@@ -404,17 +415,18 @@ SMODS.Tag {
 
 SMODS.Tag {
     key = "better_better_better_better_better_better_better_better_better_top-up_tag",
+    name = "Better Better Better Better Better Better Better Better Better Top-Up Tag",
     atlas = "crp_tags",
     pos = { x = 0, y = 2 },
-	min_ante = 8,
-    config = { extra = { amount = 2 } },
+	min_ante = 420,
+    config = { extra = { amount = 1 } },
     loc_vars = function(self, info_queue, tag)
-        return { vars = { tag.config.extra.amount } }
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
     end,
     apply = function(self, tag, context)
         if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
         					set = "Joker",
@@ -438,17 +450,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = ":3_top-up_tag",
+	name = ":3 Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 0, y = 3 },
-	min_ante = 1,
+	min_ante = 0,
 	config = { extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -472,17 +485,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "candy_top-up_tag",
+	name = "Candy Top-up Tag",
 	atlas = "crp_tags",
 	pos = { x = 4, y = 1 },
-	min_ante = 2,
+	min_ante = 8,
 	config = { extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -506,17 +520,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "top-down_tag",
+	name = "Top-down Tag",
 	atlas = "crp_tags",
 	pos = { x = 7, y = 2 },
-	min_ante = -2,
+	min_ante = -1,
 	config = { extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -540,17 +555,18 @@ SMODS.Tag {
 
 SMODS.Tag {
 	key = "trash_top-up_tag",
+	name = "Trash Top-Up Tag",
 	atlas = "crp_tags",
 	pos = { x = 1, y = 3 },
 	min_ante = 0,
 	config = { extra = { amount = 2 } },
 	loc_vars = function(self, info_queue, tag)
-		return { vars = { tag.config.extra.amount } }
+		return { vars = { lenient_bignum(tag.config.extra.amount) } }
 	end,
 	apply = function(self, tag, context)
 		if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
 							set = "Joker",
@@ -574,9 +590,9 @@ SMODS.Tag {
 
 SMODS.Tag {
     key = "overloaded_tag",
+	name = "Overloaded Tag",
     atlas = "crp_tags",
     pos = { x = 2, y = 3 },
-    name = "Overloaded Tag",
     config = { type = "store_joker_modify", edition = "crp_overloaded" },
     min_ante = 8,
     loc_vars = function(self, info_queue)
@@ -617,9 +633,9 @@ SMODS.Tag {
 
 SMODS.Tag {
     key = "four-dimensional_tag",
+	name = "Four-Dimensional Tag",
     atlas = "crp_tags",
     pos = { x = 3, y = 3 },
-    name = "Four-Dimensional Tag",
     config = { type = "store_joker_modify", edition = "crp_four-dimensional" },
     min_ante = 6,
     loc_vars = function(self, info_queue)
@@ -656,6 +672,40 @@ SMODS.Tag {
         art = { "Glitchkat10" },
         code = { "Glitchkat10" }
     }
+}
+
+SMODS.Tag {
+    key = "top-up_everything",
+	name = "Top-up Everything",
+    atlas = "crp_tags",
+    pos = { x = 5, y = 3 },
+	min_ante = 2798,
+    config = {  },
+    loc_vars = function(self, info_queue, tag)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_all
+        return { vars = {  } }
+    end,
+    apply = function(self, tag, context)
+        if context.type == "immediate" then
+			tag:yep("+", G.C.RED, function()
+					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
+						local hittable = {
+        					set = "Joker",
+        					rarity = "crp_all"
+    					}
+						SMODS.add_card(hittable)
+					end
+				return true
+			end)
+			tag.triggered = true
+			return true
+		end
+    end,
+	crp_credits = {
+		idea = { "aqrlr" },
+		art = { "Grahkon", "aqrlr" },
+		code = { "Glitchkat10" }
+	},
 }
 
 --[[ SMODS.Tag {
@@ -811,15 +861,8 @@ SMODS.Tag {
 SMODS.Tag {
     key = "worse_worse_top-up_tag",
     atlas = "crp_tags",
-    pos = {
-        x = 5,
-        y = 2
-    },
-    config = {
-        extra = {
-            amount = 2
-        }
-    },
+    pos = { x = 5, y = 2 },
+    config = { extra = { amount = 2 } },
     loc_txt = {
         name = "Worse Worse Top-down Tag",
         text = {
@@ -829,11 +872,7 @@ SMODS.Tag {
         }
     },
     loc_vars = function(self, info_queue, tag)
-        return {
-            vars = {
-                tag.config.extra.amount
-            }
-        }
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
     end,
 	crp_credits = {
 		idea = { "Grahkon" },
@@ -843,7 +882,7 @@ SMODS.Tag {
     apply = function(self, tag, context)
         if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
         					set = "Joker",
@@ -862,15 +901,8 @@ SMODS.Tag {
 SMODS.Tag {
     key = "besttopuptag",
     atlas = "crp_tags",
-    pos = {
-        x = 7,
-        y = 1
-    },
-    config = {
-        extra = {
-            amount = 2
-        }
-    },
+    pos = { x = 7, y = 1 },
+    config = { extra = { amount = 2 } },
     loc_txt = {
         name = "Best Top-up Tag",
         text = {
@@ -880,11 +912,7 @@ SMODS.Tag {
         }
     },
     loc_vars = function(self, info_queue, tag)
-        return {
-            vars = {
-                tag.config.extra.amount
-            }
-        }
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
     end,
 	crp_credits = {
 		idea = { "Grahkon" },
@@ -894,7 +922,7 @@ SMODS.Tag {
     apply = function(self, tag, context)
         if context.type == "immediate" then
 			tag:yep("+", G.C.RED, function()
-				for i = 1, tag.config.extra.amount do
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
 					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
 						local hittable = {
         					set = "Joker",

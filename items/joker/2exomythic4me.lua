@@ -15,11 +15,7 @@ SMODS.Atlas {
 SMODS.Joker {
 	key = "infinitum",
 	name = "Infinitum",
-	config = {
-		extra = {
-			chipsmult = 2
-		}
-	},
+	config = { extra = { chipsmult = 2 } },
 	rarity = "crp_2exomythic4me",
 	atlas = "crp_jokers",
 	pos = { x = 0, y = 8 },
@@ -33,14 +29,15 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		-- jokers, doesnt work as of now
 
-	    --if context.other_card ~= self and context.cardarea == G.jokers then
+	    --if context.other_joker then
 		--	local arrow_number_jokers = 0
-		--	for i = 1, #G.jokers.cards do
-		--		if context.other_card == G.jokers.cards[i] then
-		--			arrow_number_jokers = i
+		--	for k, v in ipairs(G.jokers.cards) do
+		--		if v == context.other_joker then
+		--			arrow_number_jokers = k
+		--			break
 		--		end
 		--	end
-		--	if context.post_trigger and context.other_card == G.jokers.cards[arrow_number_jokers] then
+		--	if context.other_joker == G.jokers.cards[arrow_number_jokers] then
 		--		if arrow_number_jokers == 1 then
 		--			return {
 		--				message = localize({
@@ -127,7 +124,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "exodiac",
 	name = "Exodiac",
-	config = { extra = { EEEmult = 1.13 } },
+	config = { extra = { hypermult = 1.13 }, immutable = { arrows = 5 } },
 	rarity = "crp_2exomythic4me",
 	atlas = "crp_placeholder",
 	pos = { x = 11, y = 0 },
@@ -136,26 +133,39 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.EEEmult) } }
+		return { vars = { "{", lenient_bignum(card.ability.immutable.arrows), "}", lenient_bignum(card.ability.extra.hypermult) } }
 	end,
 	calculate = function(self, card, context)
-		if context.ending_shop then
-			local card = create_card("Joker", G.jokers, nil, "cry_exotic", nil, nil, nil, "exotic_generator_moment") -- this is true
-			card:set_edition({ negative = true }, true)
-			card:add_to_deck()
-			G.jokers:emplace(card)
+		if context.ending_shop and G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
+			local success, new_card = pcall(create_card, "Joker", G.jokers, nil, "cry_exotic", nil, nil, nil, "exotic_generator_moment")
+			if success and new_card and type(new_card) == 'table' then
+				if new_card.set_edition then 
+					pcall(new_card.set_edition, new_card, { negative = true }, true)
+				end
+				if new_card.add_to_deck then 
+					pcall(new_card.add_to_deck, new_card)
+				end
+				if G.jokers and G.jokers.emplace then
+					pcall(function() 
+						G.jokers:emplace(new_card)
+					end)
+				end
+			end
 		end
 		if context.other_joker and context.other_joker.config.center.rarity == "cry_exotic" then
 			return {
-				EEEmult_mod = lenient_bignum(card.ability.extra.EEEmult),
-				message = "^^^" .. lenient_bignum(card.ability.extra.EEEmult) .. " Mult",
+				hypermult_mod = {
+					lenient_bignum(card.ability.immutable.arrows),
+					lenient_bignum(card.ability.extra.hypermult)
+				},
+				message = "{" .. number_format(lenient_bignum(card.ability.immutable.arrows)) .. "}" .. number_format(lenient_bignum(card.ability.extra.hypermult)) .. " Mult",
 				colour = G.C.EDITION,
 			}
 		end
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
-		code = { "Rainstar" }
+		code = { "Rainstar", "Glitchkat10" }
 	}
 }
 
@@ -164,8 +174,9 @@ SMODS.Joker {
 	name = "Cryptposted Joker",
 	config = { immutable = { arrows = 0 }, extra = { hypermult = 2 } },
 	rarity = "crp_2exomythic4me",
-	atlas = "crp_placeholders",
-	pos = { x = 11, y = 0 },
+	atlas = "crp_joker",
+	pos = { x = 3, y = 9 },
+	soul_pos = { x = 5, y = 9, extra = { x = 4, y = 9 } },
 	cost = 400,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -176,7 +187,8 @@ SMODS.Joker {
 		if (context.joker_main) or context.forcetrigger then
 			card.ability.immutable.arrows = 0
 			for i = 1, #G.jokers.cards do
-				if G.jokers.cards[i].config.center.mod.id == "cryptposting" then
+				local joker = G.jokers.cards[i]
+				if joker and joker.config and joker.config.center and joker.config.center.mod and joker.config.center.mod.id == "cryptposting" then
 					card.ability.immutable.arrows = lenient_bignum(card.ability.immutable.arrows) + 1
 				end
 			end
@@ -185,13 +197,14 @@ SMODS.Joker {
 					lenient_bignum(card.ability.immutable.arrows),
 					lenient_bignum(card.ability.extra.hypermult)
 				},
-				message = "{" .. tostring(lenient_bignum(card.ability.immutable.arrows)) .. "}" .. lenient_bignum(card.ability.extra.hypermult) .. " Mult",
+				message = "{" .. number_format(lenient_bignum(card.ability.immutable.arrows)) .. "}" .. number_format(lenient_bignum(card.ability.extra.hypermult)) .. " Mult",
 				colour = G.C.EDITION,
 			}
 		end
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
+		art = { "Tatteredlurker" },
 		code = { "wilfredlam0418" }
 	}
 }
@@ -199,7 +212,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "eternity",
 	name = "Eternity",
-	config = { extra = { echipsmult = 1000000, echipsmultmod = 1, jokerpowmod = 0.1, jokerslots = 1e100, active = false, echipsmultold = 1000000, jokerexponentiation = 1 } },
+	config = { extra = { echipsmult = 1000000, echipsmultmod = 1, jokerpowmod = 0.1, jokerslots = 1e100, active = false, echipsmultold = 1000000, jokerexponentiation = 1, chipsmultoperator = 1, chipsmultoperatormod = 1, jokeroperator = 1, jokeroperatormod = 1 } },
 	rarity = "crp_2exomythic4me",
 	atlas = "crp_placeholders",
 	pos = { x = 11, y = 0 },
@@ -207,7 +220,22 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.echipsmult), lenient_bignum(card.ability.extra.echipsmultmod), lenient_bignum(card.ability.extra.jokerpowmod), lenient_bignum(card.ability.extra.jokerslots), card.ability.extra.active, lenient_bignum(card.ability.extra.echipsmultold), lenient_bignum(card.ability.extra.jokerexponentiation) } }
+		return {
+			vars = {
+				lenient_bignum(card.ability.extra.echipsmult),
+				lenient_bignum(card.ability.extra.echipsmultmod),
+				lenient_bignum(card.ability.extra.jokerpowmod),
+				lenient_bignum(card.ability.extra.echipsmultold),
+				lenient_bignum(card.ability.extra.jokerexponentiation),
+				lenient_bignum(card.ability.extra.chipsmultoperator),
+				lenient_bignum(card.ability.extra.chipsmultoperatormod),
+				lenient_bignum(card.ability.extra.jokeroperator),
+				lenient_bignum(card.ability.extra.jokeroperatormod),
+				colours = { { 0.78, 0.35, 0.52, 1 } },
+				'{',
+				'}'
+			}
+		}
 	end,
 	add_to_deck = function(self, card, from_debuff)
 		card.ability.extra.active = true
@@ -222,10 +250,8 @@ SMODS.Joker {
 		elseif card.ability.extra.active == true and card.ability.extra.echipsmult <= 0 then
 			card.ability.extra.echipsmult = card.ability.extra.echipsmultold
 			G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.jokerslots
-			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_top-up_tag"))
-			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_better_top-up_tag"))
-			add_tag(Tag("tag_crp_better_better_better_better_better_better_better_better_better_top-up_tag"))
-			--add_tag(Tag(best_top-up_tag))
+			card.ability.extra.chipsmultoperator = card.ability.extra.chipsmultoperator + card.ability.extra.chipsmultoperatormod
+			card.ability.extra.jokeroperator = card.ability.extra.jokeroperator + card.ability.extra.jokeroperatormod
 		else
 			return
 		end
@@ -233,20 +259,18 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				Emult_mod = card.ability.extra.echipsmult,
-				Echip_mod = card.ability.extra.echipsmult,
-				message = "^" .. lenient_bignum(card.ability.extra.echipsmult) .. " Chips & Mult",
-				colour = G.C.EDITION,
+				hypermult_mod = {card.ability.extra.chipsmultoperator, card.ability.extra.echipsmult},
+				hyperchip_mod = {card.ability.extra.chipsmultoperator, card.ability.extra.echipsmult},
+				message = "{" .. lenient_bignum(card.ability.extra.chipsmultoperator) .. "}" .. lenient_bignum(card.ability.extra.echipsmult) .. " Chips & Mult",
+				colour = G.C.DARK_EDITION,
 			}
 		end
-        if (context.ending_shop and not context.blueprint and not context.retrigger_joker) or context.forcetrigger then
+        if (context.ending_shop and not context.blueprint and not context.retrigger_joker and not context.individual) or context.forcetrigger then
             for i, v in pairs(G.jokers.cards) do
                 local check = false
                 if not Card.no(G.jokers.cards[i], "immutable", true) and (G.jokers.cards[i].config.center.key ~= "j_crp_eternity" or context.forcetrigger) then
-                    Cryptid.with_deck_effects(v, function(card2)
-                        Cryptid.misprintize(card2, { min=card.ability.extra.jokerexponentiation, max=card.ability.extra.jokerexponentiation }, nil, true, "^", 1)
-                    end)
                     check = true
+					Cryptid.manipulate(G.jokers.cards[i], { value = {arrows = card.ability.extra.jokeroperator, height = card.ability.extra.jokerexponentiation}, type = "hyper" })
                 end
 			    if check then
 				    card_eval_status_text(
@@ -267,4 +291,3 @@ SMODS.Joker {
 		code = { "Rainstar" }
 	}
 }
-

@@ -13,9 +13,9 @@ SMODS.Atlas {
 }
 
 SMODS.Joker {
-	key = "heptation_henry",
-	name = "heptation henry",
-	config = { immutable = { arrows = 7 }, extra = { hypermult = 1.1 } },
+	key = "hexation_hank",
+	name = "hexation hank",
+	config = { immutable = { arrows = 4 }, extra = { hypermult = 1.1 } },
 	rarity = "crp_exomythic",
 	atlas = "crp_placeholder",
 	pos = { x = 9, y = 0 },
@@ -33,7 +33,7 @@ SMODS.Joker {
 					lenient_bignum(card.ability.immutable.arrows),
 					lenient_bignum(card.ability.extra.hypermult)
 				},
-				message = "^^^^^" .. lenient_bignum(card.ability.extra.hypermult) .. " Mult",
+				message = "^^^^" .. number_format(lenient_bignum(card.ability.extra.hypermult)) .. " Mult",
 				colour = G.C.EDITION,
 			}
 		end
@@ -62,7 +62,7 @@ SMODS.Joker {
 		if (context.other_joker) or context.forcetrigger then
 			G.GAME.dollars = G.GAME.dollars ^ lenient_bignum(card.ability.extra.Emoney)
 			return {
-				message = "^" .. lenient_bignum(card.ability.extra.Emoney) .. "$",
+				message = "^" .. number_format(lenient_bignum(card.ability.extra.Emoney)) .. "$",
 				colour = G.C.MONEY,
 			}
 		end
@@ -72,6 +72,7 @@ SMODS.Joker {
 		code = { "Rainstar" }
 	}
 }
+
 
 SMODS.Joker {
 	key = "statically_charged",
@@ -110,6 +111,89 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "inquisitio_hominis",
+	name = "Inquisitio Hominis Nomine Waldo",
+	config = { extra = { echipsmult = 1, echipsmultmod = 23.112415 } },
+	rarity = "crp_exomythic",
+	atlas = "crp_placeholder",
+	pos = { x = 9, y = 0 },
+	cost = 200,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_waldo
+		return { vars = { lenient_bignum(card.ability.extra.echipsmult), lenient_bignum(card.ability.extra.echipsmultmod) } }
+	end,
+	calculate = function(self, card, context)
+		card.ability.extra.echipsmult = 1 + (card.ability.extra.echipsmultmod * #SMODS.find_card("j_crp_waldo"))
+		if context.joker_main then
+			return {
+				Emult_mod = card.ability.extra.echipsmult,
+				Echip_mod = card.ability.extra.echipsmult,
+				message = "^" .. card.ability.extra.echipsmult .. " Chips & Mult",
+				colour = G.C.DARK_EDITION,
+				card = card
+			}
+		end
+		if context.selling_card and 0.75 <= math.random(0, 1) then	
+			G.E_MANAGER:add_event(Event({func = function()
+				local card1 = create_card('Joker', G.jokers, nil, nil, nil, nil, "j_crp_waldo", 'waldo')
+				card1:add_to_deck()
+				G.jokers:emplace(card1)
+				card1:set_edition({ negative = true })
+				card1:juice_up(0.3, 0.5)
+				return true
+			end }))
+		end
+	end,
+	crp_credits = {
+		idea = { "aqrlr" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Joker {
+	key = "fiorello_giraud",
+	name = "Fiorello Giraud",
+	config = { extra = { EEEmult = 1, EEEmult_mod = 1 } },
+	rarity = "crp_exomythic",
+	atlas = "crp_placeholder",
+	pos = { x = 9, y = 0 },
+	cost = 200,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.EEEmult), lenient_bignum(card.ability.extra.EEEmult_mod) } }
+	end,
+	calculate = function(self, card, context)
+        if context.remove_playing_cards then
+            for k, v in ipairs(context.removed) do
+                if v:is_face() then
+					card.ability.extra.EEEmult = lenient_bignum(card.ability.extra.EEEmult) + lenient_bignum(card.ability.extra.EEEmult_mod)
+                end
+            end
+			return {
+				message = localize("k_upgrade_ex"),
+				colour = G.C.EDITION,
+				card = card
+			}
+		end
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				message = "^^^" .. number_format(lenient_bignum(card.ability.extra.EEEmult)) .. " Mult",
+				EEmult_mod = lenient_bignum(card.ability.extra.EEEmult),
+				colour = G.C.EDITION,
+				card = card
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "SageSeraph" },
+		code = { "Rainstar" },
+	}
+}
+
+SMODS.Joker {
 	key = "fevrial",
 	name = "Fevrial",
 	config = { extra = { EEEmult = 2 } },
@@ -125,7 +209,7 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		if (context.individual and context.cardarea == G.play and context.other_card and (context.other_card:get_id() == 12 or context.other_card:get_id() == 13)) or context.forcetrigger then
 			return {
-				message = "^^^" .. lenient_bignum(card.ability.extra.EEEmult) .. " Mult",
+				message = "^^^" .. number_format(lenient_bignum(card.ability.extra.EEEmult)) .. " Mult",
 				EEEmult_mod = lenient_bignum(card.ability.extra.EEEmult),
 				colour = G.C.EDITION,
 				card = card
@@ -156,14 +240,14 @@ SMODS.Joker {
 			card.ability.extra.EEmult = lenient_bignum(card.ability.extra.EEmult) + lenient_bignum(card.ability.extra.EEmult_mod)
 			return {
 				message = localize("k_upgrade_ex"),
-				colour = G.C.DARK_EDITION,
+				colour = G.C.EDITION,
 				card = card
 			}
 		end
 
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
+				message = "^^" .. number_format(lenient_bignum(card.ability.extra.EEmult)) .. " Mult",
 				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
 				colour = G.C.EDITION,
 				card = card
@@ -173,47 +257,6 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "SageSeraph" },
 		code = { "wilfredlam0418" },
-	}
-}
-
-SMODS.Joker {
-	key = "fiorello_giraud",
-	name = "Fiorello Giraud",
-	config = { extra = { EEEmult = 1, EEEmult_mod = 1 } },
-	rarity = "crp_exomythic",
-	atlas = "crp_placeholder",
-	pos = { x = 9, y = 0 },
-	cost = 200,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.EEEmult), lenient_bignum(card.ability.extra.EEEmult_mod) } }
-	end,
-	calculate = function(self, card, context)
-        if context.remove_playing_cards then
-            for k, v in ipairs(context.removed) do
-                if v:is_face() then
-					card.ability.extra.EEEmult = lenient_bignum(card.ability.extra.EEEmult) + lenient_bignum(card.ability.extra.EEEmult_mod)
-                end
-            end
-			return {
-				message = localize("k_upgrade_ex"),
-				colour = G.C.DARK_EDITION,
-				card = card
-			}
-		end
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				message = "^^^" .. lenient_bignum(card.ability.extra.EEEmult) .. " Mult",
-				EEmult_mod = lenient_bignum(card.ability.extra.EEEmult),
-				colour = G.C.EDITION,
-				card = card
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "SageSeraph" },
-		code = { "Rainstar" },
 	}
 }
 
@@ -242,6 +285,7 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "SageSeraph" },
+		art = { "Rainstar" },
 		code = { "Rainstar" },
 	}
 }

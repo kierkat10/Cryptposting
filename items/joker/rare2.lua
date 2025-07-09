@@ -35,7 +35,7 @@ SMODS.Joker {
 		end
 		if (context.end_of_round and not context.individual and not context.repetition and not context.blueprint) or context.forcetrigger then
 			card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) * 0.8
-			if lenient_bignum(card.ability.extra.chips) <= 512 then
+			if to_big(card.ability.extra.chips) <= to_big(512) then
 				G.E_MANAGER:add_event(Event({
 					func = function()
 						play_sound("tarot1")

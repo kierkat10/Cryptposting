@@ -27,33 +27,43 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.extra.mult_mod), card.ability.extra.death_prevention_enabled, lenient_bignum(card.ability.extra.mult) } }
 	end,
 	calculate = function(self, card, context)
-		if context.game_over and lenient_bignum(G.GAME.chips / G.GAME.blind.chips) < lenient_bignum(1) and card.ability.extra.death_prevention_enabled == true then
+		if context.game_over and to_big(lenient_bignum(G.GAME.chips) / lenient_bignum(G.GAME.blind.chips)) < to_big(1) and card.ability.extra.death_prevention_enabled == true then
 			G.E_MANAGER:add_event(Event({
 				func = function()
-					G.hand_text_area.blind_chips:juice_up()
-					G.hand_text_area.game_chips:juice_up()
 					play_sound("tarot1")
+					card:start_dissolve()
 					return true
-				end,
+				end
 			}))
-		card.ability.extra.death_prevention_enabled = false
-		card.ability.extra.mult = lenient_bignum(card.ability.extra.mult) + lenient_bignum(card.ability.extra.mult_mod)
-		return {
-			message = "Saved & Upgraded!",
-			saved = true,
-			colour = G.C.RED,
-		}
-		end
-		if context.selling_self then
 			card.ability.extra.death_prevention_enabled = false
+			return {
+				saved = true,
+				message = localize({
+					type = "variable",
+					key = "k_saved",
+					vars = { "Weather Machine" }
+				}),
+			}
+		end
+		if context.end_of_round and context.game_over and card.ability.extra.death_prevention_enabled == true then
+			return {
+				message = "Saved & Upgraded!",
+				colour = G.C.RED,
+			}
 		end
 		if context.joker_main and card.ability.extra.death_prevention_enabled == false or context.forcetrigger then
+			card.ability.extra.mult = lenient_bignum(card.ability.extra.mult) + lenient_bignum(card.ability.extra.mult_mod)
 			return {
 				card = card,
 				mult_mod = lenient_bignum(card.ability.extra.mult),
 				message = "+" .. number_format(lenient_bignum(card.ability.extra.mult)) .. "Mult",
 				colour = G.C.MULT,
 			}
+		end
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		if not context.from_debuff then
+			card.ability.extra.death_prevention_enabled = false
 		end
 	end,
 	crp_credits = {
@@ -142,6 +152,7 @@ SMODS.Joker {
 -- tetrationa's effect
 local scie = SMODS.calculate_individual_effect
 SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
+local ret = scie(effect, scored_card, key, amount, from_edition)
 	if
 		(
 			key == "e_mult"
@@ -152,13 +163,12 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
 			or key == "Emult_mod"
 		)
 		and amount ~= 1
-		and mult
 	then
-		for k, v in pairs(find_joker("j_crp_tetrationa")) do
+		for k, v in pairs(SMODS.find_card("j_crp_tetrationa")) do
 			local old = v.ability.extra.EEmult
 			v.ability.extra.EEmult = lenient_bignum(to_big(v.ability.extra.EEmult) + v.ability.extra.EEmult_mod)
 			card_eval_status_text(v, "extra", nil, nil, nil, {
-				message = '^^' .. number_format(v.ability.extra.EEmult) .. ' Mult',
+				message = "Upgraded!",
 			})
 			Cryptid.apply_scale_mod(v, v.ability.extra.EEmult_mod, old, v.ability.extra.EEmult, {
 				base = { { "extra", "EEmult" } },
@@ -167,71 +177,38 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
 			})
 		end
 	end
-	local ret = scie(effect, scored_card, key, amount, from_edition)
 	return ret
 end
 
---SMODS.Joker {
---	key = "tetrationa",
---	name = "Tetrationa",
---	config = { extra = { EEmult = 1, EEmult_mod = 0.3 } },
---	rarity = "crp_mythic",
---	atlas = "crp_placeholder",
---	pos = { x = 8, y = 0 },
---	cost = 100,
---	blueprint_compat = true,
---	demicoloncompat = true,
---	perishable_compat = false,
---	loc_vars = function(self, info_queue, card)
---		return { vars = { lenient_bignum(card.ability.extra.EEmult), lenient_bignum(card.ability.extra.EEmult_mod) } }
---	end,
---	calculate = function(self, card, context)
---		if (context.joker_main) or context.forcetrigger then
---			return {
---				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
---				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
---				colour = G.C.DARK_EDITION,
---				card = card
---			}
---		end
---	end,
---	update = function(self, card, dt)
---		local scie = SMODS.calculate_individual_effect
---		SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
---			if
---				(
---					key == "e_mult"
---					or key == "emult"
---					or key == "Emult"
---					or key == "e_mult_mod"
---					or key == "emult_mod"
---					or key == "Emult_mod"
---				)
---				and amount ~= 1
---				and mult
---			then
---				for k, v in pairs(find_joker("j_crp_tetrationa")) do
---					local old = v.ability.extra.EEmult
---					v.ability.extra.EEmult = lenient_bignum(to_big(v.ability.extra.EEmult) + v.ability.extra.EEmult_mod)
---					card_eval_status_text(v, "extra", nil, nil, nil, {
---						message = '^^' .. number_format(v.ability.extra.EEmult) .. ' Mult',
---					})
---					Cryptid.apply_scale_mod(v, v.ability.extra.EEmult_mod, old, v.ability.extra.EEmult, {
---						base = { { "extra", "EEmult" } },
---						scaler = { { "extra", "EEmult_mod" } },
---						scaler_base = { v.ability.extra.EEmult_mod },
---					})
---				end
---			end
---			local ret = scie(effect, scored_card, key, amount, from_edition)
---			return ret
---		end
---	end,
---	crp_credits = {
---		idea = { "Poker The Poker" },
---		code = { "Rainstar" }
---	}
---}
+SMODS.Joker {
+	key = "tetrationa",
+	name = "Tetrationa",
+	config = { extra = { EEmult = 1, EEmult_mod = 0.3 } },
+	rarity = "crp_mythic",
+	atlas = "crp_placeholder",
+	pos = { x = 8, y = 0 },
+	cost = 100,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	perishable_compat = false,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.EEmult), lenient_bignum(card.ability.extra.EEmult_mod) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
+				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
+				colour = G.C.DARK_EDITION,
+				card = card
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "Rainstar" }
+	}
+}
 
 SMODS.Joker {
     key = "bulgoeship_card",
@@ -245,6 +222,7 @@ SMODS.Joker {
     blueprint_compat = true,
     demicoloncompat = true,
 	perishable_compat = false,
+	pools = { Bulgoe = true },
     loc_vars = function(self, info_queue, card)
         return { vars = { number_format(card.ability.extra.EEmult_mod), number_format(card.ability.extra.EEmult_mod) * Cryptposting.member_count, }, }
     end,

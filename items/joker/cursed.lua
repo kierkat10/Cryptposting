@@ -18,6 +18,7 @@ SMODS.Joker {
 	config = { extra = { mult = 8 } },
 	rarity = "cry_cursed",
 	atlas = "crp_joker",
+	evil = "j_jolly",
 	pos = { x = 9, y = 1 },
 	cost = 0,
 	blueprint_compat = true,
@@ -46,6 +47,7 @@ SMODS.Joker {
 	config = { extra = { mult = 4 } },
 	rarity = "cry_cursed",
 	atlas = "crp_joker",
+	evil = "j_joker",
 	pos = { x = 8, y = 1 },
 	cost = 0,
 	blueprint_compat = true,
@@ -75,10 +77,12 @@ SMODS.Joker {
 	config = { extra = { chips = 2.7 } },
 	rarity = "cry_cursed",
 	atlas = "crp_joker",
+	evil = "j_crp_bulgoe",
 	pos = { x = 8, y = 2 },
 	cost = 0,
 	blueprint_compat = true,
 	demicoloncompat = true,
+	pools = { Bulgoe = true },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.chips) } }
 	end,

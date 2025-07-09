@@ -41,10 +41,40 @@ SMODS.Joker {
 			}
 		end
 	end,
+	in_pool = function(self, args)
+		return true, { allow_duplicates = true }
+	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
 		art = { "MarioFan597" },
 		code = { "Glitchkat10" },
-		custom = { key = "alt",text = "Runner" }
+		custom = { key = "alt", text = "Runner" }
 	}
+}
+
+SMODS.Joker {
+	key = "pennant",
+	name = "Pennant",
+	config = { extra = { mult = 4 } },
+	rarity = "crp_common_2",
+	atlas = "crp_placeholder",
+	pos = { x = 2, y = 0 },
+	cost = 5,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.mult) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				mult = lenient_bignum(lenient_bignum(G.GAME.current_round.hands_left) * lenient_bignum(card.ability.extra.mult))
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "TheLampster" },
+		code = { "wilfredlam0418" },
+		custom = { key = "alt", text = "Banner" }
+	}			
 }

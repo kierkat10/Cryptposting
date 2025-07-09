@@ -13,46 +13,6 @@ SMODS.Atlas {
 }
 
 SMODS.Joker {
-	key = "progressive",
-	name = "Progressive Joker",
-	config = {
-		extra = {
-			mult = 1,
-			Xmult = 1,
-		}
-	},
-	rarity = "cry_epic",
-	atlas = "crp_placeholder",
-	pos = { x = 5, y = 0 },
-	cost = 15,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	perishable_compat = false,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.mult), lenient_bignum(card.ability.extra.Xmult) } }
-	end,
-	calculate = function(self, card, context)
-		if context.setting_blind then
-			card.ability.extra.mult = lenient_bignum(G.GAME.round)
-			card.ability.extra.Xmult = lenient_bignum(G.GAME.round_resets.ante)
-		end
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				mult_mod = lenient_bignum(card.ability.extra.mult),
-				Xmult_mod = lenient_bignum(card.ability.extra.Xmult),
-				message = "Progressum!",
-				colour = G.C.MULT,
-				card = card
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "Poker The Poker", "Glitchkat10" },
-		code = { "Rainstar" }
-	}
-}
-
-SMODS.Joker {
 	key = "bulgoes_hiking_journey",
 	name = "Bulgoe's Hiking Journey",
 	config = { extra = { perma_x_chips = 0.27 } },
@@ -62,6 +22,7 @@ SMODS.Joker {
 	demicoloncompat = false,
 	pos = { x = 0, y = 7 },
 	cost = 13,
+	pools = { Bulgoe = true },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.perma_x_chips) } }
 	end,
@@ -110,6 +71,34 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker", "Glitchkat10" },
+		code = { "wilfredlam0418" },
+	}
+}
+
+SMODS.Joker {
+	key = "coughing_baby_vs_hydrogen_bomb",
+	name = "Coughing Baby vs. Hydrogen Bomb",
+	config = { extra = { EEmult = 2 } },
+	rarity = "cry_epic",
+	atlas = "crp_placeholder",
+	pos = { x = 5, y = 0 },
+	cost = 20,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.EEmult) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main and G.GAME.blind.config.blind.key == "bl_small") or context.forcetrigger then
+			return {
+				EEmult_mod = lenient_bignum(card.ability.extra.EEmult),
+				message = "^^" .. lenient_bignum(card.ability.extra.EEmult) .. " Mult",
+				colour = G.C.DARK_EDITION
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "PurplePickle" },
 		code = { "wilfredlam0418" },
 	}
 }

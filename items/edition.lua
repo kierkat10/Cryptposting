@@ -470,9 +470,9 @@ SMODS.Edition {
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
-	config = { eee_chips = 1.03, eee_mult = 1.03, trigger = nil },
+	config = { EEEchips = 1.03, EEEmult = 1.03, trigger = nil },
 	loc_vars = function(self, info_queue)
-		return { vars = { lenient_bignum(self.config.eee_chips), lenient_bignum(self.config.eee_mult) } }
+		return { vars = { lenient_bignum(self.config.EEEchips), lenient_bignum(self.config.EEEmult) } }
 	end,
 	calculate = function(self, card, context)
 		if
@@ -480,12 +480,19 @@ SMODS.Edition {
 				context.edition -- for when on jokers
 				and context.cardarea == G.jokers -- checks if should trigger
 				and card.config.trigger -- fixes double trigger
-			) or (
+			)
+			or
+			(
 				context.main_scoring -- for when on playing cards
 				and context.cardarea == G.play
 			)
 		then
-			return { eee_chips = lenient_bignum(self.config.eee_chips), eee_mult = lenient_bignum(self.config.eee_mult) }
+			return {
+				EEEchips = lenient_bignum(self.config.EEE_chips),
+				extra = {
+					EEEmult = lenient_bignum(self.config.EEEmult)
+				}
+			}
 		end
 		if context.joker_main then
 			card.config.trigger = true -- context.edition triggers twice, this makes it only trigger once (only for jokers)
@@ -624,8 +631,8 @@ SMODS.Edition {
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 3 },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.card_limit } }
+	loc_vars = function(self, info_queue)
+		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
 		idea = { "PurplePickle" },
@@ -635,7 +642,7 @@ SMODS.Edition {
 
 SMODS.Edition {
 	key = "super_negative",
-	weight = 0.1,
+	weight = 0.15,
 	shader = false,
 	in_shop = true,
 	extra_cost = 10,
@@ -643,8 +650,8 @@ SMODS.Edition {
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 10 },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.card_limit } }
+	loc_vars = function(self, info_queue)
+		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
 		idea = { "PurplePickle" },
@@ -654,7 +661,7 @@ SMODS.Edition {
 
 SMODS.Edition {
 	key = "photon_readings_negative",
-	weight = 0.05,
+	weight = 0.075,
 	shader = false,
 	in_shop = true,
 	extra_cost = 20,
@@ -662,8 +669,8 @@ SMODS.Edition {
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 66 },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.card_limit } }
+	loc_vars = function(self, info_queue)
+		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
 		idea = { "SageSeraph" },
@@ -673,7 +680,7 @@ SMODS.Edition {
 
 SMODS.Edition {
 	key = "photon_readings_really_negative",
-	weight = 0.01,
+	weight = 0.0375,
 	shader = false,
 	in_shop = true,
 	extra_cost = 50,
@@ -681,8 +688,8 @@ SMODS.Edition {
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 666666 },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.card_limit } }
+	loc_vars = function(self, info_queue)
+		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
 		idea = { "SageSeraph" },
@@ -692,16 +699,16 @@ SMODS.Edition {
 
 SMODS.Edition {
 	key = "photon_readings_gone",
-	weight = 0,
+	weight = 0.1875,
 	shader = false,
 	in_shop = false,
-	extra_cost = 2^1024,
+	extra_cost = 100,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 2^1024 },
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.card_limit } }
+	loc_vars = function(self, info_queue)
+		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
 		idea = { "Grahkon" },
