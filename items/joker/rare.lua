@@ -593,6 +593,45 @@ SMODS.Joker {
 	}
 }
 
+SMODS.Joker {
+	key = "usain_bolt",
+	name = "Usain Bolt",
+	config = { extra = { chips = 0, chips_mod = 50000 } },
+	rarity = 3,
+	atlas = "crp_placeholder",
+	pos = { x = 4, y = 0 },
+	cost = 10,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.chips), lenient_bignum(card.ability.extra.chips_mod) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.before) or context.forcetrigger then
+			local ids = {  }
+			for i = 1, #G.play.cards do
+				ids[G.play.cards[i]:get_id()] = (ids[G.play.cards[i]:get_id()] or 0) + 1
+			end
+			check = true
+			for i = 2, 14 do
+				if ids[i] ~= 1 then check = false end
+			end
+			if (#G.play.cards == 13 and check and context.scoring_name == "Straight") or context.forcetrigger then
+				card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
+			end
+		end
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				chips = card.ability.extra.chips
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "SageSeraph" },
+		code = { "wilfredlam0418" }
+	}
+}
+
 --[[
  SMODS.Joker {
 	key = "shit",

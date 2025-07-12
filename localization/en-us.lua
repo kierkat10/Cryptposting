@@ -157,6 +157,16 @@ return {
 					"Destroyed when {C:attention}10{} {C:cry_cursed}Cursed {C:attention}Jokers{} owned"
 				}
 			},
+			j_crp_heptation_hank = {
+				name = "Heptation Hank",
+				text = {
+					"{C:dark_edition,X:edition}^^^^^#1#{} Mult",
+					"Debuffs the other hyperoperation brothers",
+					"{C:red}Self-destructs{} if score is >ee#2#",
+					"{C:inactive}\"He's the estranged brother. Recently,",
+					"{C:inactive}he stole one of Henry’s arrows\""
+				}
+			},
 			j_crp_evil_jolly_joker = {
 				name = "{C:red}EVIL{} Jolly Joker",
 				text = {
@@ -207,6 +217,12 @@ return {
 					"Disables effects of all {C:attention}Small Blinds"
 				}
 			},
+			j_crp_collection = {
+				name = "Collection",
+				text = {
+					"{C:white,X:mult}X#1#{} for every {C:attention}Joker"
+				}
+			}
 			j_crp_three = {
 				name = "3.",
 				text = {
@@ -269,6 +285,19 @@ return {
 					"Sell this {C:attention}Joker{} to",
 					"create {C:attention}#1#{} of either a {C:attention}Bull{}",
 					"or a {C:crp_trash}Trash{} {C:attention}Joker{}",
+				}
+			},
+			j_crp_blank = {
+				name = "Blank Joker",
+				text = {
+					"{C:inactive}Does nothing?"
+				}
+			},
+			j_crp_antimatter = {
+				name = "Antimatter Joker",
+				text = {
+					"{C:dark_edition}+#1# {C:attention}Joker{} slot"
+					"Increases by {C:dark_edition}+#2#{} at end of {C:attention}Ante"
 				}
 			},
 			j_crp_grouchy = {
@@ -581,6 +610,14 @@ return {
 				name = "{C:dark_edition}Normalgoe",
 				text = {
 					"{C:white,X:mult}X#1#{} Mult"
+				}
+			},
+			j_crp_usain_bolt = {
+				name = "Usain Bolt",
+				text = {
+					"Gains {C:chips}+#2#{} Chips if a",
+					"{C:attention}Straight {C:gold}+8{} from {C:attention}2-A{} is played",
+					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
 				}
 			},
 			["j_crp_low-fqt_milk"] = {
@@ -1548,6 +1585,12 @@ return {
 					"Choose {C:attention}#1#{} of up to {C:attention}#2#{}",
 					"{C:crp_exomythic}ExoMythic{} {C:attention}Jokers{}",
 				},
+			},
+			remove_negative = {
+				name = "n",
+				text = {
+					"{C:inactive,s:0.9}(Removes {C:dark_edition,s:0.9}Negative{C:inactive,s:0.9}-related Editions from copy)"
+				}
 			},
 		}
 	},

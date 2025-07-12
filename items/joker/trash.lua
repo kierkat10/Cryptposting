@@ -28,16 +28,12 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "semicolon",
 	name = "Semicolon",
-	config = { extra = {  } },
 	rarity = "crp_trash",
 	atlas = "crp_joker",
 	pos = { x = 0, y = 5 },
 	cost = 0,
 	blueprint_compat = true,
 	demicoloncompat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = {  } }
-	end,
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
 			local ind = nil
@@ -126,6 +122,31 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "ScarredOut" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "collection",
+	name = "Collection",
+	config = { immutable = { Xmult = 1 } },
+	rarity = "crp_trash",
+	pos = { x = 4, y = 2 },
+	cost = 0,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.immutable.Xmult) } }
+	end,
+	calculate = function(self, card, context)
+		if ((context.other_joker) and context.other_joker.config.center.rarity == "crp_trash") or context.forcetrigger then
+			return {
+				xmult = lenient_bignum(card.ability.immutable.Xmult)
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "wilfredlam0418" },
 		code = { "wilfredlam0418" }
 	}
 }
