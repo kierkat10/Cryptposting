@@ -288,6 +288,60 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "blank", --
+	name = "Blank Joker",
+	rarity = 1,
+	atlas = "crp_placeholder",
+	pos = { x = 2, y = 0 },
+	cost = 0,
+	crp_credits = {
+		idea = { "Psychomaniac14" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "antimatter", -- might be too op for a common joker but again cavendish exists
+	name = "Antimatter Joker",
+	config = { extra = { jokerslots = 1, jokerslots_mod = 1 } },
+	rarity = 1,
+	atlas = "crp_placeholder",
+	cost = 10,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.jokerslots), lenient_bignum(card.ability.extra.jokerslots_mod) } }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		G.jokers.config.card_limit = G.jokers.config.card_limit + lenient_bignum(card.ability.extra.jokerslots)
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.jokers.config.card_limit = G.jokers.config.card_limit - lenient_bignum(card.ability.extra.jokerslots)
+	end,
+	calculate = function(self, card, context)
+		if (context.end_of_round and G.GAME.blind.boss) or context.forcetrigger then
+			card.ability.extra.jokerslots = card.ability.extra.jokerslots + lenient_bignum(card.ability.extra.jokerslots_mod)
+			G.jokers.config.card_limit = G.jokers.config.card_limit + lenient_bignum(card.ability.extra.jokerslots_mod)
+			return {
+				message = "+" .. lenient_bignum(card.ability.extra.jokerslots_mod) .. " slots",
+				colour = G.C.DARK_EDITION
+			}
+		end
+	end,
+	in_pool = function()
+		for i = 1, #G.jokers.cards do
+			if G.jokers.cards[i].config.center.key == "j_crp_blank" then
+				return true
+			end
+		end
+		return false
+	end,
+	crp_credits = {
+		idea = { "Glitchkat10", "BuilderBosc" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "grouchy", -- bro is just like me frfr
 	name = "Grouchy Jimbo",
 	config = { extra = { mult = 30 } },

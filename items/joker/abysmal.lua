@@ -92,3 +92,69 @@ SMODS.Joker {
 	}
 }
 ]]--
+
+SMODS.Joker {
+	key = "heptation_hank",
+	name = "Heptation Hank",
+	config = { immutable = { arrows = 5, self_destruct = 10 ^ 10 ^ 1.1 }, extra = { mantissa = 0.9 } },
+	atlas = "crp_placeholder",
+	pos = { x = 0, y = 0 },
+	cost = 0,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return {
+			vars = {
+				lenient_bignum(math.log10(math.log10(card.ability.immutable.self_destruct))),
+				lenient_bignum(card.ability.extra.mantissa)
+			}
+		}
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		for i = 1, #G.jokers.cards do
+			if
+				G.jokers.cards[i].config.center.key == "j_crp_tetration_timmy" or
+				G.jokers.cards[i].config.center.key == "j_crp_pentation_peter" or
+				G.jokers.cards[i].config.center.key == "j_crp_hexation_henry" or
+				G.jokers.cards[i].config.center.key == "septingentiquinvigintation_stevie"
+			then
+				G.jokers.cards[i]:set_debuff(false)
+			end
+		end
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				hypermult = {
+					lenient_bignum(card.ability.immutable.arrows),
+					lenient_bignum(card.ability.extra.mantissa)
+				},
+				hypermult_message = {
+					message = "^^^^^" .. lenient_bignum(card.ability.extra.mantissa) .. " Mult",
+					colour = G.C.EDITION,
+					sound = "crp_heptationalmult"
+				}
+			}
+		end
+		if context.before or context.after then
+			for i = 1, #G.jokers.cards do
+				if
+					G.jokers.cards[i].config.center.key == "j_crp_tetration_timmy" or
+					G.jokers.cards[i].config.center.key == "j_crp_pentation_peter" or
+					G.jokers.cards[i].config.center.key == "j_crp_hexation_henry" or
+					G.jokers.cards[i].config.center.key == "septingentiquinvigintation_stevie"
+				then
+					G.jokers.cards[i]:set_debuff(true)
+				end
+			end
+		end
+		if context.after and (G.GAME.chips or 0) > card.ability.immutable.self_destruct then
+			card:start_dissolve()
+			card:remove_from_deck()
+		end
+	end,
+	crp_credits = {
+		idea = { "Psychomaniac14" },
+		code = { "wilfredlam0418" }
+	}
+}
