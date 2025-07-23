@@ -1229,8 +1229,16 @@ return {
 			c_crp_desires = {
 				name = "Pot of Desires",
 				text = {
-					"{C:red}Destroy{} up to {C:attention}#1#{} selected cards, then",
+					"{C:red}Destroy{} up to {C:attention}#1#{} selected card#<s>1#, then",
 					"{C:attention}draw{} that many cards from deck"
+				}
+			},
+			c_crp_dichotomy = {
+				name = "Pot of Dichotomy",
+				text = {
+					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1#",
+					"back into the deck, then create {C:attention}#2# Joker#<s>2#",
+					"{C:inactive}(must have room)"
 				}
 			},
 			c_crp_greed = {
@@ -1238,6 +1246,13 @@ return {
 				text = {
 					"{C:attention}Draw #1#{} card#<s>1#",
 					"from deck"
+				}
+			},
+			c_crp_riches = {
+				name = "Pot of Riches",
+				text = {
+					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1#",
+					"back into the deck, then gain {C:money}$#2#"
 				}
 			},
 			c_crp_gold = {
@@ -1252,6 +1267,30 @@ return {
 				text = {
 					"{C:red}Destroy {C:attention}#1#{} selected card#<s>1#",
 					"and create {C:attention}#2#{} random {C:attention}Food Joker#<s>2#"
+				}
+			},
+			c_crp_charms = {
+				name = "Pot of Charms",
+				text = {
+					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1# back",
+					"into the deck, then create {C:attention}#2# {C:tarot}Tarot{} card#<s>2#"
+					"{C:inactive}(must have room)"
+				}
+			},
+			c_crp_worlds = {
+				name = "Pot of Worlds",
+				text = {
+					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1# back",
+					"into the deck, then create {C:attention}#2# {C:planet}Planet{} card#<s>2#"
+					"{C:inactive}(must have room)"
+				}
+			},
+			c_crp_spirits = {
+				name = "Pot of Spirits",
+				text = {
+					"{C:attention}Shuffle #1#{} random card#<s>1# back into the",
+					"deck, then create {C:attention}#2# {C:spectral}Spectral{} card#<s>2#"
+					"{C:inactive}(must have room)"
 				}
 			}
 		},
