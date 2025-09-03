@@ -310,21 +310,30 @@ SMODS.Joker {
 	end,
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
+			local current_chips = lenient_bignum(hand_chips)
 			local current_mult = lenient_bignum(mult)
 			return {
-				xmult = 0,
-				extra = { -- altered to be kinda like chibidoki's return bc of some weird shit
-					mult= 2 ^ current_mult,
+				x_chips = 0,
+				extra = {
+					chips = 2 ^ current_chips,
 					remove_default_message = true,
-					message = "=2^" .. current_mult .. " Mult",
+					message = "=2^" .. number_format(current_chips) .. " Chips",
 					colour = G.C.DARK_EDITION,
-					sound = "talisman_emult"
+					sound = "talisman_echip", -- why is it not plural 😭
+					xmult = 0,
+					extra = {
+						mult = 2 ^ current_mult,
+						remove_default_message = true,
+						message = "=2^" .. number_format(current_mult) .. " Mult",
+						colour = G.C.DARK_EDITION,
+						sound = "talisman_emult",
+					}
 				}
 			}
 		end
 	end,
 	crp_credits = {
-		idea = { "Psychomaniac14" },
-		code = { "Rainstar" }
+		idea = { "Psychomaniac14", "Glitchkat10" },
+		code = { "Rainstar", "Glitchkat10" }
 	}
 }

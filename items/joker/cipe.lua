@@ -71,7 +71,6 @@ SMODS.Joker {
 	rarity = "crp_cipe",
 	atlas = "crp_joker2",
 	pos = { x = 1, y = 0 },
-	soul_pos = { x = 2, y = 0 },
 	cost = 10,
 	blueprint_compat = true,
 	demicoloncompat = true,

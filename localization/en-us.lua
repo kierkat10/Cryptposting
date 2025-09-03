@@ -10,33 +10,37 @@ return {
 			bl_crp_dice = {
 				name = "The Dice",
 				text = {
-					"Randomized blind size (1-6)",
+					"Randomized blind",
+					"size (1-6)",
 				},
 			},
 			bl_crp_chance = {
 				name = "The Chance",
 				text = {
-					"Play only 1 hand, no discards",
+					"Play only 1 hand,",
+					"no discards",
 				},
 			},
 			bl_crp_skill = {
 				name = "The Skill",
 				text = {
-					"All listed probablities have a",
-					"0% chance of occuring",
+					"All listed probablities",
+					"have a 0% chance",
+					"of occuring",
 				},
 			},
 			bl_crp_garbage = {
 				name = "The Garbage",
 				text = {
-					"Destroy all held consumables"
+					"Destroy all held",
+					"consumables"
 				}
 			},
 			bl_crp_evil = {
 				name = "The EVIL",
 				text = {
 					"All compatible Jokers turn",
-					"into their Evil variants"
+					"into their evil variants"
 				}
 			},
 			bl_crp_evil_plant = {
@@ -61,13 +65,15 @@ return {
 			bl_crp_joker = {
 				name = "The Joker",
 				text = {
-					"+4 blind requirement"
+					"+4 blind",
+					"requirement"
 				}
 			},
 			bl_crp_serious = {
 				name = "The Serious",
 				text = {
-					"All Cryptposting Jokers are debuffed"
+					"All Cryptposting",
+					"Jokers are debuffed"
 				}
 			},
 			bl_crp_shitpost = {
@@ -102,74 +108,82 @@ return {
 				name = "Monochrome M",
 				text = {
 					"All non-Jolly and non-M",
-					"Jokers are debuffed",
-					"Must play only Pairs"
+					"Jokers are debuffed,",
+					"must play only Pairs"
 				}
 			},
 			bl_crp_eternal_eclipse = {
 				name = "Eternal Eclipse",
 				text = {
-					"+X0.1 blind requirement for each",
-					"Planet card used this run"
+					"+X0.1 blind requirement",
+					"for each Planet card",
+					"used this run"
 				}
 			},
 			bl_crp_hazard = {
 				name = "The Hazard",
 				text = {
-					"Halves all mutable joker values"
+					"Halves all mutable",
+					"Joker values"
 				}
 			},
 			bl_crp_roadblock = {
 				name = "The Roadblock (L+)",
 				text = {
-					"Comically large blind requirement"
+					"Comically large",
+					"blind requirement"
 				},
 			},
 			bl_crp_roulette = {
 				name = "The Roulette (L+)",
 				text = {
-					"^1.[1-6] blind size"
+					"^1.[1-6] blind",
+					"requirement"
 				},
 			},
 			bl_crp_epioxus = {
 				name = "Epioxus (EM+)",
 				text = {
-					"X10 Ante when defeated"
+					"X10 Ante",
+					"when defeated"
 				},
 			},
 			bl_crp_calamitus = {
 				name = "Calamitus (EM+)",
 				text = {
-					"All Diamond, Heart, Spade and Club",
-					"cards are debuffed"
+					"All Diamond, Heart,",
+					"Spade and Club cards",
+					"are debuffed"
 				},
 			},
 			bl_crp_pokios = {
 				name = "Pokios (EM+)",
 				text = {
-					"^2 Blind size",
+					"^2 blind size",
 					"every frame"
 				},
 			},
 			bl_crp_quettus = {
 				name = "Quettus (S, EM+)",
 				text = {
-					"^10 Blind size",
+					"^10 blind size",
 					"Destroys all Legendary+",
-					"jokers upon entering blind"
+					"Jokers upon entering Blind"
 				},
 			},
 			bl_crp_hermes = {
 				name = "Hermes (S, EM+)",
 				text = {
-					"^^^1.000001 Blind Size every frame",
-					"Value increases by 0.000001 every frame",
+					"^^^1.000001 blind size",
+					"every frame,",
+					"value increases by",
+					"0.000001 every frame",
 				},
 			},
 			bl_crp_lacum_draconis = {
 				name = "Lacum Draconis (S, EM+)",
 				text = {
-					"^^^^[1-20] Blind Size",
+					"^^^^[1-20] blind size",
 				},
 			}
 		},
@@ -793,8 +807,8 @@ return {
 				name = "q",
 				text = {
 					"{X:dark_edition,C:white}=#1#{} Mult",
-					"Increases by {X:dark_edition,C:white}#2#{} when",
-					"a {C:attention}Zany Joker{} is sold",
+					"Increases by {X:dark_edition,C:white}#2#{}",
+					"when {C:attention}Zany Joker{} sold",
 				},
 			},
 			j_crp_bulgoes_hiking_journey = {
@@ -861,8 +875,9 @@ return {
 			j_crp_chibidoki = {
 				name = "Chibidoki",
 				text = {
-					"{C:crp_unrare}Unrare{} and higher rarity {C:attention}Jokers{}",
-					"give {C:white,B:1}X#1#{} Chips & Mult" -- plasma deck colors
+					"{C:crp_unrare}Unrare{} and higher",
+					"rarity {C:attention}Jokers{} give",
+					"{C:white,B:1}X#1#{} Chips & Mult" -- plasma deck colors
 				}
 			},
 			j_crp_normalis = {
@@ -929,7 +944,8 @@ return {
 				name = "SOUPER m!!!",
 				text = {
 					"{X:mult,C:white}X#1#{} Mult",
-					"Gains {X:dark_edition,C:white}^#3#{} Mult when {C:attention}The Duo{} is sold",
+					"Gains {X:dark_edition,C:white}^#3#{} Mult when",
+					"{C:attention}The Duo{} is sold",
 					"{C:inactive}(Currently {X:dark_edition,C:white}^#2#{C:inactive} Mult)",
 				}
 			},
@@ -1035,8 +1051,9 @@ return {
 			j_crp_2048 = {
 				name = "2048",
 				text = {
-					"{X:dark_edition,C:white}=2^x{} Mult, where",
-					"{C:attention}x{} is your current {C:mult}Mult{}",
+					"{X:dark_edition,C:white}=2^x{} Chips and {X:dark_edition,C:white}=2^y{} Mult",
+					"where {C:attention}x{} is the current {C:chips}Chips{}",
+					"and {C:attention}y{} is the current {C:mult}Mult{}",
 				},
 			},
 			j_crp_hexation_henry = {
