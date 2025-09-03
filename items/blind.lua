@@ -135,7 +135,7 @@ SMODS.Blind {
 	set_blind = function(self, card, from_blind)
 		if not G.GAME.blind_disabled then
 			for i = 1, #G.consumeables.cards do
-				G.consumeables.cards[i]:start_disssolve()
+				G.consumeables.cards[i]:start_dissolve()
 				G.consumeables.cards[i]:remove_from_deck()
 			end
 		end
