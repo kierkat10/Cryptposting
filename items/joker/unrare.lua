@@ -62,11 +62,12 @@ SMODS.Joker {
 	end,
 	calc_dollar_bonus = function(self, card)
 		for i = 1, #G.jokers.cards do
-			if G.jokers.cards[i].config.center.pools.Bulgoe and not G.jokers.cards[i] == card then
+			local joker = G.jokers.cards[i]
+			if joker ~= card and joker.config and joker.config.center and joker.config.center.pools and joker.config.center.pools.Bulgoe then
 				return lenient_bignum(card.ability.extra.money_bonus)
 			end
-			return lenient_bignum(card.ability.extra.money)
 		end
+		return lenient_bignum(card.ability.extra.money)
 	end,
 	crp_credits = {
 		idea = { "CLAUDEMACH", "Poker The Poker" },

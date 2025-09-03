@@ -264,7 +264,7 @@ SMODS.Joker {
 	pos = { x = 5, y = 8 },
 	soul_pos = { x = 7, y = 8, extra = { x = 6, y = 8 } },
 	cost = 50,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	demicoloncompat = false,
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.split) } }
