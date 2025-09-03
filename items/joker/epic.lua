@@ -130,3 +130,36 @@ SMODS.Joker {
 		code = { "wilfredlam0418", "Glitchkat10" },
 	}
 }
+
+SMODS.Joker {
+	key = "how_many_pickles",
+	name = "How Many Pickles?",
+	config = { extra = { mult = 9 } },
+	rarity = "cry_epic",
+	atlas = "crp_placeholder",
+	pos = { x = 5, y = 0 },
+	cost = 20,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.mult), card.ability.extra.mult < 910 and " The ghost is not yet done writing..." or "" } }
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main or context.forcetrigger then
+			return {
+				mult = lenient_bignum(card.ability.extra.mult)
+			}
+		end
+		if ((context.end_of_round and G.GAME.blind.boss) or context.forcetrigger) and card.ability.extra.mult < 910 then
+			if card.ability.extra.mult >= 91 then
+				card.ability.extra.mult = 910
+			else
+				card.ability.extra.mult = 91
+			end
+		end
+	end,
+	crp_credits = {
+		idea = { "ottermatter", "Glitchkat10" },
+		code = { "wilfredlam0418" },
+	}
+}
