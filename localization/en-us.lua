@@ -682,6 +682,13 @@ return {
 					"{C:attention}Grouchy Jimbo{} is owned"
 				}
 			},
+			j_crp_the_three = {
+				name = "The Three",
+				text = {
+					"{C:red}Fixed {C:green}1 in 3{} chance for",
+					"{C:white,X:chips}X#1#{} Chips, {C:white,X:mult}X#2#{} Mult, and {C:money}+$#3#"
+				}
+			},
 			j_crp_dumpster_diver = {
 				name = "Dumpster Diver",
 				text = {
