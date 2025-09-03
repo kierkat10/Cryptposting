@@ -73,31 +73,36 @@ return {
 			bl_crp_shitpost = {
 				name = "The Shitpost",
 				text = {
-					"All non-Cryptposting Jokers are debuffed"
+					"All non-Cryptposting",
+					"Jokers are debuffed"
 				}
 			},
 			bl_crp_balance = {
 				name = "The Balance",
 				text = {
-					"All Cryptid Jokers are debuffed"
+					"All Cryptid Jokers",
+					"are debuffed"
 				}
 			},
 			bl_crp_offset = {
 				name = "The Offset",
 				text = {
-					"All non-Cryptid Jokers are debuffed"
+					"All non-Cryptid Jokers",
+					"are debuffed"
 				}
 			},
 			bl_crp_gloom = {
 				name = "The Gloom",
 				text = {
-					"All Jolly or M Jokers are debuffed"
+					"All Jolly or M Jokers",
+					"are debuffed"
 				}
 			},
 			bl_crp_monochrome_m = {
 				name = "Monochrome M",
 				text = {
-					"All non-Jolly and non-M Jokers are debuffed",
+					"All non-Jolly and non-M",
+					"Jokers are debuffed",
 					"Must play only Pairs"
 				}
 			},
@@ -215,6 +220,13 @@ return {
 				name = "{C:red}EVIL {C:edition}Bulgoe",
 				text = {
 					"{C:white,X:chips}÷#1#{} Chip#<s>1#",
+				},
+			},
+			j_crp_cryptoposting = {
+				name = "Cryptoposting",
+				text = {
+					"{C:white,X:money}X$#1#{} - {C:white,X:money}X$#2#{} when hand",
+					"played or discarded",
 				},
 			},
 			j_crp_glitchkat10 = {
@@ -836,8 +848,8 @@ return {
 			j_crp_270_bulgoescope = {
 				name = "270° {C:edition}Bulgoe{}scope",
 				text = {
-					"{C:red}Fixed{} {C:green}1 in 27{} chance for scored",
-					"{C:attention}2s{} and {C:attention}7s{} to give {C:chips}+27!{} Chips",
+					"{C:red}Fixed{} {C:green}1 in 27{} chance for {C:attention}2s{} and",
+					"{C:attention}7s{} to give {C:chips}+27!{} Chips when scored",
 				},
 			},
 			j_crp_chibidoki = {
@@ -908,7 +920,7 @@ return {
 				}
 			},
 			j_crp_souper_m = {
-				name = "SOUPER m",
+				name = "SOUPER m!!!",
 				text = {
 					"{X:mult,C:white}X#1#{} Mult",
 					"Gains {X:dark_edition,C:white}^#3#{} Mult when {C:attention}The Duo{} is sold",
@@ -1109,7 +1121,7 @@ return {
 				text = {
 					"Creates a {C:dark_edition}Negative{} {C:cry_code}Global{} {C:attention}2{} of {C:hearts}Hearts{} and {C:attention}7{} of {C:hearts}Hearts{}",
 					"when bought, {C:hearts}Hearts{} cannot be {C:attention}debuffed{}",
-					"If played hand contains a {C:attention}2{}, {C:white,X:dark_edition}^#1#{} current Ante",
+					"If played hand contains a {C:attention}2{}, {C:white,X:attention}^#1#{} current Ante",
 					"If played hand contains a {C:attention}7{}, {C:white,X:attention}X#2#{} current Ante",
 					"If played hand contains a {C:attention}2{} and a {C:attention}7{}, sets Ante to {C:attention}#3#{}"
 				},
@@ -1120,7 +1132,7 @@ return {
 					"{C:white,X:dark_edition}#10##6##11##1#{} Chips & Mult",
 					"Every frame, a {C:attention}little bird{} comes to sharpen its beak,",
 					"taking {C:white,X:dark_edition}#10##6##11##2#{}, but gaining {C:white,X:attention}#10##8##11##3#{} to use when shop exited",
-					"When {C:white,X:dark_edition}^0{} reached, resets back to {C:white,X:dark_edition}#10##6##11##4#",
+					"When {C:white,X:dark_edition}#10##6##11#0{} reached, resets back to {C:white,X:dark_edition}#10##6##11##4#",
 					"{C:red}and a single day of {V:1}eternity {C:red}passes...",
 					"{C:inactive}(Currently giving {C:white,X:attention}#10##8##11##5#{C:inactive} at end of shop)"
 				},
@@ -1829,6 +1841,7 @@ return {
 			k_crp_incredible = "Incredible",
 			k_crp_extraordinary = "Extraordinary",
 			k_crp_awesome = "Awesome",
+			k_crp_divine = "Divine",
 			k_crp_exotic_2 = "Exotic 2",
 			k_crp_mythic = "Mythic",
 			k_crp_exomythic = "ExoMythic",

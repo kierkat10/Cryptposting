@@ -30,6 +30,7 @@ local files = {
     "items/joker/cipe",
     "items/joker/incredible",
     "items/joker/legendary",
+    "items/joker/divine",
     "items/joker/exotic",
     "items/joker/exotic2",
     "items/joker/mythic",

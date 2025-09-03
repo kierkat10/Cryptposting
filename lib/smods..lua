@@ -43,6 +43,13 @@ SMODS.Atlas {
 }
 
 SMODS.Atlas {
+	key = "henry",
+	path = "henry.png",
+	px = 71,
+	py = 95
+}
+
+SMODS.Atlas {
 	key = "fun_coin",
 	path = "fun_coin.png",
 	px = 71,
@@ -179,21 +186,21 @@ SMODS.Sound {
 	key = "heptationalchips",
 	path = "HeptationalChips.ogg",
 	loop = false,
-	volume = 0.5,
+	volume = 0.4,
 }
 
 SMODS.Sound {
 	key = "heptationalmult",
 	path = "HeptationalMult.ogg",
 	loop = false,
-	volume = 0.5,
+	volume = 0.4,
 }
 
 SMODS.Sound {
 	key = "heptationalchipsmult",
 	path = "HeptationalChipsMult.ogg",
 	loop = false,
-	volume = 0.5,
+	volume = 0.4,
 }
 
 SMODS.Sound {

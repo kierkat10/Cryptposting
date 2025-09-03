@@ -313,10 +313,12 @@ SMODS.Joker {
 			local current_mult = lenient_bignum(mult)
 			return {
 				xmult = 0,
-				extra = {
-					mult_mod = 2 ^ current_mult,
+				extra = { -- altered to be kinda like chibidoki's return bc of some weird shit
+					mult= 2 ^ current_mult,
+					remove_default_message = true,
 					message = "=2^" .. current_mult .. " Mult",
-					colour = G.C.EDITION,
+					colour = G.C.DARK_EDITION,
+					sound = "talisman_emult"
 				}
 			}
 		end

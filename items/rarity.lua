@@ -15,6 +15,14 @@ local m = SMODS.Gradient({
     }
 })
 
+local divine_gradient = SMODS.Gradient({
+    key="divine",
+    colours = {
+        HEX("767097"), 
+        HEX("4d7aab")
+    }
+})
+
 local mythic_gradient = SMODS.Gradient({
     key="mythic",
     colours = {
@@ -218,6 +226,12 @@ SMODS.Rarity({
 	key = "awesome",
 	badge_colour = HEX("00ffff"),
 	pools = { ["Joker"] = true },
+})
+
+SMODS.Rarity({
+	key = "divine",
+	badge_colour = divine_gradient,
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({

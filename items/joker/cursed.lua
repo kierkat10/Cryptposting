@@ -87,3 +87,35 @@ SMODS.Joker {
 		code = { "Glitchkat10" }
 	}
 }
+
+SMODS.Joker {
+	key = "cryptoposting",
+	name = "Cryptoposting",
+	config = { immutable = { xmoneyfloor = 67, xmoneyceil = 100 } },
+	rarity = "cry_cursed",
+	atlas = "crp_placeholder",
+	pos = { x = 0, y = 0 },
+	cost = 0,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.immutable.xmoneyfloor / 100, card.ability.immutable.xmoneyceil / 100 } }
+	end,
+	calculate = function(self, card, context)
+		if (context.before or context.pre_discard) or context.forcetrigger then
+			local xmoney = pseudorandom("crp_cryptoposting", card.ability.immutable.xmoneyfloor, card.ability.immutable.xmoneyceil) / 100
+			ease_dollars(G.GAME.dollars * (xmoney - 1))
+			return {
+				message = "X$" .. number_format(xmoney),
+				colour = G.C.MONEY
+			}
+		end
+	end,
+	set_ability = function(self, card, initial)
+        card:add_sticker("rental", true)
+    end,
+	crp_credits = {
+		idea = { "SageSeraph" },
+		code = { "Glitchkat10" }
+	}
+}

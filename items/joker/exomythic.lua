@@ -3,9 +3,9 @@ SMODS.Joker { -- hank is DEAD
 	name = "hexation henry",
 	config = { immutable = { arrows = 4 }, extra = { hypermult = 1.1 } },
 	rarity = "crp_exomythic",
-	atlas = "crp_placeholder",
-	pos = { x = 9, y = 0 },
-	-- soul_pos = { x = 0, y = 0, extra = { x = 0, y = 0 } },
+	atlas = "crp_henry",
+    pos = { x = 0, y = 0 },
+    soul_pos = { x = 1, y = 7, extra = { x = 0, y = 7 } },
 	cost = 200,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -24,8 +24,18 @@ SMODS.Joker { -- hank is DEAD
 			}
 		end
 	end,
+	animation = {
+        macro = {
+            type = "skim",
+            pos = {
+                include = { { x1 = 0, x2 = 3, y1 = 0, y2 = 6 } },
+                exclude = { { x1 = 0, x2 = 3, y1 = 7, y2 = 7 } }
+            }
+        }
+    },
 	crp_credits = {
 		idea = { "Glitchkat10" },
+		art = { "MarioFan597" },
 		code = { "Glitchkat10" }
 	}
 }
@@ -280,4 +290,112 @@ SMODS.Joker {
 		art = { "Rainstar" },
 		code = { "Rainstar" },
 	}
+}
+
+SMODS.Joker {
+	key = "bulgoelly_west",
+	name = "Bulgoelly West",
+	config = { extra = { eante = 2, xante = -7, eqante = 0 } },
+	rarity = "crp_exomythic",
+	atlas = "crp_joker2",
+	pos = { x = 5, y = 1 },
+	pools = { Bulgoe = true },
+	soul_pos = { x = 7, y = 1, extra = { x = 6, y = 1 } },
+	cost = 400,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.eante), lenient_bignum(card.ability.extra.xante), lenient_bignum(card.ability.extra.eqante) } }
+	end,
+	update = function(self, card, dt)
+		if G.deck and card.added_to_deck then
+			for i, v in pairs(G.deck.cards) do
+				if v:is_suit("Hearts") then
+					v:set_debuff(false)
+				end
+			end
+		end
+		if G.hand and card.added_to_deck then
+			for i, v in pairs(G.hand.cards) do
+				if v:is_suit("Hearts") then
+					v:set_debuff(false)
+				end
+			end
+		end
+	end,
+	add_to_deck = function(self, card, from_debuff)
+        local card1 = create_playing_card({
+        front = G.P_CARDS.H_2,
+        center = nil
+        }, G.hand, true, false, nil, true)
+        card1.ability.cry_global_sticker = true
+        card1:set_edition("e_negative", true)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                card1:start_materialize()
+                G.deck:emplace(card1)
+                return true
+            end
+        }))
+        SMODS.calculate_context({ playing_card_added = true, cards = { card1 } })
+        local card2 = create_playing_card({
+        front = G.P_CARDS.H_7,
+        center = nil
+        }, G.hand, true, false, nil, true)
+        card2.ability.cry_global_sticker = true
+        card2:set_edition("e_negative", true)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                card2:start_materialize()
+                G.deck:emplace(card2)
+                return true
+            end
+        }))
+        SMODS.calculate_context({ playing_card_added = true, cards = { card2 } })
+	end,
+	calculate = function(self, card, context)
+		if context.before and context.full_hand then
+			local eante_active = false
+			local xante_active = false
+			for k, v in ipairs(context.full_hand) do
+				if v:get_id() == 2 then
+					eante_active = true
+					--print("eante active")
+				end
+				if v:get_id() == 7 then
+					xante_active = true
+					--print("xante active")
+				end
+				if xante_active and eante_active then
+					--print("eqante active")
+				end
+			end
+			if eante_active and not xante_active then
+				local antechange = (G.GAME.round_resets.ante ^ card.ability.extra.eante) - G.GAME.round_resets.ante
+				ease_ante(antechange)
+				return { 
+					message = "^" .. lenient_bignum(card.ability.extra.eante) .. " Ante",
+				}
+			else if xante_active and not eante_active then
+				local antechange = (G.GAME.round_resets.ante * card.ability.extra.xante) - G.GAME.round_resets.ante
+				ease_ante(antechange)
+				return {
+					message = "X" .. lenient_bignum(card.ability.extra.xante) .. " Ante",
+				}
+			else if xante_active and eante_active then
+				local antechange = card.ability.extra.eqante - G.GAME.round_resets.ante
+				ease_ante(antechange)
+				return {
+					message = "=" .. lenient_bignum(card.ability.extra.eqante) .. " Ante",
+				}
+			end
+			end
+			end
+		end
+	end,
+	crp_credits = {
+		idea = { "Grahkon" },
+		art = { "Grahkon" },
+		code = { "Rainstar" }
+	},
 }

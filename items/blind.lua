@@ -501,7 +501,7 @@ SMODS.Blind {
 SMODS.Blind {
 	key = "roulette",
 	name = "The Roulette (L+)",
-	pos = { x = 0, y = 3 },
+	pos = { x = 0, y = 0 },
 	boss = { min = 2, max = 10 },
 	boss_colour = HEX("98a1b2"),
 	blindrarity = "Legendary",
