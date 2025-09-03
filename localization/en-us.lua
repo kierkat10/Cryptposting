@@ -613,6 +613,12 @@ return {
 					"{C:edition,X:dark_edition}^^#1#{} Mult against {C:attention}Small Blinds{}"
 				}
 			},
+			j_crp_how_many_pickles = {
+				name = "How Many Pickles?",
+				text = {
+					"{C:mult}+Mult{} equal to the number of pickles", "{C:inactive}(Currently {C:code}#1#{C:inactive} pickles.#2#)"
+				}
+			},
 			j_crp_inside_joker = {
 				name = "Inside Joke r",
 				text = {
