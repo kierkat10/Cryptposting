@@ -214,7 +214,7 @@ return {
 					"Debuffs the other hyperoperation brothers",
 					"{C:red}Self-destructs{} if score is {C:attention}>ee#2#",
 					"{C:inactive}\"He's the estranged brother. Recently,",
-					"{C:inactive}he stole one of Henry’s arrows\""
+					"{C:inactive}he stole one of Henry's arrows\""
 				}
 			},
 			j_crp_evil_jolly_joker = {
@@ -302,7 +302,7 @@ return {
 			j_crp_collection = {
 				name = "Collection",
 				text = {
-					"{C:white,X:mult}X#1#{} for every {C:attention}Joker"
+					"{C:attention}Jokers{} each give {C:white,X:mult}X#1#{} Mult"
 				}
 			},
 			j_crp_three = {
@@ -310,6 +310,12 @@ return {
 				text = {
 					"{C:attention}+#2#{} 3s",
 					"{C:inactive}(Currently {C:attention}#1#{C:inactive} 3s)",
+				},
+			},
+			j_crp_best_joker_ever = {
+				name = "The Best Joker Ever",
+				text = {
+					"this is the best joker, truly a great one, wonderful artwork, marvelous effect, incredible triggering sound, it's so good that you'll never want any other jokers ever, this joker is truly incredible, and the effect of this joker is truly one of the best effects ever, it's so good and will do a lot for your run and it's so good and what it does is it"
 				},
 			},
 			["j_crp_:3"] = {
@@ -334,7 +340,8 @@ return {
 			j_crp_participation_trophy = {
 				name = "Participation Trophy",
 				text = {
-					"{C:mult}+#1#{} Mult for every {C:red,E:2}loss{} on this profile",
+					"{C:mult}+#1#{} Mult for every {C:red,E:2}loss{}",
+					"on this profile",
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
 				},
 			},
@@ -379,7 +386,8 @@ return {
 				name = "Antimatter Joker",
 				text = {
 					"{C:dark_edition}+#1# {C:attention}Joker{} slot",
-					"Increases by {C:dark_edition}+#2#{} at end of {C:attention}Ante"
+					"Increases by {C:dark_edition}+#2#{} {C:attention}Joker{} slot",
+					"when {C:attention}Boss Blind{} defeated"
 				}
 			},
 			j_crp_grouchy = {

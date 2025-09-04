@@ -277,7 +277,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "ancient_debris",
 	name = "Ancient Debris",
-	config = { extra = { hasStone = 0, payout = 1, increase = 0.5 } },
+	config = { extra = { hasstone = 0, payout = 1, increase = 0.5 } },
 	rarity = 2,
 	atlas = "crp_placeholder",
 	pos = { x = 3, y = 0 },
@@ -290,13 +290,13 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		if context.individual and context.cardarea == G.play and not context.blueprint then -- apply hasstone = 1
             if SMODS.get_enhancements(context.other_card)["m_stone"] == true then
-                card.ability.extra.hasStone = 1
+                card.ability.extra.hasstone = 1
             end
         end
 		if context.after then -- payout increase
-            if card.ability.extra.hasStone == 1 then
+            if card.ability.extra.hasstone == 1 then
                 card.ability.extra.payout = lenient_bignum(card.ability.extra.payout) + lenient_bignum(card.ability.extra.increase)
-				card.ability.extra.hasStone = 0
+				card.ability.extra.hasstone = 0
             end
         end
 	end,

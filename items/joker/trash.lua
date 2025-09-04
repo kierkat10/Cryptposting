@@ -141,7 +141,7 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.immutable.xmult) } }
 	end,
 	calculate = function(self, card, context)
-		if ((context.other_joker) and context.other_joker.config.center.rarity == "crp_trash") or context.forcetrigger then
+		if (context.other_joker) or context.forcetrigger then
 			return {
 				xmult = lenient_bignum(card.ability.immutable.xmult)
 			}
@@ -179,5 +179,20 @@ SMODS.Joker {
 		idea = { "lunarisillustratez" },
 		art = { "lunarisillustratez" },
 		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
+	key = "best_joker_ever",
+    name = "The Best Joker Ever",
+	rarity = "crp_trash",
+	atlas = "crp_placeholder",
+	pos = { x = 1, y = 0 },
+	cost = 0,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	crp_credits = {
+		idea = { "CanadianShark26" },
+		code = { "Glitchkat10" }
 	}
 }
