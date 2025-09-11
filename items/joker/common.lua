@@ -42,14 +42,14 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.extra.mult) } }
 	end,
 	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante then
+		if context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante == true then
 			return { mult = lenient_bignum(card.ability.extra.mult) }
 		end
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
 		art = { "ottermatter" },
-		code = { "wilfredlam0418" }
+		code = { "wilfredlam0418" } -- and blanthos who fixed a bug but i'm not arrogant enough to put that in the actual credits
 	}
 }
 
