@@ -1,0 +1,24 @@
+SMODS.Joker {
+	key = "pillaring",
+	name = "Pillaring Joker",
+	pos = { x = 7, y = 2 },
+	config = { extra = { mult = 4 } },
+	rarity = 1,
+	cost = 4,
+	atlas = "crp_joker",
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.mult) } }
+	end,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante == true then
+			return { mult = lenient_bignum(card.ability.extra.mult) }
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		art = { "ottermatter" },
+		code = { "wilfredlam0418" } -- and blanthos who fixed a bug but i'm not arrogant enough to put that in the actual credits
+	}
+}
