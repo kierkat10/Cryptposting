@@ -389,6 +389,34 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "the_three",
+	name = "The Three",
+	config = { extra = { xchips = 3, xmult = 3, money = 3 } },
+	rarity = 3,
+	atlas = "crp_placeholder",
+	pos = { x = 4, y = 0 },
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.xchips, card.ability.extra.xmult, card.ability.extra.money } }
+	end,
+	cost = 6,
+	calculate = function(self, card, context)
+		if (context.joker_main and pseudorandom("crp_the_three") < 1 / 3) or context.forcetrigger then
+			ease_dollars(card.ability.extra.money)
+			return {
+				xchips = card.ability.extra.xchips,
+				xmult = card.ability.extra.xmult
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "lunarisillustratez" },
+		code = { "wilfredlam0418" }
+	}
+}
+
+SMODS.Joker {
 	key = "photo_of_grouchy",
 	name = "Photo of Grouchy Jimbo",
 	config = { extra = { xmult = 30 } },
