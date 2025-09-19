@@ -198,6 +198,35 @@ SMODS.Joker {
 	}
 }
 
+
+SMODS.Joker {
+	key = "the_entire_cid_itself",
+	name = "The Entire CID Itself",
+	config = { extra = { xchips = 50472 } },
+	rarity = "cry_exotic",
+	atlas = "crp_placeholder",
+	pos = { x = 7, y = 0 },
+	cost = 50,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.xchips } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				Xchip_mod = lenient_bignum(card.ability.extra.xchips),
+				message = "X" .. lenient_bignum(card.ability.extra.xchips) .. " Chips",
+				colour = G.C.CHIPS,
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Glitchkat10", "Psychomaniac14" },
+		code = { "Rainstar" }
+	}
+}
+
 SMODS.Joker {
 	key = "waldo_quaerere",
 	name = "Waldo Quaerere",

@@ -286,19 +286,19 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "libum",
 	name = "Libum",
-	config = { extra = { chips_loss = 4, money_per_reroll = 1, money = 0 } },
+	config = { extra = { chips_loss = 4, xmoney_per_reroll = 0.1, xmoney = 1 } },
 	rarity = "crp_exotic_2",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 50,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.chips_loss), lenient_bignum(card.ability.extra.money_per_reroll), lenient_bignum(card.ability.extra.money) } }
+		return { vars = { lenient_bignum(card.ability.extra.chips_loss), lenient_bignum(card.ability.extra.xmoney_per_reroll), lenient_bignum(card.ability.extra.xmoney) } }
 	end,
 	blueprint_compat = true,
 	demicoloncompat = true,
 	calculate = function(self, card, context)
 		if context.reroll_shop and not context.blueprint then
-			card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_per_reroll
+			card.ability.extra.xmoney = card.ability.extra.xmoney + card.ability.extra.xmoney_per_reroll
 			for k, v in pairs(G.GAME.hands) do
 				G.GAME.hands[k].chips = math.max(G.GAME.hands[k].chips - card.ability.extra.chips_loss, 1)
 			end
@@ -306,16 +306,9 @@ SMODS.Joker {
 				message = "-" .. lenient_bignum(card.ability.extra.chips_loss) .. " Chips",
 				colour = G.C.CHIPS,
 				extra = {
-					message = "+" .. lenient_bignum(card.ability.extra.money_per_reroll) .. "$",
+					message = "+X" .. lenient_bignum(card.ability.extra.xmoney_per_reroll) .. "$",
 					colour = G.C.MONEY
 				}
-			}
-		end
-		if context.end_of_round and G.GAME.blind.boss and not context.individual then
-			card.ability.extra.money = 0
-			return {
-				message = "Reset!",
-				colour = G.C.ATTENTION
 			}
 		end
 	end,
@@ -326,7 +319,7 @@ SMODS.Joker {
 		G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls - 1e100
 	end,
 	calc_dollar_bonus = function(self, card)
-		return lenient_bignum(card.ability.extra.money)
+		return G.GAME.dollars * card.ability.extra.xmoney
 	end,
 	crp_credits = {
 		idea = { "Unknown" },

@@ -56,7 +56,7 @@ SMODS.Joker {
 	end,
 	calculate = function(self, card, context)
 		if (context.other_joker) or context.forcetrigger then
-			G.GAME.dollars = G.GAME.dollars ^ lenient_bignum(card.ability.extra.emoney)
+			G.GAME.dollars = G.GAME.dollars ^ card.ability.extra.emoney
 			return {
 				message = "^$" .. number_format(lenient_bignum(card.ability.extra.emoney)),
 				colour = G.C.MONEY
@@ -155,8 +155,9 @@ SMODS.Joker {
 	name = "Fiorello Giraud",
 	config = { extra = { eeemult = 1, eeemult_mod = 1 } },
 	rarity = "crp_exomythic",
-	atlas = "crp_placeholder",
-	pos = { x = 9, y = 0 },
+	atlas = "crp_joker2",
+	pos = { x = 3, y = 2 },
+	soul_pos = { x = 4, y = 2 },
 	cost = 200,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -207,7 +208,7 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.extra.eeemult) } }
 	end,
 	calculate = function(self, card, context)
-		if (context.individual and context.cardarea == G.play and context.other_card and (context.other_card:get_id() == 12 or context.other_card:get_id() == 13)) or context.forcetrigger then
+		if (context.individual and (context.cardarea == G.play or (context.cardarea == G.hand and not context.end_of_round)) and context.other_card and (context.other_card:get_id() == 12 or context.other_card:get_id() == 13)) or context.forcetrigger then
 			return {
 				eeemult = lenient_bignum(card.ability.extra.eeemult),
 				eeemult_message = {
@@ -400,3 +401,4 @@ SMODS.Joker {
 		code = { "Rainstar", "Glitchkat10" } -- added a bunch of stuff to help with nil values
 	},
 }
+

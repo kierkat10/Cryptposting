@@ -1,32 +1,3 @@
--- commented out due to the current effect being graveyarded
---[[
-SMODS.Joker {
-	key = "dead_joker",
-	config = { immutable = { mult = 107 } },
-	rarity = 2,
-	atlas = "crp_joker",
-	pos = { x = 6, y = 0 },
-	cost = 7,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.immutable.mult) } }
-	end,
-	calculate = function(self, card, context)
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				mult = card.ability.immutable.mult
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "Poker The Poker" },
-		art = { "GudUsername" },
-		code = { "Glitchkat10" }
-	}
-}
-]]--
-
 SMODS.Joker {
 	key = "vermillion",
 	name = "Vermillion Joker",

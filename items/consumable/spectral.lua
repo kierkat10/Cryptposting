@@ -287,6 +287,7 @@ SMODS.Consumable{
 	},
 }
 
+
 local function createfulldeck(enhancement, edition, amount, emplacement)
     local cards = {}
     for k, v in pairs(G.P_CARDS) do
@@ -431,40 +432,59 @@ SMODS.Consumable {
 			trigger = "after",
 			delay = 0.4,
 			func = function()
-				if pseudorandom("crp_reckoning") < 0.27 then
-					G.E_MANAGER:add_event(Event({trigger = "after", delay = 0, func = function()
-						attention_text({
-							text = localize("k_nope_ex"),
-							scale = 1.3, 
-							hold = 1.4,
-							major = card,
-							backdrop_colour = G.C.SECONDARY_SET.Tarot,
-							align = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and "tm" or "cm",
-							offset = {x = 0, y = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and -0.2 or 0},
-							silent = true
-						})
-						G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
-							play_sound("tarot2", 0.76, 0.4)
-							delay(3);return true end}))
-						play_sound("tarot2", 1, 0.4)
-						card:juice_up(0.3, 0.5)
-						return true 
-					end}))
-					G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
-						delay(0.5)
-						G.STATE = G.STATES.GAME_OVER
-						G.STATE_COMPLETE = false
-						return true 
-					end}))
+				if pseudorandom("crp_reckoning") > 0.27 then
+					G.E_MANAGER:add_event(Event({
+						trigger = "after",
+						delay = 0.1,
+						func = function() -- destroy jokers and consumables
+							local deletable_jokers = {}
+							local deletable_consumeables = {}
+							for _, v in ipairs(G.jokers.cards) do
+								deletable_jokers[#deletable_jokers + 1] = v
+							end
+							for _, v in ipairs(G.consumeables.cards) do
+								if v ~= card then
+									deletable_consumeables[#deletable_consumeables + 1] = v
+								end
+							end
+							local _first_dissolve = nil
+							for _, v in ipairs(deletable_jokers) do
+								v:start_dissolve(nil, _first_dissolve)
+								_first_dissolve = true
+							end
+							for _, v in ipairs(deletable_consumeables) do
+								v:start_dissolve(nil, _first_dissolve)
+								_first_dissolve = true
+							end
+							G.deck.cards = {} -- clear deck
+							G.playing_cards = {}
+							if G.GAME.tags then -- clear tags
+								local tags_to_remove = {}
+								for k, v in pairs(G.GAME.tags) do
+									tags_to_remove[#tags_to_remove + 1] = v
+								end
+								for _, v in ipairs(tags_to_remove) do
+									if v.remove then v:remove() end
+								end
+								G.GAME.tags = {}
+							end
+							createfulldeck() -- create new deck
+							G.GAME.round_resets.hands = 4
+							G.GAME.round_resets.discards = 4
+							ease_hands_played(4 - G.GAME.round_resets.hands)
+							ease_discard(4 - G.GAME.round_resets.hands)
+							return true
+						end,
+					}))
+				else
+					play_sound("timpani")
+					local card = create_card("Joker", G.jokers, nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, nil, "crp_reckoning")
+					card:add_to_deck()
+					G.jokers:emplace(card)
+					card:juice_up(0.3, 0.5)
 					return true
 				end
-				play_sound("timpani")
-				local card = create_card("Joker", G.jokers, nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, nil, "crp_reckoning")
-				card:add_to_deck()
-				G.jokers:emplace(card)
-				card:juice_up(0.3, 0.5)
-				return true
-			end,
+			end
 		}))
 		delay(0.6)
 	end,
@@ -599,50 +619,32 @@ SMODS.Consumable {
 	end,
 	use = function(self, card, area, copier)
 		if pseudorandom("all_or_nothing") < 0.5 then
-			-- 50% chance: destroy all items, reset deck, reset hands/discards
-			G.E_MANAGER:add_event(Event({
-				trigger = "after",
-				delay = 0.1,
-				func = function() -- destroy jokers and consumables
-					local deletable_jokers = {}
-					local deletable_consumeables = {}
-					for _, v in ipairs(G.jokers.cards) do
-						deletable_jokers[#deletable_jokers + 1] = v
-					end
-					for _, v in ipairs(G.consumeables.cards) do
-						if v ~= card then
-							deletable_consumeables[#deletable_consumeables + 1] = v
-						end
-					end
-					local _first_dissolve = nil
-					for _, v in ipairs(deletable_jokers) do
-						v:start_dissolve(nil, _first_dissolve)
-						_first_dissolve = true
-					end
-					for _, v in ipairs(deletable_consumeables) do
-						v:start_dissolve(nil, _first_dissolve)
-						_first_dissolve = true
-					end
-					G.deck.cards = {} -- clear deck
-					G.playing_cards = {}
-					if G.GAME.tags then -- clear tags
-						local tags_to_remove = {}
-						for k, v in pairs(G.GAME.tags) do
-							tags_to_remove[#tags_to_remove + 1] = v
-						end
-						for _, v in ipairs(tags_to_remove) do
-							if v.remove then v:remove() end
-						end
-						G.GAME.tags = {}
-					end
-					createfulldeck() -- create new deck
-					G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
-					G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
-					ease_hands_played(card.ability.extra.hands)
-					ease_discard(card.ability.extra.discards)
-					return true
-				end,
-			}))
+			-- 50% chance: ends the run
+			G.E_MANAGER:add_event(Event({trigger = "after", delay = 0, func = function()
+				attention_text({
+					text = localize("k_nope_ex"),
+					scale = 1.3, 
+					hold = 1.4,
+					major = card,
+					backdrop_colour = G.C.SECONDARY_SET.Tarot,
+					align = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and "tm" or "cm",
+					offset = {x = 0, y = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and -0.2 or 0},
+					silent = true
+				})
+				G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
+					play_sound("tarot2", 0.76, 0.4)
+					delay(3);return true end}))
+				play_sound("tarot2", 1, 0.4)
+				card:juice_up(0.3, 0.5)
+				return true 
+			end}))
+			G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+				delay(0.5)
+				G.STATE = G.STATES.GAME_OVER
+				G.STATE_COMPLETE = false
+				return true 
+			end}))
+			return true
 		else
 			-- 50% chance to create all
 			play_sound("timpani")

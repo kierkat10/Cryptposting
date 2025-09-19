@@ -1,6 +1,6 @@
 -- update the cryptposting member count using https
 Cryptposting = Cryptposting or {}
-local member_fallback = 192 -- fallback member count in case the request fails or is not available
+local member_fallback = 229 -- fallback member count in case the request fails or is not available
 local succ, https = pcall(require, "SMODS.https")
 Cryptposting.member_count = member_fallback
 
@@ -18,7 +18,6 @@ end
 function Cryptposting.update_member_count()
     -- prevent multiple updates by checking if we already have a member count
     if Cryptposting.member_count ~= member_fallback then return end
-    
     if https and https.asyncRequest then
         https.asyncRequest(
             "https://discord.com/api/v10/invites/Jk9Q9usrNy?with_counts=true", -- this is all you guys; thisispeam :bulgoe:

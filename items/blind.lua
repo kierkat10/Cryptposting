@@ -588,7 +588,7 @@ SMODS.Blind {
 
 SMODS.Blind {
 	key = "nanny",
-	name = "The Nanny (S, E+)",
+	name = "The Nanny (E+)",
 	pos = { x = 0, y = 0 },
 	boss = { min = 2, max = 10 },
 	blindrarity = "Exotic",
@@ -602,6 +602,84 @@ SMODS.Blind {
 			G.GAME.blind.chips = 1.79e308
 			G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 		end
+	end,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exotic_blind_keys[rarity] then
+					return true
+				end
+			end
+		end
+		-- if we're out of the loop then there isn't a joker that allows this to spawn
+		return false
+	end,
+	atlas = "blind",
+	boss_colour = HEX("b8bf11"),
+    crp_credits = {
+		idea = { "PurplePickle" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Blind {
+	key = "tetra",
+	name = "The Tetra (E+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10 },
+	blindrarity = "Exotic",
+	mult = 1,
+	dollars = 0,
+	defeat = function(self, card, from_blind)
+		ease_dollars((G.GAME.dollars * 12) - G.GAME.dollars) -- this shit is just "nothing" in the cid so im making it X$12 because idk
+	end,
+	set_blind = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, 1.03)
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+	end,
+	disable = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, 1 / 1.03)
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+	end,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exotic_blind_keys[rarity] then
+					return true
+				end
+			end
+		end
+		-- if we're out of the loop then there isn't a joker that allows this to spawn
+		return false
+	end,
+	atlas = "blind",
+	boss_colour = HEX("b8bf11"),
+    crp_credits = {
+		idea = { "PurplePickle" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Blind {
+	key = "random_rubellite",
+	name = "Random Rubellite (S, E+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10 },
+	blindrarity = "Exotic",
+	mult = 1,
+	dollars = 0,
+	defeat = function(self, card, from_blind)
+		ease_dollars((G.GAME.dollars * 24) - G.GAME.dollars) -- theres no listed reward in the cid so i made it double of the tetra
+	end,
+	set_blind = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, math.random(1, 1.06))
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+	end,
+	disable = function(self)
+		G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, 1 / math.random(1, 1.06))
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
 	end,
 	in_pool = function(self)
 		if G.jokers then
@@ -715,7 +793,7 @@ SMODS.Blind {
 	boss = { min = 2, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
-	dollars = 5,
+	dollars = 0,
 	in_pool = function(self)
 		if G.jokers then
 			for _, joker in pairs(G.jokers.cards) do
@@ -733,6 +811,7 @@ SMODS.Blind {
 		if not next(SMODS.find_card("j_crp_jean_antoine")) then  -- not sure how i would go about using disable for this so we'll just do it like this for now
 			ease_ante(G.GAME.round_resets.ante * 10)
 		end
+		ease_dollars(1222)
 	end,
 	boss_colour = HEX("b8bf11"),
     crp_credits = {
@@ -747,7 +826,10 @@ SMODS.Blind {
 	boss = { min = 2, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
-	dollars = 5,
+	dollars = 0,
+	defeat = function(self, card, from_blind)
+		ease_dollars(1600)
+	end,
 	in_pool = function(self)
 		if G.jokers then
 			for _, joker in pairs(G.jokers.cards) do
@@ -771,6 +853,63 @@ SMODS.Blind {
     crp_credits = {
 		idea = { "Grahkon" },
 		code = { "ScarredOut" }
+	}
+}
+SMODS.Blind {
+	key = "ascensios",
+	name = "Ascensios (EM+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10 },
+	blindrarity = "ExoMythic",
+	mult = 8,
+	defeat = function(self, card, from_blind)
+		ease_dollars(1800)
+	end,
+	dollars = 5,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exomyth_blind_keys[rarity] then
+					return true
+				end
+			end
+		end
+		return false
+	end,
+	atlas = "blind",
+	set_blind = function(self)
+		local tetration_multiplier = 1
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity
+				if type(rarity) == valid_leg_blind_keys[rarity] or rarity == 4 then
+					tetration_multiplier = tetration_multiplier + 1
+				end
+			end
+		end
+		if not next(SMODS.find_card("j_crp_jean_antoine")) then
+			G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, (1.8 * tetration_multiplier))
+			G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+		end
+	end,
+	disable = function(self)
+		local tetration_divider = 1
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity
+				if type(rarity) == valid_leg_blind_keys[rarity] or rarity == 4 then
+					tetration_divider = tetration_divider + 1
+				end
+			end
+		end
+		G.GAME.blind.chips = G.GAME.blind.chips:arrow(2, (1 / (tetration_divider * 1.8)))
+		G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+	end,
+	boss_colour = HEX("ff0055"),
+    crp_credits = {
+		idea = { "Grahkon" },
+		code = { "Rainstar" }
 	}
 }
 SMODS.Blind {
@@ -934,6 +1073,51 @@ SMODS.Blind {
 	-- effect is also in the hook at the top of the file (thanks scarred)
 	atlas = "blind",
 	boss_colour = HEX("000000"),
+    crp_credits = {
+		idea = { "Grahkon" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Blind {
+	key = "manus_acus",
+	name = "Manus Acus (EM+)",
+	pos = { x = 0, y = 0 },
+	boss = { min = 2, max = 10 },
+	blindrarity = "ExoMythic",
+	mult = 1,
+	dollars = 0,
+	in_pool = function(self)
+		if G.jokers then
+			for _, joker in pairs(G.jokers.cards) do
+				local rarity = joker.config.center.rarity -- stolen from chibidoki code
+				if type(rarity) == "string" and valid_exomyth_blind_keys[rarity] then
+					return true
+				end
+			end
+		end
+		return false
+	end,
+	atlas = "blind",
+	set_blind = function(self)
+		if not next(SMODS.find_card("j_crp_jean_antoine")) then
+			G.GAME.blind.chips = math.floor((G.GAME.blind.chips ^ -0.01) + 0.5)
+			G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+		end
+		ease_hands_played(-G.GAME.current_round.hands_left)
+	end,
+	disable = function(self)
+		ease_hands_played(G.GAME.current_round.hands_left)
+	end,
+	defeat = function(self, card, from_blind)
+		if not next(SMODS.find_card("j_crp_jean_antoine")) then
+			ease_dollars(-9e9)
+		else
+			ease_dollars(9e9)
+		end
+		ease_hands_played(G.GAME.current_round.hands_left)
+	end,
+	boss_colour = HEX("ff0055"),
     crp_credits = {
 		idea = { "Grahkon" },
 		code = { "Rainstar" }

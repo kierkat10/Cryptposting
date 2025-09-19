@@ -153,6 +153,18 @@ return {
 					"Score at least 1.79e308"
 				},
 			},
+			bl_crp_tetra = {
+				name = "The Tetra (E+)",
+				text = {
+					"Score at least ^^1.03 Blind Size"
+				},
+			},
+			bl_crp_random_rubellite = {
+				name = "Random Rubellite (E+)",
+				text = {
+					"Score at least ^^1.0[1-6] Blind Size"
+				},
+			},
 			bl_crp_malevolent_mirror = {
 				name = "Malevolent Mirror (S, M+)",
 				text = {
@@ -176,11 +188,27 @@ return {
 					"are debuffed"
 				},
 			},
+			bl_crp_ascensios = {
+				name = "Ascensios (EM+)",
+				text = {
+					"^^1.8 blind size",
+					"for every Legendary+",
+					"joker you have"
+				},
+			},
 			bl_crp_pokios = {
 				name = "Pokios (EM+)",
 				text = {
 					"^2 blind size",
 					"every frame"
+				},
+			},
+			bl_crp_ascensios = {
+				name = "Ascensios (EM+)",
+				text = {
+					"^^1.8 Blind Size",
+					"for each Legendary+",
+					"joker you own",
 				},
 			},
 			bl_crp_poseidon = {
@@ -204,6 +232,13 @@ return {
 					"every frame,",
 					"value increases by",
 					"0.000001 every frame",
+				},
+			},
+			bl_crp_manus_acus = {
+				name = "Manus Acus (EM+)",
+				text = {
+					"^-0.01 Blind Size",
+					"Lose ALL hands"
 				},
 			},
 			bl_crp_lacum_draconis = {
@@ -242,6 +277,14 @@ return {
 					"{C:inactive}\"He's the estranged brother. Recently,",
 					"{C:inactive}he stole one of Henry's arrows\""
 				}
+			},
+			j_crp_flowey_idiot = {
+				name = "You really ARE an idiot!",
+				text = {
+					"{X:edition,C:dark_edition}#4#0.07{} Chips, {X:edition,C:dark_edition}#4#0.07{} Mult",
+					"Self-destructs and creates {C:attention}FINALE{} in {C:attention}7{} antes",
+					"{C:inactive}(Currently #3# antes){}",
+				},
 			},
 			j_crp_evil_jolly_joker = {
 				name = "{C:red}EVIL{} Jolly Joker",
@@ -499,16 +542,14 @@ return {
 					"each give {C:mult}+#1#{} Mult"
 				},
 			},
-			--[[
 			j_crp_dead_joker = {
 				name = "Dead Joker",
 				text = {
-					"{C:mult}+1{} Mult for every {C:attention}Graveyarded",
-					"submission in the {C:attention}CSL",
-					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
+					"Gains {C:mult}+#2#{} Chips when a",
+					"card is destroyed",
+					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
 				},
 			},
-			]]--
 			j_crp_vermillion = {
 				name = "Vermillion Joker",
 				text = {
@@ -771,7 +812,8 @@ return {
 			j_crp_normalgoe = {
 				name = "{C:dark_edition}Normalgoe",
 				text = {
-					"{C:white,X:mult}X#1#{} Mult"
+					"{C:white,X:mult}X#1#{} Mult",
+					"{C:inactive}sd bulgoe"
 				}
 			},
 			j_crp_usain_bolt = {
@@ -780,6 +822,14 @@ return {
 					"Gains {C:chips}+#2#{} Chips if a",
 					"{C:attention}Straight {C:gold}+8{} from {C:attention}2-A{} is played",
 					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+				}
+			},
+			j_crp_microfiber = {
+				name = "Microfiber",
+				text = {
+					"{C:chips}+#1#{} Chips",
+					"Exponentiate all values on this joker by {X:attention,C:white}^#2#{}",
+					"when {C:attention}Boss Blind{} is defeated",
 				}
 			},
 			["j_crp_low-fqt_milk"] = {
@@ -974,6 +1024,14 @@ return {
 					"{C:inactive}(Currently {C:white,X:dark_edition}^#2#{C:inactive} Chip#<s>2#)",
 				}
 			},
+			j_crp_the_entire_cid_itself = {
+				name = "The Entire CID Itself",
+				text = {
+					"This {C:attention}Joker{} gives {C:white,X:chips}XChips{} equal to",
+					"the number of words in the entire {C:attention}Cryptposting Idea Document{}",
+					"{C:inactive}(Currently {C:white,X:chips}X#1#{C:inactive} Chips)",
+				}
+			},
 			j_crp_waldo_quaerere = {
 				name = "Waldo Quaerere",
 				text = {
@@ -1065,9 +1123,8 @@ return {
 					"Rerolls cost {C:chips}-#1#{} Chips",
 					"from all {C:attention}poker hands",
 					"{C:inactive,s:0.8}(Minimum of {C:chips,s:0.8}1{C:inactive,s:0.8} Chip)",
-					"Earn {C:money}+#3#${} at the end of round,",
-					"increases by {C:money}+#2#${} when shop rerolled",
-					"Resets when {C:attention}Boss Blind{} is defeated"
+					"Earn {X:money,C:white}X$#3#{} at the end of round,",
+					"increases by {X:money,C:white}X$#2#{} when shop rerolled"
 				}
 			},
 			j_crp_weather_machine = {
@@ -1257,6 +1314,12 @@ return {
 					"{C:inactive}(Currently {C:attention}#1#{C:inactive})",
 				},
 			},
+			j_crp_finale = {
+				name = "FINALE",
+				text = {
+					"{C:dark_edition,X:edition}#2#7{} Chips, {C:dark_edition,X:edition}#2#7{} Mult",
+				},
+			},
 			j_crp_septingentiquinvigintation_stevie = {
 				name = "septingentiquinvigintation stevie",
 				text = {
@@ -1330,8 +1393,12 @@ return {
 			c_crp_reckoning = {
 				name = "Reckoning",
 				text = {
-					"Create a {C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe,E:1}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe{} {C:attention}Joker{},",
-					"{C:red}Fixed {C:green}27%{} chance to instantly {C:red,E:2}lose{} the game instead"
+					"Fixed {C:green}27%{} chance to create a",
+					"{C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe,E:1}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe{} {C:attention}Joker{},",
+					"Otherwise:",
+					"{C:red}Destroy{} all {C:attention}items{}, bypassing {C:red}all effects",
+					"Reset deck to a standard {C:attention}52{} card deck",
+					"Set {C:blue}hands{} and {C:red}discards{} to {C:attention}4{} each"
 				}
 			},
 			c_crp_happiness = {
@@ -1367,10 +1434,7 @@ return {
 				name = "All or Nothing",
 				text = {
 					"{C:red}Fixed{} {C:green}50%{} chance to create {C:white,X:crp_all,E:1}All",
-					"Otherwise:",
-					"{C:red}Destroy{} all {C:attention}items{}, bypassing {C:red}all effects",
-					"Reset deck to a standard {C:attention}52{} card deck",
-					"Decrease {C:blue}hands{} and {C:red}discards{} by {C:attention}27"
+					"Otherwise, {C:red,E:2}instantly lose the run{}"
 				}
 			},
 		},
@@ -1989,6 +2053,27 @@ return {
 				text = {
 					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
 					"{C:crp_exomythic}ExoMythic{} {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_bulgoe_pack = {
+				name = "Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_big_bulgoe_pack = {
+				name = "BIG Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_bountiful_bulgoe_pack = {
+				name = "Bountiful Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
 				},
 			},
 			remove_negative = {

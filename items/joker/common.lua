@@ -28,6 +28,38 @@ SMODS.Joker {
 	}
 }
 
+SMODS.Joker { -- the reanimation is fucking real
+	key = "dead_joker",
+	config = { extra = { chips = 0, chips_mod = 25 } },
+	rarity = 1,
+	atlas = "crp_joker",
+	pos = { x = 6, y = 0 },
+	cost = 6,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.chips), lenient_bignum(card.ability.extra.chips_mod) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				chips = card.ability.extra.chips
+			}
+		end
+		if (context.remove_playing_cards and context.cardarea == G.jokers) or context.forcetrigger then
+			card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) + lenient_bignum(card.ability.extra.chips_mod)
+			return {
+				message = "Upgraded!"
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		art = { "GudUsername" },
+		code = { "Rainstar" }
+	}
+}
+
 SMODS.Joker { -- SOMEBODY FIX PILLARING JOKER PRETTY PLEASE
 	key = "pillaring",
 	name = "Pillaring Joker",
