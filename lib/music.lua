@@ -8,9 +8,8 @@ SMODS.Sound({
             return false
         end
         ]]--
-        local count = #Cryptid.advanced_find_joker(nil, "crp_all", nil, nil, true)
-        if count ~= 0 then
-            return 1.7e308
+        if next(Cryptid.advanced_find_joker(nil, "crp_all", nil, nil, true)) then
+            return 1.3e308
         --[[
         else
             return false
@@ -30,11 +29,7 @@ SMODS.Sound({
             return false
         end
         ]]--
-        if (#Cryptid.advanced_find_joker(nil, "crp_mythic", nil, nil, true)
-        or #Cryptid.advanced_find_joker(nil, "crp_exomythic", nil, nil, true)
-        or #Cryptid.advanced_find_joker(nil, "crp_2exomythic4me", nil, nil, true)
-        or #Cryptid.advanced_find_joker(nil, "crp_22exomythic4mecipe", nil, nil, true)
-        or #Cryptid.advanced_find_joker(nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, true)) ~= 0 then
+        if next(Cryptid.advanced_find_joker(nil, "crp_mythic", nil, nil, true)) then
             return 1e308
         --[[
         else
@@ -44,9 +39,54 @@ SMODS.Sound({
     end,
 })
 
--- hook into the music_exotic select_music_track function thing to add more of cryptposting's rarities
+SMODS.Sound({
+    key = "music_exomythic",
+    path = "music_exomythic.ogg",
+    volume = 1.5,
+    select_music_track = function()
+        -- check if the music_exomythic setting is enabled
+        --[[
+        if not (cryptposting_config and cryptposting_config.music_exomythic) then
+            return false
+        end
+        ]]--
+        if next(Cryptid.advanced_find_joker(nil, "crp_exomythic", nil, nil, true))
+        or next(Cryptid.advanced_find_joker(nil, "crp_2exomythic4me", nil, nil, true)) then
+            return 1.1e308
+        --[[
+        else
+            return false
+        ]]--
+        end
+    end,
+})
+
+SMODS.Sound({
+    key = "music_22exomythic4mecipe",
+    path = "music_22exomythic4mecipe.ogg",
+    volume = 1.5,
+    select_music_track = function()
+        -- check if the music_22exomythic4mecipe setting is enabled
+        --[[
+        if not (cryptposting_config and cryptposting_config.music_22exomythic4mecipe) then
+            return false
+        end
+        ]]--
+        if next(Cryptid.advanced_find_joker(nil, "crp_22exomythic4mecipe", nil, nil, true))
+        or next(Cryptid.advanced_find_joker(nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, true))
+        or next(Cryptid.advanced_find_joker(nil, "crp_supa_rare", nil, nil, true)) then
+            return 1.2e308
+        --[[
+        else
+            return false
+        ]]--
+        end
+    end,
+})
+
+-- hook into the music_exotic select_music_track function thing to add exotic 2
 local original_select_music_track = SMODS.Sounds.cry_music_exotic.select_music_track
 SMODS.Sounds.cry_music_exotic.select_music_track = function()
     return (original_select_music_track and original_select_music_track())
-        or #Cryptid.advanced_find_joker(nil, "crp_exotic_2", nil, nil, true) ~= 0
+        or next(Cryptid.advanced_find_joker(nil, "crp_exotic_2", nil, nil, true)) ~= nil
 end

@@ -10,14 +10,14 @@ SMODS.Joker { -- hank is DEAD
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.hypermult) } }
+		return { vars = { card.ability.extra.hypermult } }
 	end,
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				hypermult = {lenient_bignum(card.ability.immutable.arrows), lenient_bignum(card.ability.extra.hypermult)},
+				hypermult = {card.ability.immutable.arrows, card.ability.extra.hypermult},
 				hypermult_message = {
-					message = "^^^^" .. number_format(lenient_bignum(card.ability.extra.hypermult)) .. " Mult",
+					message = "^^^^" .. number_format(card.ability.extra.hypermult) .. " Mult",
 					colour = G.C.EDITION,
 					sound = "crp_hexationalmult"
 				}
@@ -58,7 +58,7 @@ SMODS.Joker {
 		if (context.other_joker) or context.forcetrigger then
 			G.GAME.dollars = G.GAME.dollars ^ card.ability.extra.emoney
 			return {
-				message = "^$" .. number_format(lenient_bignum(card.ability.extra.emoney)),
+				message = "^$" .. number_format(card.ability.extra.emoney),
 				colour = G.C.MONEY
 			}
 		end
@@ -118,16 +118,16 @@ SMODS.Joker {
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_waldo
 		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
-		return { vars = { lenient_bignum(card.ability.extra.echipsmult), lenient_bignum(card.ability.extra.echipsmult_mod) } }
+		return { vars = { card.ability.extra.echipsmult, card.ability.extra.echipsmult_mod } }
 	end,
 	calculate = function(self, card, context)
 		card.ability.extra.echipsmult = 1 + (card.ability.extra.echipsmult_mod * #SMODS.find_card("j_crp_waldo"))
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				echips = lenient_bignum(card.ability.extra.echipsmult),
-				Emult_mod = lenient_bignum(card.ability.extra.echipsmult),
+				echips = card.ability.extra.echipsmult,
+				Emult_mod = card.ability.extra.echipsmult,
 				echip_message = {
-					message = "^" .. number_format(lenient_bignum(card.ability.extra.echipsmult)) .. " Chips & Mult",
+					message = "^" .. number_format(card.ability.extra.echipsmult) .. " Chips & Mult",
 					colour = G.C.DARK_EDITION,
 					sound = "crp_exponentialchipsmult"
 				}
@@ -162,13 +162,13 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.eeemult), lenient_bignum(card.ability.extra.eeemult_mod) } }
+		return { vars = { card.ability.extra.eeemult, card.ability.extra.eeemult_mod } }
 	end,
 	calculate = function(self, card, context)
         if context.remove_playing_cards then
             for k, v in ipairs(context.removed) do
                 if v:is_face() then
-					card.ability.extra.eeemult = lenient_bignum(card.ability.extra.eeemult) + lenient_bignum(card.ability.extra.eeemult_mod)
+					card.ability.extra.eeemult = card.ability.extra.eeemult + card.ability.extra.eeemult_mod
                 end
             end
 			return {
@@ -179,9 +179,9 @@ SMODS.Joker {
 		end
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				eeemult = lenient_bignum(card.ability.extra.eeemult),
+				eeemult = card.ability.extra.eeemult,
 				eeemult_message = {
-					message = "^^^" .. number_format(lenient_bignum(card.ability.extra.eeemult)) .. " Mult",
+					message = "^^^" .. number_format(card.ability.extra.eeemult) .. " Mult",
 					colour = G.C.EDITION,
 					sound = "talisman_eeemult"
 				}	
@@ -205,14 +205,14 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.eeemult) } }
+		return { vars = { card.ability.extra.eeemult } }
 	end,
 	calculate = function(self, card, context)
 		if (context.individual and (context.cardarea == G.play or (context.cardarea == G.hand and not context.end_of_round)) and context.other_card and (context.other_card:get_id() == 12 or context.other_card:get_id() == 13)) or context.forcetrigger then
 			return {
-				eeemult = lenient_bignum(card.ability.extra.eeemult),
+				eeemult = card.ability.extra.eeemult,
 				eeemult_message = {
-					message = "^^^" .. number_format(lenient_bignum(card.ability.extra.eeemult)) .. " Mult",
+					message = "^^^" .. number_format(card.ability.extra.eeemult) .. " Mult",
 					colour = G.C.EDITION,
 					sound = "talisman_eeemult"
 				}
@@ -236,11 +236,11 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.eemult), lenient_bignum(card.ability.extra.eemult_mod) } }
+		return { vars = { card.ability.extra.eemult, card.ability.extra.eemult_mod } }
 	end,
 	calculate = function(self, card, context)
 		if (context.discard and not context.other_card.debuff and not context.blueprint) or context.forcetrigger then
-			card.ability.extra.eemult = lenient_bignum(card.ability.extra.eemult) + lenient_bignum(card.ability.extra.eemult_mod)
+			card.ability.extra.eemult = card.ability.extra.eemult + card.ability.extra.eemult_mod
 			return {
 				message = localize("k_upgrade_ex"),
 				colour = G.C.DARK_EDITION,
@@ -249,9 +249,9 @@ SMODS.Joker {
 
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				eemult = lenient_bignum(card.ability.extra.eemult),
+				eemult = card.ability.extra.eemult,
 				eemult_message = {
-					message = "^^" .. number_format(lenient_bignum(card.ability.extra.eemult)) .. " Mult",
+					message = "^^" .. number_format(card.ability.extra.eemult) .. " Mult",
 					colour = G.C.DARK_EDITION,
 					sound = "talisman_eemult"
 				}
@@ -276,7 +276,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.disables) } }
+		return { vars = { card.ability.extra.disables } }
 	end,
 	calculate = function(self, card, context)
         if context.setting_blind and G.GAME.blind and G.GAME.blind.boss and not G.GAME.blind.disabled then
@@ -310,7 +310,7 @@ SMODS.Joker {
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
 		info_queue[#info_queue + 1] = G.P_CENTERS.cry_global
-		return { vars = { lenient_bignum(card.ability.extra.eante), lenient_bignum(card.ability.extra.xante), lenient_bignum(card.ability.extra.eqante) } }
+		return { vars = { card.ability.extra.eante, card.ability.extra.xante, card.ability.extra.eqante } }
 	end,
 	update = function(self, card, dt)
 		if G.deck and card.added_to_deck then
@@ -401,4 +401,3 @@ SMODS.Joker {
 		code = { "Rainstar", "Glitchkat10" } -- added a bunch of stuff to help with nil values
 	},
 }
-
