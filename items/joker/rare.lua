@@ -552,24 +552,16 @@ SMODS.Joker {
 SMODS.Joker { --Executioner
     name = "Executioner",
     key = "executioner",
-    config = {
-        extra = {
-        }
-    },
-	pos = {
-        x = 4,
-        y = 0
-    },
+    config = { extra = { } },
+	atlas = "crp_placeholder",
+	pos = { x = 4, y = 0 },
     cost = 6,
     rarity = 3,
     blueprint_compat = true,
-	demicolon_compat = true,
-    eternal_compat = true,
-
+	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
         return {vars = {}}
     end,
-
     calculate = function(self, card, context)
         if context.destroy_card and context.destroy_card.should_destroy and not context.blueprint then
             return { remove = true }
@@ -587,7 +579,7 @@ SMODS.Joker { --Executioner
 	crp_credits = {
 		idea = { "Psychomaniac14" },
 		code = { "lunarisillustratez" }
-	} --please work please work
+	}
 }
 
 SMODS.Joker {
@@ -763,7 +755,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "microfiber",
 	name = "Microfiber",
-	config = { extra = { chips = 1.11, evalues = 1.1 } },
+	config = { extra = { chips = 1.11, evalues = 1.11 } },
 	rarity = 3,
 	atlas = "crp_placeholder",
 	pos = { x = 4, y = 0 },

@@ -188,14 +188,6 @@ return {
 					"are debuffed"
 				},
 			},
-			bl_crp_ascensios = {
-				name = "Ascensios (EM+)",
-				text = {
-					"^^1.8 blind size",
-					"for every Legendary+",
-					"joker you have"
-				},
-			},
 			bl_crp_pokios = {
 				name = "Pokios (EM+)",
 				text = {
@@ -208,13 +200,13 @@ return {
 				text = {
 					"^^1.8 Blind Size",
 					"for each Legendary+",
-					"joker you own",
+					"Joker you own",
 				},
 			},
 			bl_crp_poseidon = {
 				name = "Poseidon (EM+)",
 				text = {
-					"All jokers become The Horse"
+					"All Jokers become The Horse"
 				},
 			},
 			bl_crp_quettus = {
@@ -222,7 +214,7 @@ return {
 				text = {
 					"^10 blind size",
 					"Destroys all Legendary+",
-					"Jokers upon entering Blind"
+					"Jokers upon entering blind"
 				},
 			},
 			bl_crp_hermes = {
@@ -545,8 +537,8 @@ return {
 			j_crp_dead_joker = {
 				name = "Dead Joker",
 				text = {
-					"Gains {C:mult}+#2#{} Chips when a",
-					"card is destroyed",
+					"Gains {C:chips}+#2#{} Chips when",
+					"any card is destroyed",
 					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
 				},
 			},
@@ -676,7 +668,8 @@ return {
 					"{C:white,X:chips}X#3#{} Chip#<s>3#, {C:white,X:chips}-X#4#{} Chip#<s>4# when you click",
 					"Prevents death once if you score at least",
 					"{C:attention}#2#%{} of the required score",
-					"Creates {C:attention}#5# Stone{} card#<s>5# if played hand contains a {C:attention}Flush",
+					"Creates {C:attention}#5# Stone{} card#<s>5# if played",
+					"hand contains a {C:attention}Flush",
 					"{C:inactive}(Death prevention active: #1#)"
 				}
 			},
@@ -828,7 +821,8 @@ return {
 				name = "Microfiber",
 				text = {
 					"{C:chips}+#1#{} Chips",
-					"Exponentiate all values on this joker by {X:attention,C:white}^#2#{}",
+					"Exponentiate all values on ",
+					"this Joker by {X:attention,C:white}^#2#{}",
 					"when {C:attention}Boss Blind{} is defeated",
 				}
 			},
@@ -1028,7 +1022,8 @@ return {
 				name = "The Entire CID Itself",
 				text = {
 					"This {C:attention}Joker{} gives {C:white,X:chips}XChips{} equal to",
-					"the number of words in the entire {C:attention}Cryptposting Idea Document{}",
+					"the number of words in the entirety of",
+					"the {C:attention}Cryptposting Idea Document{}",
 					"{C:inactive}(Currently {C:white,X:chips}X#1#{C:inactive} Chips)",
 				}
 			},
@@ -1393,12 +1388,12 @@ return {
 			c_crp_reckoning = {
 				name = "Reckoning",
 				text = {
-					"Fixed {C:green}27%{} chance to create a",
+					"Fixed {C:green}27%{} chance to create an",
 					"{C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe,E:1}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe{} {C:attention}Joker{},",
 					"Otherwise:",
 					"{C:red}Destroy{} all {C:attention}items{}, bypassing {C:red}all effects",
 					"Reset deck to a standard {C:attention}52{} card deck",
-					"Set {C:blue}hands{} and {C:red}discards{} to {C:attention}4{} each"
+					"{C:red}Lose{} {C:attention}27{} {C:blue}hands{} and {C:red}discards{}"
 				}
 			},
 			c_crp_happiness = {
