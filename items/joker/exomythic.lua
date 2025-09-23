@@ -59,7 +59,8 @@ SMODS.Joker {
 			G.GAME.dollars = G.GAME.dollars ^ card.ability.extra.emoney
 			return {
 				message = "^$" .. number_format(card.ability.extra.emoney),
-				colour = G.C.MONEY
+				colour = G.C.MONEY,
+				sound = "coin1"
 			}
 		end
 	end,

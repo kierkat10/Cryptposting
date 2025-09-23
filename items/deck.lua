@@ -6,7 +6,7 @@ SMODS.Back {
     loc_vars = function(self, info_queue)
 		return { vars = { lenient_bignum(self.config.hand_size), lenient_bignum(self.config.discards) * -1 } }
 	end,
-	crp_credits = { -- does not appear in-game, but is useful for when somebody asks who made what
+	crp_credits = {
 		idea = { "Poker The Poker" },
 		art = { "GudUsername" },
 		code = { "Glitchkat10" }
