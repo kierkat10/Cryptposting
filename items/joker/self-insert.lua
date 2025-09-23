@@ -155,6 +155,9 @@ SMODS.Joker {
     in_pool = function(self, args)
 		return true, { allow_duplicates = true }
 	end,
+	add_to_deck = function(self, card, from_debuff)
+		play_sound("crp_e_four-dimensional")
+	end,
 	crp_credits = {
 		idea = { "Glitchkat10" },
 		art = { "George The Rat", "Glitchkat10" },
@@ -219,6 +222,9 @@ SMODS.Joker {
 	end,
     in_pool = function(self, args)
 		return true, { allow_duplicates = true }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		play_sound("cry_e_oversaturated")
 	end,
 	crp_credits = {
 		idea = { "Rainstar" },
@@ -295,6 +301,9 @@ SMODS.Joker {
 	end,
     in_pool = function(self, args)
 		return true, { allow_duplicates = true }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		play_sound("talisman_emult")
 	end,
 	crp_credits = {
 		idea = { "Glitchkat10" },
