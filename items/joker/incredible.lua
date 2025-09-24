@@ -61,3 +61,36 @@ SMODS.Joker {
 		code = { "wilfredlam0418" }
 	}
 }
+
+SMODS.Joker {
+	key = "microfiber",
+	name = "Microfiber",
+	config = { extra = { chips = 1.11, xvalue = 11.1 } },
+	rarity = "crp_incredible",
+	atlas = "crp_placeholder",
+	pos = { x = 1, y = 1 },
+	cost = 19,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.chips), lenient_bignum(card.ability.extra.xvalue) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				chips = lenient_bignum(card.ability.extra.chips)
+			}
+		end
+		if (context.beat_boss and not context.blueprint and not context.retrigger and context.main_eval) or context.forcetrigger then
+			card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) * lenient_bignum(card.ability.extra.xvalue)
+			card.ability.extra.xvalue = lenient_bignum(card.ability.extra.xvalue) * lenient_bignum(card.ability.extra.xvalue)
+			return {
+				message = "Upgraded!"
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Glitchkat10" },
+		code = { "Rainstar", "Glitchkat10" }
+	}
+}

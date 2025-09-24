@@ -817,15 +817,6 @@ return {
 					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
 				}
 			},
-			j_crp_microfiber = {
-				name = "Microfiber",
-				text = {
-					"{C:chips}+#1#{} Chips",
-					"Exponentiate all values on ",
-					"this Joker by {X:attention,C:white}^#2#{}",
-					"at end of round",
-				}
-			},
 			["j_crp_low-fqt_milk"] = {
 				name = "Low-Fqt Milk",
 				text = {
@@ -955,6 +946,15 @@ return {
 				name = "Another Man's Treasure",
 				text = {
 					"{C:legendary}Legendary{} Jokers give {C:white,X:mult}X7{} Mult"
+				}
+			},
+			j_crp_microfiber = {
+				name = "Microfiber",
+				text = {
+					"{C:chips}+#1#{} Chips",
+					"Multiply all values on ",
+					"this Joker by {X:attention,C:white}X#2#{}",
+					"when {C:attention}Boss Blind{} is defeated",
 				}
 			},
 			--[[
