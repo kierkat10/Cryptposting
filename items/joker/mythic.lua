@@ -207,16 +207,14 @@ SMODS.Joker {
 	pools = { Bulgoe = true },
 	pronouns = "bulgoe",
     loc_vars = function(self, info_queue, card)
-        return { vars = { number_format(card.ability.extra.eemult_mod), number_format(card.ability.extra.eemult_mod) * Cryptposting.member_count, }, }
+        return { vars = { card.ability.extra.eemult_mod, card.ability.extra.eemult_mod * Cryptposting.member_count, }, }
     end,
     calculate = function(self, card, context)
-        if (context.joker_main
-		and to_big(lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count)) > to_big(1))
-		or context.forcetrigger then
+        if (context.joker_main and card.ability.extra.eemult_mod * Cryptposting.member_count > 1) or context.forcetrigger then
 			return {
-				eemult = lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count),
+				eemult = card.ability.extra.eemult_mod * Cryptposting.member_count,
 				eemult_message = {
-					message = "^^" .. number_format(lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count)) .. " Mult",
+					message = "^^" .. number_format(card.ability.extra.eemult_mod * Cryptposting.member_count) .. " Mult",
 					colour = G.C.DARK_EDITION,
 					sound = "talisman_eemult"
 				}

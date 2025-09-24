@@ -354,7 +354,7 @@ SMODS.Joker {
 		G.jokers.config.card_limit = G.jokers.config.card_limit - lenient_bignum(card.ability.extra.jokerslots)
 	end,
 	calculate = function(self, card, context)
-		if (context.beat_boss) or context.forcetrigger then
+		if (context.beat_boss and context.end_of_round and not context.blueprint and not context.retrigger and context.main_eval) or context.forcetrigger then
 			card.ability.extra.jokerslots = card.ability.extra.jokerslots + lenient_bignum(card.ability.extra.jokerslots_mod)
 			G.jokers.config.card_limit = G.jokers.config.card_limit + lenient_bignum(card.ability.extra.jokerslots_mod)
 			return {
