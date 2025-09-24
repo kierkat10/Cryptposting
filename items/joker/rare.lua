@@ -405,7 +405,7 @@ SMODS.Joker {
 	calculate = function(self, card, context)
 		if (context.cardarea == G.jokers and context.joker_main) or context.forcetrigger then
 			for i = 1, #G.jokers.cards do
-				if G.jokers.cards[i].config.center.key == "j_crp_grouchy_jimbo" then
+				if G.jokers.cards[i].config.center.key == "j_crp_grouchy" then
 					return {
 						xmult = card.ability.extra.xmult
 					}
@@ -750,37 +750,3 @@ SMODS.Joker {
 	}
 }
 ]]--
-
-
-SMODS.Joker {
-	key = "microfiber",
-	name = "Microfiber",
-	config = { extra = { chips = 1.11, evalues = 1.11 } },
-	rarity = 3,
-	atlas = "crp_placeholder",
-	pos = { x = 4, y = 0 },
-	cost = 10,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.chips, card.ability.extra.evalues } }
-	end,
-	calculate = function(self, card, context)
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				chips = card.ability.extra.chips
-			}
-		end
-		if (context.beat_boss and context.cardarea == G.jokers) or context.forcetrigger then
-			card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) ^ lenient_bignum(card.ability.extra.evalues)
-			card.ability.extra.evalues = lenient_bignum(card.ability.extra.evalues) ^ lenient_bignum(card.ability.extra.evalues)
-			return {
-				message = "Upgraded!"
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "Glitchkat10" },
-		code = { "Rainstar" }
-	}
-}

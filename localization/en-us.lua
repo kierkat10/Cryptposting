@@ -456,8 +456,8 @@ return {
 			j_crp_antimatter = {
 				name = "Antimatter Joker",
 				text = {
-					"{C:dark_edition}+#1# {C:attention}Joker{} slot",
-					"Increases by {C:dark_edition}+#2#{} {C:attention}Joker{} slot",
+					"{C:dark_edition}+#1# {C:attention}Joker{} slot#<s>1#",
+					"Increases by {C:dark_edition}+#2#{} {C:attention}Joker{} slot#<s>2#",
 					"when {C:attention}Boss Blind{} defeated"
 				}
 			},
@@ -823,7 +823,7 @@ return {
 					"{C:chips}+#1#{} Chips",
 					"Exponentiate all values on ",
 					"this Joker by {X:attention,C:white}^#2#{}",
-					"when {C:attention}Boss Blind{} is defeated",
+					"at end of round",
 				}
 			},
 			["j_crp_low-fqt_milk"] = {
