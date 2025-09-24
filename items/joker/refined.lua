@@ -38,8 +38,8 @@ SMODS.Joker {
 	config = { extra = { chips = 1.11, evalues = 1.11 } },
 	rarity = "crp_refined",
 	atlas = "crp_placeholder",
-	pos = { x = 4, y = 0 },
-	cost = 10,
+	pos = { x = 13, y = 0 },
+	cost = 11,
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
