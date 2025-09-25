@@ -1300,7 +1300,7 @@ return {
 					"{C:inactive}\"#4#0#5#\" = \"X\"",
 				},
 			},
-			j_crp_generic_scaling_operator = {
+			j_crp_obligatory_scaling_operator = {
 				name = "Obligatory Scaling Hypermult Joker",
 				text = {
 					"{C:dark_edition,X:edition}#4#X#5##2#{} Mult",

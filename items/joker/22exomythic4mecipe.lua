@@ -101,8 +101,8 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-	key = "generic_scaling_operator", -- goodbye playerrwon
-	name = "Generic Scaling Hyperoperator Joker",
+	key = "obligatory_scaling_operator", -- goodbye playerrwon
+	name = "Obligatory Scaling Hyperoperator Joker",
 	config = { extra = { arrows = 1, placebo = 2, arrows_scale = 1, mult = 2 }, immutable = { max = 9827 } },
 	rarity = "crp_22exomythic4mecipe",
 	atlas = "crp_placeholder",
@@ -120,7 +120,7 @@ SMODS.Joker {
 			if to_big(card.ability.extra.arrows) < to_big(100) then
 				card.ability.extra.mult = lenient_bignum(card.ability.extra.placebo)
 			end
-			if to_big(card.ability.extra.operator) == to_big(1) then
+			if to_big(card.ability.extra.arrows) == to_big(1) then
 				return {
 					emult = lenient_bignum(card.ability.extra.mult),
 					emult_message = {
@@ -129,7 +129,7 @@ SMODS.Joker {
 						sound = "talisman_emult"
 					}
 				}
-			elseif to_big(card.ability.extra.operator) == to_big(2) then
+			elseif to_big(card.ability.extra.arrows) == to_big(2) then
 				return {
 					eemult = lenient_bignum(card.ability.extra.mult),
 					eemult_message = {
@@ -138,7 +138,7 @@ SMODS.Joker {
 						sound = "talisman_eemult"
 					}
 				}
-			elseif to_big(card.ability.extra.operator) == to_big(3) then
+			elseif to_big(card.ability.extra.arrows) == to_big(3) then
 				return {
 					eeemult = lenient_bignum(card.ability.extra.mult),
 					eeemult_message = {
@@ -147,26 +147,26 @@ SMODS.Joker {
 						sound = "talisman_eeemult"
 					}
 				}
-			elseif to_big(card.ability.extra.operator) == to_big(4) then
+			elseif to_big(card.ability.extra.arrows) == to_big(4) then
 				return {
 					hypermult = {
-						lenient_bignum(card.ability.extra.operator),
+						lenient_bignum(card.ability.extra.arrows),
 						lenient_bignum(card.ability.extra.mult)
 					},
 					hypermult_message = {
-						message = "{" .. number_format(lenient_bignum(card.ability.extra.operator)) .. "}" .. number_format(lenient_bignum(card.ability.extra.mult)) .. " Mult",
+						message = "{" .. number_format(lenient_bignum(card.ability.extra.arrows)) .. "}" .. number_format(lenient_bignum(card.ability.extra.mult)) .. " Mult",
 						colour = G.C.EDITION,
 						sound = "crp_hexationalmult"
 					}
 				}
-			elseif to_big(card.ability.extra.operator) >= to_big(5) then
+			elseif to_big(card.ability.extra.arrows) >= to_big(5) then
 				return {
 					hypermult = {
-						lenient_bignum(card.ability.extra.operator),
+						lenient_bignum(card.ability.extra.arrows),
 						lenient_bignum(card.ability.extra.mult)
 					},
 					hypermult_message = {
-						message = "{" .. number_format(lenient_bignum(card.ability.extra.operator)) .. "}" .. number_format(lenient_bignum(card.ability.extra.mult)) .. " Mult",
+						message = "{" .. number_format(lenient_bignum(card.ability.extra.arrows)) .. "}" .. number_format(lenient_bignum(card.ability.extra.mult)) .. " Mult",
 						colour = G.C.EDITION,
 						sound = "crp_heptationalmult"
 					}
