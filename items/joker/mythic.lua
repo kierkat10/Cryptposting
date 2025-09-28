@@ -265,7 +265,6 @@ SMODS.Joker {
 	}
 }
 
-
 SMODS.Joker {
 	key = "highest_chip",
 	name = "The Highest Chip",

@@ -48,17 +48,31 @@ SMODS.Joker { -- septingentiquinvigintation stevie is no longer lonely
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
 			local currentmult = mult
-			return {
-				hypermult = {
-					math.floor(lenient_bignum(currentmult) + 0.5),
-					math.floor(lenient_bignum(currentmult) + 0.5)
-				},
-				hypermult_message = {
-					message = "{" .. math.floor(lenient_bignum(currentmult) + 0.5) .. "}" .. math.floor(lenient_bignum(currentmult) + 0.5) .. " Mult",
-					colour = G.C.EDITION,
-					sound = "crp_heptationalmult"
+			if currentmult < to_big(1e308) then
+				return {
+					hypermult = {
+						math.floor(lenient_bignum(currentmult) + 0.5),
+						math.floor(lenient_bignum(currentmult) + 0.5)
+					},
+					hypermult_message = {
+						message = "{" .. math.floor(lenient_bignum(currentmult) + 0.5) .. "}" .. math.floor(lenient_bignum(currentmult) + 0.5) .. " Mult",
+						colour = G.C.EDITION,
+						sound = "crp_heptationalmult"
+					}
 				}
-			}
+			else
+				return {
+					hypermult = {
+						1e308,
+						1e308
+					},
+					hypermult_message = {
+						message = "{1e308}1e308 Mult",
+						colour = G.C.EDITION,
+						sound = "crp_heptationalmult"
+					}
+				}
+			end
 		end
 	end,
 	crp_credits = {

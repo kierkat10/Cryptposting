@@ -270,14 +270,6 @@ return {
 					"{C:inactive}he stole one of Henry's arrows\""
 				}
 			},
-			j_crp_flowey_idiot = {
-				name = "You really ARE an idiot!",
-				text = {
-					"{X:edition,C:dark_edition}#4#0.07{} Chips, {X:edition,C:dark_edition}#4#0.07{} Mult",
-					"Self-destructs and creates {C:attention}FINALE{} in {C:attention}7{} antes",
-					"{C:inactive}(Currently #3# antes){}",
-				},
-			},
 			j_crp_evil_jolly_joker = {
 				name = "{C:red}EVIL{} Jolly Joker",
 				text = {
@@ -1307,12 +1299,6 @@ return {
 					"{C:attention}X{} increases by {C:attention}#3#{} at",
 					"end of round",
 					"{C:inactive}(Currently {C:attention}#1#{C:inactive})",
-				},
-			},
-			j_crp_finale = {
-				name = "FINALE",
-				text = {
-					"{C:dark_edition,X:edition}#2#7{} Chips, {C:dark_edition,X:edition}#2#7{} Mult",
 				},
 			},
 			j_crp_septingentiquinvigintation_stevie = {
