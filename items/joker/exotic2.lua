@@ -49,37 +49,6 @@ SMODS.Joker {
 	}
 }
 
--- potentia's scaling effect
-local scie = SMODS.calculate_individual_effect
-SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
-local ret = scie(effect, scored_card, key, amount, from_edition)
-	if
-		(
-			key == "e_mult"
-			or key == "emult"
-			or key == "Emult"
-			or key == "e_mult_mod"
-			or key == "emult_mod"
-			or key == "Emult_mod"
-		)
-		and amount ~= 1
-	then
-		for k, v in pairs(SMODS.find_card("j_crp_potentia")) do
-			local old = v.ability.extra.emult
-			v.ability.extra.emult = lenient_bignum(to_big(v.ability.extra.emult) + v.ability.extra.emult_mod)
-			card_eval_status_text(v, "extra", nil, nil, nil, {
-				message = "Upgraded!",
-			})
-			Cryptid.apply_scale_mod(v, v.ability.extra.emult_mod, old, v.ability.extra.emult, {
-				base = { { "extra", "emult" } },
-				scaler = { { "extra", "emult_mod" } },
-				scaler_base = { v.ability.extra.emult_mod },
-			})
-		end
-	end
-	return ret
-end
-
 SMODS.Joker {
 	key = "potentia",
 	name = "Potentia",
@@ -105,6 +74,7 @@ SMODS.Joker {
 				}
 			}
 		end
+		-- scaling effect is in mythic.lua
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },

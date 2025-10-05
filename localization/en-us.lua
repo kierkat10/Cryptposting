@@ -1765,6 +1765,20 @@ return {
 			},
 		},
 		Edition = {
+			e_crp_infinitesimal = {
+				name = "Infinitesimal",
+				text = {
+					"Takes up {C:attention}0{}",
+					"Card Slots"
+				},
+			},
+			e_crp_positive = {
+				name = "Positive",
+				text = {
+					"Takes up {C:attention}0.5{}",
+					"Card Slots"
+				},
+			},
 			e_crp_overloaded = {
 				name = "Overloaded",
 				text = {
@@ -2121,6 +2135,8 @@ return {
 			k_crp_saved = "Saved by #1#"
 		},
 		labels = {
+			crp_infinitesimal = "Infinitesimal",
+			crp_positive = "Positive",
 			crp_overloaded = "Overloaded",
 			["crp_four-dimensional"] = "Four-Dimensional",
 			crp_zany = "Zany",

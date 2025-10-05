@@ -129,7 +129,7 @@ SMODS.Joker {
 	}
 }
 
--- tetrationa's effect
+-- tetrationa and potentia's scaling effects
 local scie = SMODS.calculate_individual_effect
 SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
 local ret = scie(effect, scored_card, key, amount, from_edition)
@@ -142,18 +142,23 @@ local ret = scie(effect, scored_card, key, amount, from_edition)
 			or key == "emult_mod"
 			or key == "Emult_mod"
 		)
-		and amount ~= 1
-	then
+		and amount ~= 1 then
 		for k, v in pairs(SMODS.find_card("j_crp_tetrationa")) do
 			local old = v.ability.extra.eemult
-			v.ability.extra.eemult = lenient_bignum(to_big(v.ability.extra.eemult) + v.ability.extra.eemult_mod)
-			card_eval_status_text(v, "extra", nil, nil, nil, {
-				message = "Upgraded!",
+			SMODS.scale_card(v, {
+				ref_table = v.ability.extra,
+				ref_value = "eemult",
+				scalar_value = "eemult_mod",
+				message_colour = G.C.DARK_EDITION,
 			})
-			Cryptid.apply_scale_mod(v, v.ability.extra.eemult_mod, old, v.ability.extra.eemult, {
-				base = { { "extra", "eemult" } },
-				scaler = { { "extra", "eemult_mod" } },
-				scaler_base = { v.ability.extra.eemult_mod },
+		end
+		for k, v in pairs(SMODS.find_card("j_crp_potentia")) do
+			local old = v.ability.extra.Emult
+			SMODS.scale_card(v, {
+				ref_table = v.ability.extra,
+				ref_value = "emult",
+				scalar_value = "emult_mod",
+				message_colour = G.C.DARK_EDITION,
 			})
 		end
 	end
