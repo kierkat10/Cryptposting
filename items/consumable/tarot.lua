@@ -6,6 +6,7 @@ SMODS.Consumable{
 	discovered = true,
 	config = { extra = { odds = 10 } },
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
         return { vars = { cry_prob(card.ability.cry_prob, lenient_bignum(card.ability.extra.odds), card.ability.cry_rigged), lenient_bignum(card.ability.extra.odds) } }
     end,
 	atlas = "crp_placeholder",

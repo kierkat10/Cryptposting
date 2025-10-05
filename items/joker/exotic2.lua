@@ -243,3 +243,87 @@ SMODS.Joker {
 		custom = { key = "alt", text = "Circulus Pistoris" }
 	}
 }
+
+SMODS.Joker {
+	key = "difficile",
+	name = "Difficile",
+	config = { extra = { emult = 10, total_triggers = 3, current_triggers = 0 } },
+	rarity = "crp_exotic_2",
+	atlas = "crp_placeholder",
+	pos = { x = 7, y = 0 },
+	cost = 50,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.emult), lenient_bignum(card.ability.extra.total_triggers) } }
+	end,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			card.ability.extra.current_triggers = card.ability.extra.current_triggers + 1
+		end
+		if (context.joker_main and card.ability.extra.current_triggers <= card.ability.extra.total_triggers) or context.forcetrigger then
+			card.ability.extra.current_triggers = 0
+			return {
+				emult = lenient_bignum(card.ability.extra.emult),
+				emult_message = {
+					message = "^" .. number_format(lenient_bignum(card.ability.extra.emult)) .. " Mult",
+					colour = G.C.DARK_EDITION,
+					sound = "talisman_emult"
+				}
+			}
+		else
+			card.ability.extra.current_triggers = 0
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		code = { "Rainstar" },
+		custom = { key = "alt", text = "Facile" }
+	}
+}
+
+
+SMODS.Joker {
+	key = "libum",
+	name = "Libum",
+	config = { extra = { chips_loss = 4, xmoney_per_reroll = 0.1, xmoney = 1 } },
+	rarity = "crp_exotic_2",
+	atlas = "crp_placeholder",
+	pos = { x = 7, y = 0 },
+	cost = 50,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.chips_loss), lenient_bignum(card.ability.extra.xmoney_per_reroll), lenient_bignum(card.ability.extra.xmoney) } }
+	end,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	calculate = function(self, card, context)
+		if context.reroll_shop and not context.blueprint then
+			card.ability.extra.xmoney = card.ability.extra.xmoney + card.ability.extra.xmoney_per_reroll
+			for k, v in pairs(G.GAME.hands) do
+				G.GAME.hands[k].chips = math.max(G.GAME.hands[k].chips - card.ability.extra.chips_loss, 1)
+			end
+			return {
+				message = "-" .. lenient_bignum(card.ability.extra.chips_loss) .. " Chips",
+				colour = G.C.CHIPS,
+				extra = {
+					message = "+X" .. lenient_bignum(card.ability.extra.xmoney_per_reroll) .. "$",
+					colour = G.C.MONEY
+				}
+			}
+		end
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls + 1e100
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.GAME.current_round.free_rerolls = G.GAME.current_round.free_rerolls - 1e100
+	end,
+	calc_dollar_bonus = function(self, card)
+		return G.GAME.dollars * card.ability.extra.xmoney
+	end,
+	crp_credits = {
+		idea = { "Unknown" },
+		code = { "Rainstar" },
+		custom = { key = "alt", text = "Crustulum" }
+	}
+}

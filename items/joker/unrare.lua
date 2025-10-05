@@ -36,6 +36,43 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+	key = "jollymoon",
+    name = "Piano Falling from the Jolly Moon",
+    config = {
+        extra = {
+            mult = 8,
+            levels = 1
+		}
+	},
+	atlas = "crp_placeholder",
+    pos = { x = 14, y = 0 },
+    cost = 7,
+    rarity = "crp_unrare",
+    blueprint_compat = true,
+	demicolon_compat = true,
+	loc_vars = function(self, info_queue, card)
+        return { vars = { lenient_bignum(card.ability.extra.mult) } }
+    end,
+    calculate = function(self, card, context)
+        if (context.joker_main) or context.forcetrigger then
+            return {
+                mult = lenient_bignum(card.ability.extra.mult),
+                extra = {
+                    level_up = lenient_bignum(card.ability.extra.levels),
+            		level_up_hand = "Pair",
+                    message = localize("k_level_up_ex"),
+                    colour = G.C.PLANET
+                }
+            }
+        end
+    end,
+	crp_credits = {
+		idea = { "Glitchkat10" },
+		code = { "lunarisillustratez", "Glitchkat10" }
+	}
+}
+
+SMODS.Joker {
 	key = "one_bulgoe_bill",
 	name = "One Bulgoe Bill",
 	config = { extra = { sprite = nil, money = 2.7, money_bonus = 27 } },
@@ -46,6 +83,7 @@ SMODS.Joker {
 	blueprint_compat = false,
 	demicoloncompat = true,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	set_ability = function(self, card, initial, delay_sprites)
 		card.ability.extra.sprite = math.floor(pseudorandom("crp_one_bulgoe_bill") * 2)
 		if self.discovered and not (card.area and card.area.config.collection) then
@@ -53,6 +91,7 @@ SMODS.Joker {
 		end
 	end,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Other", key = "bulgoe-themed_joker" }
 		return { vars = { lenient_bignum(card.ability.extra.money), lenient_bignum(card.ability.extra.money_bonus) } }
 	end,
 	calculate = function(self, card, context)

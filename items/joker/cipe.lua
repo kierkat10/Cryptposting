@@ -8,8 +8,6 @@ SMODS.Joker {
 	perishable_compat = true,
 	atlas = "crp_joker",
 	calculate = function(self, card, context)
-		local chance = 1 / 4
-		local roll = pseudorandom("sigma-man")
 		if
 			context.selling_card
 			and context.card.ability.name == "cry-Chad"
@@ -33,7 +31,7 @@ SMODS.Joker {
 				or context.open_booster
 				or context.forcetrigger
 				)
-				and roll <= chance
+				and 1 / 4 <= pseudorandom("sigma-man")
 			)
 			and #G.jokers.cards + G.GAME.joker_buffer < (context.selling_self and (G.jokers.config.card_limit + 1) or G.jokers.config.card_limit)
 			and not context.retrigger_joker

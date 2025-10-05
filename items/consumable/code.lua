@@ -34,6 +34,8 @@ SMODS.Consumable {
 	config = { immutable = { odds = 2727 } },
 	atlas = "crp_placeholder",
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_bulgoe
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_normalis
 		if not card or not card.ability or not card.ability.immutable or not card.ability.immutable.odds then
 			return { vars = { 0 } }
 		end

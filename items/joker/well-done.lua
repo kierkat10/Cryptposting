@@ -48,6 +48,10 @@ SMODS.Joker {
 					colour = G.C.FILTER,
 				}
 			end
+			return {
+				message = "-" .. (lenient_bignum(card.ability.extra.chips)) .. " Chips",
+				colour = G.C.CHIPS
+			}
 		end
 	end,
 	crp_credits = {

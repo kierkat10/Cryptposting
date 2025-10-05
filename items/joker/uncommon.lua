@@ -1,32 +1,3 @@
--- commented out due to the current effect being graveyarded
---[[
-SMODS.Joker {
-	key = "dead_joker",
-	config = { immutable = { mult = 107 } },
-	rarity = 2,
-	atlas = "crp_joker",
-	pos = { x = 6, y = 0 },
-	cost = 7,
-	blueprint_compat = true,
-	demicoloncompat = true,
-	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.immutable.mult) } }
-	end,
-	calculate = function(self, card, context)
-		if (context.joker_main) or context.forcetrigger then
-			return {
-				mult = card.ability.immutable.mult
-			}
-		end
-	end,
-	crp_credits = {
-		idea = { "Poker The Poker" },
-		art = { "GudUsername" },
-		code = { "Glitchkat10" }
-	}
-}
-]]--
-
 SMODS.Joker {
 	key = "vermillion",
 	name = "Vermillion Joker",
@@ -38,6 +9,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_joker
 		return { vars = { lenient_bignum(card.ability.extra.xmult) } }
 	end,
 	add_to_deck = function(self, card, from_debuff)
@@ -85,6 +57,11 @@ SMODS.Joker {
 	cost = 8,
 	blueprint_compat = true,
 	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_zany
+		return { vars = {  } }
+	end,
 	calculate = function(self, card, context)
 		if (context.setting_blind and context.blind.boss) or context.forcetrigger then
 			SMODS.add_card({ key = "j_zany", edition = "e_negative" })
@@ -134,7 +111,7 @@ SMODS.Joker {
 	rarity = 2,
 	atlas = "crp_joker",
 	pos = { x = 1, y = 4 },
-	cost = 6,
+	cost = 4,
 	eternal_compat = false,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -285,6 +262,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
 		return { vars = { lenient_bignum(card.ability.extra.payout), lenient_bignum(card.ability.extra.increase) } }
 	end,
 	calculate = function(self, card, context)
@@ -387,6 +365,10 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	cost = 8,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_goblin
+		return { vars = {  } }
+	end,
 	calculate = function(self, card, context)
 		if (context.joker_main and pseudorandom("crp_gomble") < 0.5) or context.forcetrigger then
 			SMODS.add_card({ key = "crp_goblin" })

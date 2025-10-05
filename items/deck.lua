@@ -6,7 +6,7 @@ SMODS.Back {
     loc_vars = function(self, info_queue)
 		return { vars = { lenient_bignum(self.config.hand_size), lenient_bignum(self.config.discards) * -1 } }
 	end,
-	crp_credits = { -- does not appear in-game, but is useful for when somebody asks who made what
+	crp_credits = {
 		idea = { "Poker The Poker" },
 		art = { "GudUsername" },
 		code = { "Glitchkat10" }
@@ -112,4 +112,23 @@ SMODS.Back {
 		idea = { "playeronenotfake", "Glitchkat10" },
 		code = { "Glitchkat10" }
 	}
+}
+
+SMODS.Back {
+    key = "glyphic",
+	name = "Glyphic Deck",
+    config = { ante = 0 },
+	atlas = "crp_placeholder",
+    pos = { x = 4, y = 2 },
+    loc_vars = function(self, info_queue)
+        return { vars = { lenient_bignum(self.config.ante) } }
+    end,
+    apply = function(self, back)
+		G.GAME.round_resets.ante = self.config.ante
+		G.GAME.round_resets.blind_ante = G.GAME.round_resets.ante
+	end,
+    crp_credits = {
+        idea = { "Glitchkat10" },
+        code = { "Glitchkat10" }
+    }
 }

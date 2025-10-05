@@ -212,3 +212,22 @@ SMODS.Sound {
 	key = "e_four-dimensional",
 	path = "e_four-dimensional.ogg",
 }
+
+-- objecttypes
+
+SMODS.ConsumableType {
+	key = "Pot",
+	primary_colour = { 1, 0.910, 0.537, 1 },
+	secondary_colour = { 0.75, 0.682, 0.403, 1 },
+	collection_rows = { 4, 4 },
+	shop_rate = 0,
+	loc_txt = {},
+	default = "c_crp_desires",
+	can_stack = true,
+	can_divide = true
+}
+
+SMODS.ObjectType {
+	key = "Bulgoe",
+	default = "j_crp_bulgoe",
+}

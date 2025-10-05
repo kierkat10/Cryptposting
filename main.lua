@@ -19,7 +19,7 @@ local files = {
     "items/joker/plentiful",
     "items/joker/2common4me",
     "items/joker/uncommon",
-    "items/joker/uncommon2",
+    "items/joker/unplentiful",
     "items/joker/unrare",
     "items/joker/rare",
     "items/joker/well-done",
@@ -38,6 +38,7 @@ local files = {
     "items/joker/2exomythic4me",
     "items/joker/22exomythic4mecipe",
     "items/joker/exomythicepicawesomeuncommon2mexotic22exomythic4mecipe",
+    "items/joker/supa_rare",
     "items/joker/all",
     "items/blind",
     "items/booster",
@@ -56,6 +57,7 @@ local files = {
     "lib/modbadge",
     "lib/music",
     "lib/pointerblist",
+    "lib/pronouns",
 }
 for i, v in pairs(files) do
 	assert(SMODS.load_file(v..".lua"))()

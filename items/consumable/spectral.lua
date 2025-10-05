@@ -287,6 +287,7 @@ SMODS.Consumable{
 	},
 }
 
+
 local function createfulldeck(enhancement, edition, amount, emplacement)
     local cards = {}
     for k, v in pairs(G.P_CARDS) do
@@ -419,6 +420,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 0 },
 	soul_pos = { x = 2, y = 0, extra = { x = 1, y = 0 }},
 	cost = 120,
+	config = { extra = { hands = -27, discards = -27 } },
 	unlocked = true,
 	discovered = true,
 	atlas = "crp_consumable",
@@ -431,40 +433,59 @@ SMODS.Consumable {
 			trigger = "after",
 			delay = 0.4,
 			func = function()
-				if pseudorandom("crp_reckoning") < 0.27 then
-					G.E_MANAGER:add_event(Event({trigger = "after", delay = 0, func = function()
-						attention_text({
-							text = localize("k_nope_ex"),
-							scale = 1.3, 
-							hold = 1.4,
-							major = card,
-							backdrop_colour = G.C.SECONDARY_SET.Tarot,
-							align = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and "tm" or "cm",
-							offset = {x = 0, y = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and -0.2 or 0},
-							silent = true
-						})
-						G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
-							play_sound("tarot2", 0.76, 0.4)
-							delay(3);return true end}))
-						play_sound("tarot2", 1, 0.4)
-						card:juice_up(0.3, 0.5)
-						return true 
-					end}))
-					G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
-						delay(0.5)
-						G.STATE = G.STATES.GAME_OVER
-						G.STATE_COMPLETE = false
-						return true 
-					end}))
+				if pseudorandom("crp_reckoning") > 0.27 then
+					G.E_MANAGER:add_event(Event({
+						trigger = "after",
+						delay = 0.1,
+						func = function() -- destroy jokers and consumables
+							local deletable_jokers = {}
+							local deletable_consumeables = {}
+							for _, v in ipairs(G.jokers.cards) do
+								deletable_jokers[#deletable_jokers + 1] = v
+							end
+							for _, v in ipairs(G.consumeables.cards) do
+								if v ~= card then
+									deletable_consumeables[#deletable_consumeables + 1] = v
+								end
+							end
+							local _first_dissolve = nil
+							for _, v in ipairs(deletable_jokers) do
+								v:start_dissolve(nil, _first_dissolve)
+								_first_dissolve = true
+							end
+							for _, v in ipairs(deletable_consumeables) do
+								v:start_dissolve(nil, _first_dissolve)
+								_first_dissolve = true
+							end
+							G.deck.cards = {} -- clear deck
+							G.playing_cards = {}
+							if G.GAME.tags then -- clear tags
+								local tags_to_remove = {}
+								for k, v in pairs(G.GAME.tags) do
+									tags_to_remove[#tags_to_remove + 1] = v
+								end
+								for _, v in ipairs(tags_to_remove) do
+									if v.remove then v:remove() end
+								end
+								G.GAME.tags = {}
+							end
+							createfulldeck() -- create new deck
+							G.GAME.round_resets.hands = 4
+							G.GAME.round_resets.discards = 4
+							ease_hands_played(card.ability.extra.hands)
+							ease_discard(card.ability.extra.discards)
+							return true
+						end,
+					}))
+				else
+					play_sound("timpani")
+					local card = create_card("Joker", G.jokers, nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, nil, "crp_reckoning")
+					card:add_to_deck()
+					G.jokers:emplace(card)
+					card:juice_up(0.3, 0.5)
 					return true
 				end
-				play_sound("timpani")
-				local card = create_card("Joker", G.jokers, nil, "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", nil, nil, nil, "crp_reckoning")
-				card:add_to_deck()
-				G.jokers:emplace(card)
-				card:juice_up(0.3, 0.5)
-				return true
-			end,
+			end
 		}))
 		delay(0.6)
 	end,
@@ -476,116 +497,12 @@ SMODS.Consumable {
 }
 
 SMODS.Consumable {
-	key = "gambway",
-	name = "Gambway",
-	set = "Spectral",
-	atlas = "crp_consumable",
-	pos = { x = 0, y = 0 },
-	soul_pos = { x = 2, y = 0, extra = { x = 1, y = 0 }},
-	cost = 120,
-	unlocked = true,
-	discovered = true,
-	hidden = true,
-	can_use = function()
-		return G.jokers.config.card_limit > #G.jokers.cards
-	end,
-	use = function(self, card)
-		local functions = {
-			function() -- The Soul
-				SMODS.add_card({ set = "Joker", rarity = "Legendary", key_append = "crp_gambway_soul" })
-			end,
-			
-			function() -- Gateway
-				for i = 1, #G.jokers.cards do
-					if not (G.jokers.cards[i].ability.eternal or G.jokers.cards[i].ability.cry_absolute) then
-						G.jokers.cards[i]:start_dissolve()
-						G.jokers.cards[i]:remove_from_deck()
-					end
-				end
-				SMODS.add_card({ set = "Joker", rarity = "cry_exotic", key_append = "crp_gambway_gateway" })
-			end,
-			
-			function() -- Prayer
-				for i = 1, #G.jokers.cards do
-					if not G.jokers.cards[i].ability.cry_absolute then
-						G.jokers.cards[i]:start_dissolve()
-						G.jokers.cards[i]:remove_from_deck()
-					end
-				end
-				SMODS.add_card({ set = "Joker", rarity = "crp_mythic", key_append = "crp_gambway_prayer" })
-			end,
-			
-			function() -- Gate of Prayers
-				for i = 1, #G.jokers.cards do
-					G.jokers.cards[i]:start_dissolve()
-					G.jokers.cards[i]:remove_from_deck()
-				end
-				SMODS.add_card({ set = "Joker", rarity = "crp_exomythic", key_append = "crp_gambway_gate_of_prayers" })
-			end,
-			
-			function() -- Stairway to Heaven
-				for i = 1, #G.jokers.cards do
-					G.jokers.cards[i]:start_dissolve()
-					G.jokers.cards[i]:remove_from_deck()
-				end
-				for i = 1, #G.consumeables.cards do
-					if G.consumeables.cards[i] ~= card then
-						G.consumeables.cards[i]:start_dissolve()
-						G.consumeables.cards[i]:remove_from_deck()
-					end
-				end
-				for i = 1, #G.GAME.tags do
-					G.GAME.tags[1]:remove()
-				end
-				SMODS.add_card({ set = "Joker", rarity = "crp_2exomythic4me", key_append = "crp_gambway_stairway_to_heaven" })
-			end,
-			
-			function() -- Path of Solstice
-				for i = 1, #G.jokers.cards do
-					G.jokers.cards[i]:start_dissolve()
-					G.jokers.cards[i]:remove_from_deck()
-				end
-				for i = 1, #G.consumeables.cards do
-					if G.consumeables.cards[i] ~= card then
-						G.consumeables.cards[i]:start_dissolve()
-						G.consumeables.cards[i]:remove_from_deck()
-					end
-				end
-				for i = 1, #G.GAME.tags do
-					G.GAME.tags[1]:remove()
-				end
-				G.deck.cards = {}
-				G.playing_cards = {}
-				createfulldeck()
-				SMODS.add_card({ set = "Joker", rarity = "crp_22exomythic4mecipe", key_append = "crp_gambway_path_of_solstice" })
-			end,
-			
-			function() -- Reckoning
-				if pseudorandom("crp_gambway_reckoning_1") < 0.27 then
-					G.STATE = G.STATES.GAME_OVER
-					G.STATE_COMPLETE = false
-				else
-					SMODS.add_card({ set = "Joker", rarity = "crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe", key_append = "crp_gambway_reckoning_2" })
-				end
-			end,
-		}
-		local chosen_function = pseudorandom(functions, "crp_gambway")
-		chosen_function()
-	end,
-	crp_credits = {
-		idea = { "PurplePickle" },
-		code = { "wilfredlam0418" }
-	}
-}
-
-SMODS.Consumable {
 	key = "all_or_nothing",
 	name = "All or Nothing",
 	set = "Spectral",
 	pos = { x = 0, y = 0 },
 	soul_pos = { x = 2, y = 0, extra = { x = 1, y = 0 }},
 	cost = 9827,
-	config = { extra = { hands = -27, discards = -27 } },
 	unlocked = true,
 	discovered = true,
 	atlas = "crp_consumable",
@@ -593,61 +510,38 @@ SMODS.Consumable {
 	can_use = function(self, card)
 		return G.jokers and #G.jokers.cards < G.jokers.config.card_limit
 	end,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_all
+		return { vars = {  } }
+	end,
 	use = function(self, card, area, copier)
 		if pseudorandom("all_or_nothing") < 0.5 then
-			-- 50% chance: destroy all items, reset deck, reset hands/discards
-			G.E_MANAGER:add_event(Event({
-				trigger = "after",
-				delay = 0.1,
-				func = function()
-					-- destroy jokers and consumables
-					local deletable_jokers = {}
-					local deletable_consumeables = {}
-					for _, v in ipairs(G.jokers.cards) do
-						deletable_jokers[#deletable_jokers + 1] = v
-					end
-					for _, v in ipairs(G.consumeables.cards) do
-						if v ~= card then
-							deletable_consumeables[#deletable_consumeables + 1] = v
-						end
-					end
-					local _first_dissolve = nil
-					for _, v in ipairs(deletable_jokers) do
-						v:start_dissolve(nil, _first_dissolve)
-						_first_dissolve = true
-					end
-					for _, v in ipairs(deletable_consumeables) do
-						v:start_dissolve(nil, _first_dissolve)
-						_first_dissolve = true
-					end
-
-					-- clear  deck
-					G.deck.cards = {}
-					G.playing_cards = {}
-
-					-- clear tags
-					if G.GAME.tags then
-						local tags_to_remove = {}
-						for k, v in pairs(G.GAME.tags) do
-							tags_to_remove[#tags_to_remove + 1] = v
-						end
-						for _, v in ipairs(tags_to_remove) do
-							if v.remove then v:remove() end
-						end
-						G.GAME.tags = {}
-					end
-
-					-- create new deck
-					createfulldeck()
-
-					G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
-					G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
-					ease_hands_played(card.ability.extra.hands)
-					ease_discard(card.ability.extra.discards)
-
-					return true
-				end,
-			}))
+			-- 50% chance: ends the run
+			G.E_MANAGER:add_event(Event({trigger = "after", delay = 0, func = function()
+				attention_text({
+					text = localize("k_nope_ex"),
+					scale = 1.3, 
+					hold = 1.4,
+					major = card,
+					backdrop_colour = G.C.SECONDARY_SET.Tarot,
+					align = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and "tm" or "cm",
+					offset = {x = 0, y = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and -0.2 or 0},
+					silent = true
+				})
+				G.E_MANAGER:add_event(Event({trigger = "after", delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
+					play_sound("tarot2", 0.76, 0.4)
+					delay(3);return true end}))
+				play_sound("tarot2", 1, 0.4)
+				card:juice_up(0.3, 0.5)
+				return true 
+			end}))
+			G.E_MANAGER:add_event(Event({trigger = "after", delay = 2, func = function()
+				delay(0.5)
+				G.STATE = G.STATES.GAME_OVER
+				G.STATE_COMPLETE = false
+				return true 
+			end}))
+			return true
 		else
 			-- 50% chance to create all
 			play_sound("timpani")

@@ -141,7 +141,7 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.immutable.xmult) } }
 	end,
 	calculate = function(self, card, context)
-		if (context.other_joker) or context.forcetrigger then
+	if (context.other_joker) or context.forcetrigger then
 			return {
 				xmult = lenient_bignum(card.ability.immutable.xmult)
 			}

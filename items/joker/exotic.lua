@@ -10,6 +10,7 @@ SMODS.Joker {
 	soul_pos = { x = 2, y = 0, extra = { x = 3, y = 0 } },
 	cost = 50,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.echipsmult), } }
 	end,
@@ -164,7 +165,7 @@ SMODS.Joker {
 SMODS.Joker {
 	key = "victoriam",
 	name = "Victoriam",
-	config = { extra = { echips = 0.1 } },
+	config = { extra = { echip_base = 0.1, echips = lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * lenient_bignum(0.1)) } },
 	rarity = "cry_exotic",
 	atlas = "crp_joker2",
 	pos = { x = 6, y = 0 },
@@ -173,7 +174,10 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * lenient_bignum(card.ability.extra.echips)) } }
+		return { vars = { card.ability.extra.echip_base, card.ability.extra.echips } }
+	end,
+	update = function(self,card)
+		card.ability.extra.echips = lenient_bignum(1 + G.PROFILES[G.SETTINGS.profile].career_stats.c_wins * lenient_bignum(card.ability.extra.echip_base))
 	end,
 	calculate = function(self, card, context)
 		if (context.joker_main) or context.forcetrigger then
@@ -190,7 +194,36 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "Poker The Poker", "Glitchkat10" },
 		art = { "Grahkon" },
-		code = { "wilfredlam0418", "Glitchkat10" }
+		code = { "wilfredlam0418", "_poken" }
+	}
+}
+
+
+SMODS.Joker {
+	key = "the_entire_cid_itself",
+	name = "The Entire CID Itself",
+	config = { extra = { xchips = 50472 } },
+	rarity = "cry_exotic",
+	atlas = "crp_placeholder",
+	pos = { x = 7, y = 0 },
+	cost = 50,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.xchips } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				Xchip_mod = lenient_bignum(card.ability.extra.xchips),
+				message = "X" .. lenient_bignum(card.ability.extra.xchips) .. " Chips",
+				colour = G.C.CHIPS,
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Glitchkat10", "Psychomaniac14" },
+		code = { "Rainstar" }
 	}
 }
 
@@ -267,6 +300,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = false,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
 		return { vars = { lenient_bignum(card.ability.extra.split) } }
 	end,
 	calculate = function(self, card, context)
@@ -335,6 +369,10 @@ SMODS.Joker {
 	cost = 50,
 	blueprint_compat = true,
 	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_jolly
+		return { vars = {  } }
+	end,
 	calculate = function(self, card, context)
 		if (context.joker_main and next(context.poker_hands["Pair"])) or context.forcetrigger then
 			return {

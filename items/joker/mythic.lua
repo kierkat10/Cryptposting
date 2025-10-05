@@ -3,8 +3,9 @@ SMODS.Joker {
 	name = "Weather Machine",
 	config = { extra = { mult_mod = 1e76, death_prevention_enabled = true, mult = 0 } },
 	rarity = "crp_mythic",
-	atlas = "crp_placeholder",
-	pos = { x = 8, y = 0 },
+	atlas = "crp_joker2",
+	pos = { x = 0, y = 2 },
+	soul_pos = { x = 2, y = 2, extra = { x = 1, y = 2 } },
 	cost = 100,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -53,6 +54,7 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
+		art = { "candycanearter" },
 		code = { "Rainstar" }
 	}
 }
@@ -193,7 +195,7 @@ SMODS.Joker {
 SMODS.Joker {
     key = "bulgoeship_card",
 	name = "Bulgoeship Card",
-    config = { extra = { eemult_mod = 0.1 } },
+    config = { extra = { eemult_mod = 0.27 } },
     rarity = "crp_mythic",
     atlas = "crp_joker",
     pos = { x = 1, y = 7 },
@@ -203,17 +205,16 @@ SMODS.Joker {
     demicoloncompat = true,
 	perishable_compat = false,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
     loc_vars = function(self, info_queue, card)
-        return { vars = { number_format(card.ability.extra.eemult_mod), number_format(card.ability.extra.eemult_mod) * Cryptposting.member_count, }, }
+        return { vars = { card.ability.extra.eemult_mod, card.ability.extra.eemult_mod * Cryptposting.member_count, }, }
     end,
     calculate = function(self, card, context)
-        if (context.joker_main
-		and to_big(lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count)) > to_big(1))
-		or context.forcetrigger then
+        if (context.joker_main and card.ability.extra.eemult_mod * Cryptposting.member_count > 1) or context.forcetrigger then
 			return {
-				eemult = lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count),
+				eemult = card.ability.extra.eemult_mod * Cryptposting.member_count,
 				eemult_message = {
-					message = "^^" .. number_format(lenient_bignum(card.ability.extra.eemult_mod) * lenient_bignum(Cryptposting.member_count)) .. " Mult",
+					message = "^^" .. number_format(card.ability.extra.eemult_mod * Cryptposting.member_count) .. " Mult",
 					colour = G.C.DARK_EDITION,
 					sound = "talisman_eemult"
 				}
@@ -263,7 +264,6 @@ SMODS.Joker {
 		code = { "Glitchkat10" }
 	}
 }
-
 
 SMODS.Joker {
 	key = "highest_chip",

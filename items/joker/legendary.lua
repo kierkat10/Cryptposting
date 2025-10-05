@@ -103,6 +103,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	calculate = function(self, card, context)
 		if
 		(context.individual

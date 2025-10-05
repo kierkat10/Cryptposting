@@ -75,3 +75,90 @@ SMODS.Booster{
         code = { "Rainstar" }
     }
 }
+
+SMODS.Booster{
+    key = "bulgoe_pack",
+    name = "Bulgoe Pack",
+    atlas = "placeholder",
+    pos = { x = 8, y = 2 },
+    discovered = true,
+    draw_hand = false,
+    config = { choose = 1, extra = 3 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { lenient_bignum(card.ability.choose), lenient_bignum(card.ability.extra) } }
+    end,
+    weight = 1 / 27,
+    cost = 2.7,
+    create_card = function(self, card, i)
+        return SMODS.create_card({
+            set = "Bulgoe",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+        })
+    end,
+    select_card = "jokers",
+    in_pool = function() return true end,
+    crp_credits = {
+        idea = { "ottermatter" },
+        code = { "Rainstar", "Glitchkat10" }
+    }
+}
+
+SMODS.Booster{
+    key = "big_bulgoe_pack",
+    name = "BIG Bulgoe Pack",
+    atlas = "placeholder",
+    pos = { x = 8, y = 2 },
+    discovered = true,
+    draw_hand = false,
+    config = { choose = 1, extra = 5 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { lenient_bignum(card.ability.choose), lenient_bignum(card.ability.extra) } }
+    end,
+    weight = 1 / 27,
+    cost = 7.2,
+    create_card = function(self, card, i)
+        return SMODS.create_card({
+            set = "Bulgoe",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+        })
+    end,
+    select_card = "jokers",
+    in_pool = function() return true end,
+    crp_credits = {
+        idea = { "ottermatter" },
+        code = { "Rainstar", "Glitchkat10" }
+    }
+}
+
+SMODS.Booster{
+    key = "bountiful_bulgoe_pack",
+    name = "Bountiful Bulgoe Pack",
+    atlas = "placeholder",
+    pos = { x = 8, y = 2 },
+    discovered = true,
+    draw_hand = false,
+    config = { choose = 2, extra = 5 },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { lenient_bignum(card.ability.choose), lenient_bignum(card.ability.extra) } }
+    end,
+    weight = 1 / 27,
+    cost = 27/2,
+    create_card = function(self, card, i)
+        return SMODS.create_card({
+            set = "Bulgoe",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+        })
+    end,
+    select_card = "jokers",
+    in_pool = function() return true end,
+    crp_credits = {
+        idea = { "ottermatter" },
+        code = { "Rainstar", "Glitchkat10" }
+    }
+}

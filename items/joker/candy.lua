@@ -10,7 +10,9 @@ SMODS.Joker {
 	demicoloncompat = true,
 	eternal_compat = false,
 	pools = { Bulgoe = true, Food = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Other", key = "bulgoe-themed_joker" }
 		return { vars = { lenient_bignum(card.ability.extra.jokers), lenient_bignum(card.ability.extra.money) } }
 	end,
 	calculate = function(self, card, context)

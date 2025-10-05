@@ -269,7 +269,7 @@ SMODS.Rarity({
 })
 
 SMODS.Rarity({
-	key = "supa rare",
+	key = "supa_rare",
 	badge_colour = HEX("000000")
 })
 

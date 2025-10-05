@@ -141,6 +141,38 @@ return {
 					"requirement"
 				},
 			},
+			bl_crp_empty_pockets = {
+				name = "The Empty Pockets (E+)",
+				text = {
+					"Nothing here..."
+				},
+			},
+			bl_crp_nanny = {
+				name = "The Nanny (E+)",
+				text = {
+					"Score at least 1.79e308"
+				},
+			},
+			bl_crp_tetra = {
+				name = "The Tetra (E+)",
+				text = {
+					"Score at least ^^1.03 Blind Size"
+				},
+			},
+			bl_crp_random_rubellite = {
+				name = "Random Rubellite (E+)",
+				text = {
+					"Score at least ^^1.0[1-6] Blind Size"
+				},
+			},
+			bl_crp_malevolent_mirror = {
+				name = "Malevolent Mirror (S, M+)",
+				text = {
+					"Score AT MOST ^^1.5 Base",
+					"Removes all discards, then",
+					"adds them to hands",
+				},
+			},
 			bl_crp_epioxus = {
 				name = "Epioxus (EM+)",
 				text = {
@@ -163,12 +195,26 @@ return {
 					"every frame"
 				},
 			},
+			bl_crp_ascensios = {
+				name = "Ascensios (EM+)",
+				text = {
+					"^^1.8 Blind Size",
+					"for each Legendary+",
+					"Joker you own",
+				},
+			},
+			bl_crp_poseidon = {
+				name = "Poseidon (EM+)",
+				text = {
+					"All Jokers become The Horse"
+				},
+			},
 			bl_crp_quettus = {
 				name = "Quettus (S, EM+)",
 				text = {
 					"^10 blind size",
 					"Destroys all Legendary+",
-					"Jokers upon entering Blind"
+					"Jokers upon entering blind"
 				},
 			},
 			bl_crp_hermes = {
@@ -178,6 +224,13 @@ return {
 					"every frame,",
 					"value increases by",
 					"0.000001 every frame",
+				},
+			},
+			bl_crp_manus_acus = {
+				name = "Manus Acus (EM+)",
+				text = {
+					"^-0.01 Blind Size",
+					"Lose ALL hands"
 				},
 			},
 			bl_crp_lacum_draconis = {
@@ -220,8 +273,8 @@ return {
 			j_crp_evil_jolly_joker = {
 				name = "{C:red}EVIL{} Jolly Joker",
 				text = {
-					"{C:white,X:mult}÷#1#{} Mult if played hand is",
-					"{C:red}not{} a {C:attention}Pair{}",
+					"{C:white,X:mult}÷#1#{} Mult if played hand",
+					"is {C:red}not{} a {C:attention}Pair",
 				},
 			},
 			j_crp_evil_joker = {
@@ -243,20 +296,27 @@ return {
 					"played or discarded",
 				},
 			},
+			j_crp_the_horse = {
+				name = "The Horse",
+				text = {
+					"{X:dark_edition,C:white}^#1#{} Mult",
+					"Gains {X:dark_edition,C:white}^#2#{} Mult",
+					"when {C:attention}Apple{} is sold",
+				},
+			},
 			j_crp_glitchkat10 = {
 				name = "Glitchkat10",
 				text = {
-					"{C:chips}-#1#{} Chip#<s>1#",
-					"{C:mult}-#2#{} Mult",
-					"{C:white,X:chips}÷#3#{} Chip#<s>1#",
-					"{C:white,X:mult}÷#4#{} Mult",
+					"{C:chips}-#1#{} Chip#<s>1#, {C:mult}-#2#{} Mult",
+					"{C:white,X:chips}÷#3#{} Chip#<s>1#, {C:white,X:mult}÷#4#{} Mult",
 				},
 			},
 			j_crp_rainstar = {
 				name = "Rainstar",
 				text = {
-					"{C:chips}-#1#{} Chip#<s>1# and {C:mult}-#2#{} Mult if played hand",
-					"does not contain a {C:attention}Flush{}",
+					"{C:chips}-#1#{} Chip#<s>1# and {C:mult}-#2#{} Mult",
+					"if played hand does not",
+					"contain a {C:attention}Flush",
 				},
 			},
 			j_crp_gudusername = {
@@ -296,13 +356,15 @@ return {
 			j_crp_chi_cot = {
 				name = "Chi Cot",
 				text = {
-					"Disables effects of all {C:attention}Small Blinds"
+					"Disables effects of",
+					"all {C:attention}Small Blinds"
 				}
 			},
 			j_crp_collection = {
 				name = "Collection",
 				text = {
-					"{C:attention}Jokers{} each give {C:white,X:mult}X#1#{} Mult"
+					"{C:attention}Jokers{} each",
+					"give {C:white,X:mult}X#1#{} Mult"
 				}
 			},
 			j_crp_three = {
@@ -335,12 +397,13 @@ return {
 				text = {
 					"Cards already played this",
 					"{C:attention}Ante{} give {C:mult}+#1#{} Mult when scored",
+					"{C:inactive,s:0.8}kinda broken rn every card gives +4 mult :("
 				},
 			},
 			j_crp_participation_trophy = {
 				name = "Participation Trophy",
 				text = {
-					"{C:mult}+#1#{} Mult for every {C:red,E:2}loss{}",
+					"{C:mult}+#1#{} Mult for every {C:red,E:2}loss",
 					"on this profile",
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
 				},
@@ -363,8 +426,8 @@ return {
 			j_crp_bulgoe_prize = {
 				name = "{C:edition}Bulgoe{} Prize",
 				text = {
-					"Whenever any {C:attention}Booster Pack{} is",
-					"skipped create {C:attention}#1#{} {C:edition,X:grey}Bulgoe#<s>1#{}",
+					"Create {C:attention}#1# {C:edition,X:gray}Bulgoe#<s>1#{} when",
+					"any {C:attention}Booster Pack{} is skipped",
 					"{C:inactive}(Does not require room)",
 				},
 			},
@@ -372,8 +435,8 @@ return {
 				name = "Bullshit",
 				text = {
 					"Sell this {C:attention}Joker{} to",
-					"create {C:attention}#1#{} of either a {C:attention}Bull{}",
-					"or a {C:crp_trash}Trash{} {C:attention}Joker{}",
+					"create {C:attention}#1#{} of either a {C:attention}Bull",
+					"or a {C:crp_trash}Trash{} {C:attention}Joker",
 				}
 			},
 			j_crp_blank = {
@@ -385,8 +448,8 @@ return {
 			j_crp_antimatter = {
 				name = "Antimatter Joker",
 				text = {
-					"{C:dark_edition}+#1# {C:attention}Joker{} slot",
-					"Increases by {C:dark_edition}+#2#{} {C:attention}Joker{} slot",
+					"{C:dark_edition}+#1# {C:attention}Joker{} slot#<s>1#",
+					"Increases by {C:dark_edition}+#2#{} {C:attention}Joker{} slot#<s>2#",
 					"when {C:attention}Boss Blind{} defeated"
 				}
 			},
@@ -416,14 +479,14 @@ return {
 				name = "Skibidi Toilet",
 				text = {
 					"Gives the current base",
-					"{C:chips}Chips{} and {C:mult}Mult{} of {C:attention}Flush{}"
+					"{C:chips}Chips{} and {C:mult}Mult{} of {C:attention}Flush"
 				}
 			},
 			j_crp_bulgoelatro = {
 				name = "{C:edition}Bulgoe{}latro",
 				text = {
 					"{C:mult}+#1#{} Mult for every owned",
-					"{C:edition,X:grey}Bulgoe{}-themed {C:attention}Joker",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker",
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
 				}
 			},
@@ -436,7 +499,7 @@ return {
 			j_crp_goblin = {
 				name = "Goblin",
 				text = {
-					"{C:red}Fixed {C:green}1 in 100{} chance",
+					"{C:red}Fixed {C:green}1%{} chance",
 					"to disable {C:attention}Boss Blind"
 				}
 			},
@@ -452,32 +515,31 @@ return {
 			j_crp_pennant = {
 				name = "Pennant",
 				text = {
-					"{C:mult}+4{} Mult for every remaining {C:attention}hand"
+					"{C:mult}+4{} Mult for every",
+					"remaining {C:attention}hand"
 				}
 			},
 			j_crp_one_mans_trash = {
 				name = "One Man's Trash",
 				text = {
-					"{C:crp_trash}Trash{} {C:attention}Jokers{} give",
-					"{C:mult}+#1#{} Mult"
+					"{C:crp_trash}Trash{} {C:attention}Jokers{}",
+					"each give {C:mult}+#1#{} Mult"
 				},
 			},
-			--[[
 			j_crp_dead_joker = {
 				name = "Dead Joker",
 				text = {
-					"{C:mult}+1{} Mult for every {C:attention}Graveyarded{}",
-					"submission in the {C:attention}CSL{}",
-					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
+					"Gains {C:chips}+#2#{} Chips when",
+					"any card is destroyed",
+					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)",
 				},
 			},
-			]]--
 			j_crp_vermillion = {
 				name = "Vermillion Joker",
 				text = {
 					"{C:white,X:mult}X#1#{} Mult",
 					"When bought, replace a random",
-					"Joker with the default {C:attention}Joker{}",
+					"{C:attention}Joker{} card with the default {C:attention}Joker",
 				},
 			},
 			j_crp_q_big = {
@@ -496,16 +558,16 @@ return {
 			j_crp_water_bottle = {
 				name = "Water Bottle",
 				text = {
-					"Creates {C:attention}#1# Splash#<es>1#{}",
+					"Creates {C:attention}#1# Splash#<es>1#",
 					"when sold",
-					"{C:inactive}(Does not require room){}",
+					"{C:inactive}(Does not require room)",
 				},
 			},
 			j_crp_gamblecore = {
 				name = "Gamblecore",
 				text = {
 					"{C:red}Fixed {}{C:green}#1# in #2#{} chance",
-					"for {C:red}+nane0{} Mult",
+					"to give {C:red}+nane0{} Mult",
 				},
 			},
 			j_crp_waldo = {
@@ -525,9 +587,9 @@ return {
 			j_crp_tag_hoarder = {
 				name = "Tag Hoarder",
 				text = {
-					"Gives {C:chips}+Chips{} and {C:mult}+Mult{}",
+					"Gives {C:chips}+Chips{} and {C:mult}+Mult",
 					"equal to the number",
-					"of owned {C:attention}tags{}"
+					"of owned {C:attention}tags"
 				},
 			},
 			j_crp_ancient_debris = {
@@ -545,18 +607,28 @@ return {
 					"{C:attention}#3# {C:chips}#4#"
 				}
 			},
+			j_crp_jollymoon = {
+				name = "Piano Falling over the Jolly Moon",
+				text = {
+					"{C:mult}+#1#{} Mult",
+					"Upgrade {C:planet}level{} of {C:attention}Pair{} when",
+					"this {C:attention}Joker{} is triggered"
+				}
+			},
 			j_crp_fun_coin = {
 				name = "fun coin",
 				text = {
-					"When hand played, either earn {C:money}$#1#{} or lose {C:red}-$#2#",
+					"When hand played,",
+					"either earn {C:money}$#1#{} or lose {C:red}-$#2#",
 					"If in debt, {C:white,X:mult}X#3#{} Mult",
-					"{C:inactive}\"OH GOD I'M HAVING SO MUCH FUN LOOKING AT THIS\""
+					"{C:inactive}\"OH GOD I'M HAVING SO MUCH",
+					"{C:inactive}FUN LOOKING AT THIS\""
 				}
 			},
 			j_crp_gomble = {
 				name = "Gomble",
 				text = {
-					"{C:red}Fixed {C:green}1 in 2{} chance to spawn a {C:attention}Goblin",
+					"{C:red}Fixed {C:green}50%{} chance to create a {C:attention}Goblin",
 					"{C:inactive}(Does not require room)"
 				}
 			},
@@ -588,7 +660,8 @@ return {
 					"{C:white,X:chips}X#3#{} Chip#<s>3#, {C:white,X:chips}-X#4#{} Chip#<s>4# when you click",
 					"Prevents death once if you score at least",
 					"{C:attention}#2#%{} of the required score",
-					"Creates {C:attention}#5# Stone{} card#<s>5# if played hand contains a {C:attention}Flush",
+					"Creates {C:attention}#5# Stone{} card#<s>5# if played",
+					"hand contains a {C:attention}Flush",
 					"{C:inactive}(Death prevention active: #1#)"
 				}
 			},
@@ -615,8 +688,10 @@ return {
 			j_crp_bulgoe_candy = {
 				name = "{C:edition}Bulgoe{} Candy",
 				text = {
-					"Sell this Joker to create {C:attention}#1#",
-					"{C:edition,X:grey}Bulgoe{}-themed Joker#<s>1# and gain {C:money}+$#2#"
+					"Sell this {C:attention}Joker{} to",
+					"create {C:attention}#1#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>1#",
+					"and earn {C:money}+$#2#"
 				}
 			},
 			j_crp_12345 = {
@@ -625,14 +700,21 @@ return {
 					"{C:dark_edition}+#1#{} {C:attention}Joker{} slot#<s>1#",
 					"{C:attention}+#2# consumable{} slot#<s>2#",
 					"Earn {C:money}$#3#{} at end of round",
-					"{C:mult}+4{} Mult",
-					"{C:chips}+5{} Chip#<s>5#",
+					"{C:mult}+#4#{} Mult",
+					"{C:chips}+#5#{} Chip#<s>5#",
+				}
+			},
+			j_crp_executioner = {
+				name = "Executioner",
+				text = {
+					"{C:red}Destroys{} all",
+					"scoring {C:attention}face cards"
 				}
 			},
 			j_crp_coughing_baby_vs_hydrogen_bomb = {
 				name = "Coughing Baby vs. Hydrogen Bomb",
 				text = {
-					"{C:edition,X:dark_edition}^^#1#{} Mult against {C:attention}Small Blinds{}"
+					"{C:edition,X:dark_edition}^^#1#{} Mult against {C:attention}Small Blinds"
 				}
 			},
 			j_crp_how_many_pickles = {
@@ -671,7 +753,7 @@ return {
 				text = {
 					"{C:attention}+#1#{} hand size",
 					"{C:attention}+#2# consumable{} slot#<s>2#",
-					"{C:attention}+#3# Booster Pack{} slot#<s>3# in the {C:attention}shop{}"
+					"{C:attention}+#3# Booster Pack{} slot#<s>3# in the {C:attention}shop"
 				}
 			},
 			j_crp_not_discovered = {
@@ -700,10 +782,10 @@ return {
 			j_crp_dumpster_diver = {
 				name = "Dumpster Diver",
 				text = {
-					"Create {C:attention}#1#{} {C:dark_edition}Negative{} {C:crp_trash}Trash{} {C:attention}Joker#<s>1#{}",
+					"Create {C:attention}#1#{} {C:dark_edition}Negative{} {C:crp_trash}Trash{} {C:attention}Joker#<s>1#",
 					"at end of round,",
 					"{C:green}#2# in #3#{} chance to instead create",
-					"{C:attention}#4#{} {C:dark_edition}Negative{} {C:rare}Rare{} {C:attention}Joker#<s>4#{}"
+					"{C:attention}#4#{} {C:dark_edition}Negative{} {C:rare}Rare{} {C:attention}Joker#<s>4#"
 				}
 			},
 			j_crp_my_first_joker = {
@@ -728,7 +810,8 @@ return {
 			j_crp_normalgoe = {
 				name = "{C:dark_edition}Normalgoe",
 				text = {
-					"{C:white,X:mult}X#1#{} Mult"
+					"{C:white,X:mult}X#1#{} Mult",
+					"{C:inactive}sd bulgoe"
 				}
 			},
 			j_crp_usain_bolt = {
@@ -743,9 +826,9 @@ return {
 				name = "Low-Fqt Milk",
 				text = {
 					"{C:chips}+#1#{} Chips",
-					"Value multiplied by {C:attention}0.8{} at end of round",
+					"Value multiplied by {C:white,X:attention}X0.8{} at end of round",
 					"Destroyed at under {C:chips}+512{} Chips",
-					"{C:inactive}\"Fqt in MY milk?!\"{}"
+					"{C:inactive}\"Fqt in MY milk?!\""
 				}
 			},
 			j_crp_joker_2 = {
@@ -775,7 +858,7 @@ return {
 			j_crp_joker_6 = {
 				name = "Joker 6",
 				text = {
-					"{C:money}+$#1#{}"
+					"{C:money}+$#1#"
 				}
 			},
 			j_crp_joker_7 = {
@@ -815,14 +898,14 @@ return {
 				text = {
 					"{C:mult}+[round]{} Mult",
 					"{C:white,X:mult}X[ante]{} Mult",
-					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:white,X:mult}X#2#{C:inactive} Mult){}",
+					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:white,X:mult}X#2#{C:inactive} Mult)",
 				},
 			},
 			j_crp_q = {
 				name = "q",
 				text = {
 					"{X:dark_edition,C:white}=#1#{} Mult",
-					"Increases by {X:dark_edition,C:white}#2#{}",
+					"Increases by {X:dark_edition,C:white}#2#",
 					"when {C:attention}Zany Joker{} sold",
 				},
 			},
@@ -838,8 +921,8 @@ return {
 				name = "10,000 Coins Falling on You",
 				text = {
 					"When this {C:attention}Joker{]} is sold, either",
-					"win {C:money}$#1#{} or destroy every",
-					"owned {C:attention}Joker{}, bypassing {C:red}all effects{}"
+					"earn {C:money}$#1#{} or destroy every",
+					"owned {C:attention}Joker{}, bypassing {C:red}all effects"
 				},
 			},
 			["j_crp_sigma-man"] = {
@@ -860,7 +943,7 @@ return {
 				text = {
 					"{C:white,X:mult}X(Sum[sin(i)+1,#2#i,1,r#3#]){} Mult,", -- wolframalpha syntax
 					"where {C:attention}r{} = current round",
-					"{C:inactive}(Measured in radians)",
+					"{C:inactive,x:0.8}(Measured in radians)",
 					"{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult)"
 				}
 			},
@@ -868,6 +951,15 @@ return {
 				name = "Another Man's Treasure",
 				text = {
 					"{C:legendary}Legendary{} Jokers give {C:white,X:mult}X7{} Mult"
+				}
+			},
+			j_crp_microfiber = {
+				name = "Microfiber",
+				text = {
+					"{C:chips}+#1#{} Chips",
+					"Multiply all values on ",
+					"this Joker by {X:attention,C:white}X#2#{}",
+					"when {C:attention}Boss Blind{} is defeated",
 				}
 			},
 			--[[
@@ -899,7 +991,7 @@ return {
 				name = "Normalis",
 				text = {
 					"{C:white,X:dark_edition}^#1#{} Chip#<s>1# and Mult",
-					"{C:inactive}hd bulgoe{}",
+					"{C:inactive}hd bulgoe",
 				}
 			},
 			j_crp_tetration_timmy = {
@@ -913,22 +1005,31 @@ return {
 				text = {
 					"Gains {C:white,X:dark_edition}^#2#{} Mult for every",
 					"{C:attention}#3#{} triggers of this {C:attention}Joker",
-					"{C:inactive}(Currently {C:attention}#4#{C:inactive} triggers and {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
+					"{C:inactive}(Currently {C:attention}#4#{C:inactive} triggers and {C:white,X:dark_edition}^#1#{C:inactive} Mult)"
 				}
 			},
 			j_crp_jolly_of_joker = {
 				name = "The Jolly of Joker",
 				text = {
 					"{C:white,X:dark_edition}^#1#{} Mult if played",
-					"hand is a {C:attention}Pair{}",
+					"hand is a {C:attention}Pair",
 				}
 			},
 			j_crp_victoriam = {
 				name = "Victoriam",
 				text = {
-					"{C:white,X:dark_edition}^0.1{} Chip for every {C:edition,X:grey}win{} on this profile",
+					"{C:white,X:dark_edition}^#1#{} Chip for every {C:edition,X:grey}win{} on this profile",
 					"{C:inactive,s:0.8}(Excludes seeded runs and Challenge runs)",
-					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Chip#<s>1#)",
+					"{C:inactive}(Currently {C:white,X:dark_edition}^#2#{C:inactive} Chip#<s>2#)",
+				}
+			},
+			j_crp_the_entire_cid_itself = {
+				name = "The Entire CID Itself",
+				text = {
+					"This {C:attention}Joker{} gives {C:white,X:chips}XChips{} equal to",
+					"the number of words in the entirety of",
+					"the {C:attention}Cryptposting Idea Document{}",
+					"{C:inactive}(Currently {C:white,X:chips}X#1#{C:inactive} Chips)",
 				}
 			},
 			j_crp_waldo_quaerere = {
@@ -941,8 +1042,8 @@ return {
 			j_crp_splittum = {
 				name = "Splittum",
 				text = {
-					"When a {C:attention}Joker{} is sold, create {C:attention}#1# {C:dark_edition}Negative{}",
-					"{C:attention}Jokers{} of one rarity below the sold {C:attention}Joker{}",
+					"When a {C:attention}Joker{} is sold, create {C:attention}#1# {C:dark_edition}Negative",
+					"{C:attention}Jokers{} of one rarity below the sold {C:attention}Joker",
 					"{C:inactive}(Some rarities do not apply)",
 					"{C:inactive}\"generic video game slime enemy\""
 				}
@@ -970,9 +1071,9 @@ return {
 					"This {C:attention}Joker{} gains {C:white,X:mult}X#2#{} Mult",
 					"when a {C:attention}Joker{} or",
 					"{C:attention}playing card{} is triggered,",
-					"retrigger all {C:attention}Jokers{} and {C:attention}playing{}",
+					"retrigger all {C:attention}Jokers{} and {C:attention}playing",
 					"{C:attention}cards #3#{} additional time#<s>3#",
-					"{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult){}"
+					"{C:inactive}(Currently {C:white,X:mult}X#1#{C:inactive} Mult)"
 				}
 			},
 			j_crp_potentia = {
@@ -980,7 +1081,7 @@ return {
 				text = {
 					"This {C:attention}Joker{} gains {C:white,X:dark_edition}^#2#{} Mult",
 					"when {C:white,X:dark_edition}^Mult{} is triggered",
-					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Mult){}"
+					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Mult)"
 				}
 			},
 			j_crp_repetitio = {
@@ -996,16 +1097,34 @@ return {
 			j_crp_resurgo = {
 				name = "Resurgo",
 				text = {
-					"{C:white,X:dark_edition}^[ante]{} Mult",
-					"{C:inactive}(Currently{} {C:white,X:dark_edition}^#1#{} {C:inactive}Mult){}",
+					"{C:white,X:dark_edition}^[Ante]{} Mult",
+					"{C:inactive}(Currently {C:white,X:dark_edition}^#1# {C:inactive}Mult)",
 				}
 			},
 			j_crp_peripheria_ad_diametrum = {
 				name = "Peripheria ad Diametrum",
 				text = {
 					"{C:white,X:dark_edition}^#1#{} Chips on first hand of round",
-					"At end of round, switches to the next {C:attention}digit{} of {C:attention}pi",
+					"At end of round, switches to",
+					"the next {C:attention}digit{} of {C:attention}pi",
 					"{C:inactive}(#2#, #3#, #4#, #5#, #6#...)"
+				}
+			},
+			j_crp_difficile = {
+				name = "Difficile",
+				text = {
+					"{C:white,X:dark_edition}^#1#{} Mult if scoring cards",
+					"trigger {C:attention}#2#{} or fewer times"
+				}
+			},
+			j_crp_libum = {
+				name = "Libum",
+				text = {
+					"Rerolls cost {C:chips}-#1#{} Chips",
+					"from all {C:attention}poker hands",
+					"{C:inactive,s:0.8}(Minimum of {C:chips,s:0.8}1{C:inactive,s:0.8} Chip)",
+					"Earn {X:money,C:white}X$#3#{} at the end of round,",
+					"increases by {X:money,C:white}X$#2#{} when shop rerolled"
 				}
 			},
 			j_crp_weather_machine = {
@@ -1036,16 +1155,16 @@ return {
 				text = {
 					"This {C:attention}Joker{} gains {C:edition,X:dark_edition}^^#2#{} Mult",
 					"when {C:white,X:dark_edition}^Mult{} is triggered",
-					"{C:inactive}(Currently {C:edition,X:dark_edition}^^#1#{C:inactive} Mult){}"
+					"{C:inactive}(Currently {C:edition,X:dark_edition}^^#1#{C:inactive} Mult)"
 				},
 			},
 			j_crp_bulgoeship_card = {
 				name = "{C:edition}Bulgoe{}ship Card",
 				text = {
 					"{C:edition,X:dark_edition}^^#1#{} Mult for each member",
-					"in the {C:attention}Cryptposting Discord{}",
+					"in the {C:attention}Cryptposting Discord",
 					"{C:inactive}(Currently {C:edition,X:dark_edition}^^#2#{C:inactive} Mult)",
-					"{C:blue,s:0.7}https://discord.gg/Jk9Q9usrNy{}",
+					"{C:blue,s:0.7}https://discord.gg/Jk9Q9usrNy",
 				},
 			},
 			j_crp_underflow = {
@@ -1060,15 +1179,15 @@ return {
 				name = "The Highest Chip",
 				text = {
 					"{X:dark_edition,C:white}^[Mult]{} Chips",
-					"{C:inactive}Can we get much higher?{}",
+					"{C:inactive}\"Can we get much higher?\"",
 				},
 			},
 			j_crp_2048 = {
 				name = "2048",
 				text = {
 					"{X:dark_edition,C:white}=2^x{} Chips and {X:dark_edition,C:white}=2^y{} Mult",
-					"where {C:attention}x{} is the current {C:chips}Chips{}",
-					"and {C:attention}y{} is the current {C:mult}Mult{}",
+					"where {C:attention}x{} is the current {C:chips}Chips",
+					"and {C:attention}y{} is the current {C:mult}Mult",
 				},
 			},
 			j_crp_hexation_henry = {
@@ -1080,7 +1199,7 @@ return {
 			j_crp_morble = {
 				name = "Morble",
 				text = {
-					"{C:attention}Jokers{} give {C:white,X:money}^$#1#{}",
+					"{C:attention}Jokers{} give {C:white,X:money}^$#1#",
 					"when triggered"
 				}
 			},
@@ -1088,7 +1207,7 @@ return {
 				name = "Statically Charged",
 				text = {
 					"All cards are",
-					"{C:dark_edition}Overloaded{}",
+					"{C:dark_edition}Overloaded",
 					"{C:dark_edition}Overloaded{} cards do not",
 					"cost extra",
 				},
@@ -1097,8 +1216,8 @@ return {
 				name = "Inquisitio Hominis Nomine Waldo",
 				text = {
 					"{C:white,X:dark_edition}^#2#{} Chips & Mult for every {C:attention}Waldo{} found",
-					"{C:attention}Waldo{} now has a {C:red}fixed {C:green}75%{} chance to appear",
-					"when selling any {C:attention}Joker{} and will always spawn {C:dark_edition}Negative",
+					"{C:attention}Waldo{} now has a {C:red}fixed {C:green}75%{} chance to be created",
+					"when selling any {C:attention}Joker{} and always appears {C:dark_edition}Negative",
 					"{C:inactive}(Currently {C:white,X:dark_edition}^#1#{C:inactive} Chips & Mult)",
 				},
 			},
@@ -1127,14 +1246,15 @@ return {
 				name = "Jean-Antoine d'Anglerais",
 				text = {
 					"Disables {C:white,X:dark_edition}all{} {C:attention}Blinds {C:attention}#1#{} times",
-					"{C:inactive}14 fucking Chicots{}",
+					"{C:inactive}14 fucking Chicots",
 				},
 			},
 			j_crp_infinitum = {
 				name = "Infinitum",
 				text = {
-					"Scoring cards give {C:dark_edition,X:edition}#2#X#3##1#{} Chip#<s>1# & Mult,",
-					"where {C:dark_edition,X:edition}X{} is the position in their {C:attention}card area{}"
+					"Scored cards give {C:dark_edition,X:edition}#2#X#3##1#",
+					"Chip#<s>1# & Mult, where {C:dark_edition,X:edition}X{} is",
+					"the position in their {C:attention}card area"
 				},
 			},
 			j_crp_exodiac = {
@@ -1142,14 +1262,14 @@ return {
 				text = {
 					"{C:cry_exotic}Exotic{} Jokers each give",
 					"{C:dark_edition,X:edition}#1##2##3##4#{} Mult when triggered,",
-					"create a random {C:dark_edition}Negative{} {C:cry_exotic}Exotic{}",
+					"create a random {C:dark_edition}Negative{} {C:cry_exotic}Exotic",
 					"{C:attention}Joker{} at the end of shop",
 				},
 			},
 			j_crp_cryptposted = {
 				name = "Cryptposted Joker",
 				text = {
-					"{C:dark_edition,X:edition}#1#X#2##3#{} Mult, where {C:dark_edition,X:edition}X{}",
+					"{C:dark_edition,X:edition}#1#X#2##3#{} Mult, where {C:dark_edition,X:edition}X",
 					"is the number of",
 					"{C:attention}Cryptposting Jokers{} owned",
 				},
@@ -1157,11 +1277,11 @@ return {
 			j_crp_bulgoelly_west = {
 				name = "Bulgoelly West",
 				text = {
-					"Creates a {C:dark_edition}Negative{} {C:cry_code}Global{} {C:attention}2{} of {C:hearts}Hearts{} and {C:attention}7{} of {C:hearts}Hearts{}",
-					"when bought, {C:hearts}Hearts{} cannot be {C:attention}debuffed{}",
-					"If played hand contains a {C:attention}2{}, {C:white,X:attention}^#1#{} current Ante",
-					"If played hand contains a {C:attention}7{}, {C:white,X:attention}X#2#{} current Ante",
-					"If played hand contains a {C:attention}2{} and a {C:attention}7{}, sets Ante to {C:attention}#3#{}"
+					"Creates a {C:dark_edition}Negative{} {C:cry_code}Global{} {C:attention}2{} of {C:hearts}Hearts{} and {C:attention}7{} of {C:hearts}Hearts",
+					"when bought, {C:hearts}Hearts{} cannot be {C:attention}debuffed",
+					"If played hand contains a {C:attention}2{}, {C:white,X:attention}^#1#{} current {C:attention}Ante",
+					"If played hand contains a {C:attention}7{}, {C:white,X:attention}X#2#{} current {C:attention}Ante",
+					"If played hand contains a {C:attention}2{} and a {C:attention}7{}, sets {C:attention}Ante{} to {C:attention}#3#"
 				},
 			},
 			j_crp_eternity = {
@@ -1179,13 +1299,13 @@ return {
 				name = "Quetta M",
 				text = {
 					"{C:dark_edition,X:edition}#4##1##5##2#{} Mult, {C:red}fixed{} {C:green}13%{} chance",
-					"for operator to increase by {C:dark_edition,X:edition}#3#{}",
-					"when a {C:attention}Pair{} is played",
+					"for operator to increase by {C:dark_edition,X:edition}+#3#",
+					"when {C:attention}Pair{} is played",
 					"{C:inactive}\"#4#-1#5#\" = \"+\"",
 					"{C:inactive}\"#4#0#5#\" = \"X\"",
 				},
 			},
-			j_crp_generic_scaling_operator = {
+			j_crp_obligatory_scaling_operator = {
 				name = "Obligatory Scaling Hypermult Joker",
 				text = {
 					"{C:dark_edition,X:edition}#4#X#5##2#{} Mult",
@@ -1204,6 +1324,19 @@ return {
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#1#{} Mult",
+				},
+			},
+			j_crp_expansion = {
+				name = "Expansion",
+				text = {
+					"{C:dark_edition,X:edition}#1#2{} Mult",
+				},
+			},
+			j_crp_supagoe = {
+				name = "Supagoe",
+				text = {
+					"{C:attention}Scoring operator{} is",
+					"set to {C:dark_edition,X:edition}#1#",
 				},
 			},
 			j_crp_all = {
@@ -1254,8 +1387,12 @@ return {
 			c_crp_reckoning = {
 				name = "Reckoning",
 				text = {
-					"Create a {C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe,E:1}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe{} {C:attention}Joker{},",
-					"{C:red}Fixed {C:green}27%{} chance to instantly {C:red,E:2}lose{} the game instead"
+					"Fixed {C:green}27%{} chance to create an",
+					"{C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe,E:1}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe{} {C:attention}Joker{},",
+					"Otherwise:",
+					"{C:red}Destroy{} all {C:attention}items{}, bypassing {C:red}all effects",
+					"Reset deck to a standard {C:attention}52{} card deck",
+					"{C:red}Lose{} {C:attention}27{} {C:blue}hands{} and {C:red}discards{}"
 				}
 			},
 			c_crp_happiness = {
@@ -1291,10 +1428,7 @@ return {
 				name = "All or Nothing",
 				text = {
 					"{C:red}Fixed{} {C:green}50%{} chance to create {C:white,X:crp_all,E:1}All",
-					"Otherwise:",
-					"{C:red}Destroy{} all {C:attention}items{}, bypassing {C:red}all effects",
-					"Reset deck to a standard {C:attention}52{} card deck",
-					"Decrease {C:blue}hands{} and {C:red}discards{} by {C:attention}27"
+					"Otherwise, {C:red,E:2}instantly lose the run{}"
 				}
 			},
 		},
@@ -1309,8 +1443,8 @@ return {
 			c_crp_ip_192 = {
 				name = "://IP_192.168.1.1",
 				text = {
-					"Fill all open {C:attention}Joker{} slots with {C:edition,X:gray}Bulgoe",
-					"{C:inactive}(Max of 100)",
+					"Fill all empty {C:attention}Joker{} slots with {C:edition,X:gray}Bulgoe",
+					"{C:inactive,s:0.8}(Max of 100)",
 					"{C:red}Fixed {C:green}1 in #1#{} chance for each individual",
 					"{C:edition,X:gray}Bulgoe{} to be replaced with {C:attention}Normalis"
 				}
@@ -1369,6 +1503,14 @@ return {
 					"{C:attention}+#5#{} hand size",
 					"{C:attention}#6#% Blind{} size"
 				}
+			},
+			b_crp_glyphic = {
+				name = "Glyphic Deck",
+				text = {
+					"Start on {C:attention}Ante #1#",
+					"{C:inactive,s:0.8}kinda bugged right now but still",
+					"{C:inactive,s:0.8}mostly works correctly"
+				}
 			}
 		},
 		Pot = {
@@ -1384,7 +1526,7 @@ return {
 				text = {
 					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1#",
 					"back into the deck, then create {C:attention}#2# Joker#<s>2#",
-					"{C:inactive}(must have room)"
+					"{C:inactive}(Must have room)"
 				}
 			},
 			c_crp_greed = {
@@ -1420,7 +1562,7 @@ return {
 				text = {
 					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1# back",
 					"into the deck, then create {C:attention}#2# {C:tarot}Tarot{} card#<s>2#",
-					"{C:inactive}(must have room)"
+					"{C:inactive}(Must have room)"
 				}
 			},
 			c_crp_worlds = {
@@ -1428,7 +1570,7 @@ return {
 				text = {
 					"{C:attention}Shuffle{} at least {C:attention}#1#{} selected card#<s>1# back",
 					"into the deck, then create {C:attention}#2# {C:planet}Planet{} card#<s>2#",
-					"{C:inactive}(must have room)"
+					"{C:inactive}(Must have room)"
 				}
 			},
 			c_crp_spirits = {
@@ -1436,7 +1578,7 @@ return {
 				text = {
 					"{C:attention}Shuffle #1#{} random card#<s>1# back into the",
 					"deck, then create {C:attention}#2# {C:spectral}Spectral{} card#<s>2#",
-					"{C:inactive}(must have room)"
+					"{C:inactive}(Must have room)"
 				}
 			}
 		},
@@ -1473,10 +1615,10 @@ return {
 				},
 			},
 			tag_crp_unplentiful_tag = {
-				name = "Uncommon 2 Tag",
+				name = "Unplentiful Tag",
 				text = {
 					"Shop has a free",
-					"{C:uncommon}Uncommon 2{} {C:attention}Joker",
+					"{C:uncommon}Unplentiful{} {C:attention}Joker",
 				},
 			},
 			["tag_crp_well-done_tag"] = {
@@ -1511,101 +1653,104 @@ return {
 				name = "Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:red}Rare{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:red}Rare {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:cry_epic}Epic{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:cry_epic}Epic {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:purple}Legendary{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:purple}Legendary {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:cry_exotic}Exotic{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:cry_exotic}Exotic {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:crp_mythic}Mythic{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:crp_mythic}Mythic {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:crp_exomythic}ExoMythic{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:crp_exomythic}ExoMythic {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Better Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:crp_2exomythic4me}2ExoMythic4me{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:crp_2exomythic4me}2ExoMythic4me {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_better_better_better_better_better_better_better_better_better_top-up_tag"] = {
 				name = "Better Better Better Better Better Better Better Better Better Better Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:crp_22exomythic4mecipe}22ExoMythic4meCipe{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:crp_22exomythic4mecipe}22ExoMythic4meCipe {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_best_top-up_tag"] = {
 				name = "Best Top-up Tag",
 				text = {
+					"Create up to {C:attention}#1#",
+					"{C:crp_exomythicepicawesomeuncommon2mexotic22exomythic4mecipe}ExoMythicEpicAwesomeUncommon2MExotic22ExoMythic4meCipe {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_:3_top-up_tag"] = {
 				name = ":3 Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:HEX(ff00ff)}:3{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:HEX(ff00ff)}:3{} {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_candy_top-up_tag"] = {
 				name = "Candy Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:cry_candy}Candy{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:cry_candy}Candy{} {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_top-down_tag"] = {
 				name = "Top-down Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:cry_cursed}Cursed{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:cry_cursed}Cursed{} {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			["tag_crp_trash_top-up_tag"] = {
 				name = "Trash Top-up Tag",
 				text = {
 					"Create up to {C:attention}#1#",
-					"{C:crp_trash}Trash{} {C:attention}Jokers",
-					"{C:inactive}(Must have room){}"
+					"{C:crp_trash}Trash{} {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
 				}
 			},
 			tag_crp_overloaded_tag = {
@@ -1652,7 +1797,7 @@ return {
 				text = {
 					"{C:mult}+#1#{} Mult",
 					"This card is feeling",
-					"rather {C:attention}zany{}",
+					"rather {C:attention}zany",
 				},
 			},
 			e_crp_mad = {
@@ -1660,21 +1805,21 @@ return {
 				text = {
 					"{C:mult}+#1#{} Mult",
 					"This card is feeling",
-					"rather {C:attention}mad{}",
+					"rather {C:attention}mad",
 				},
 			},
 			e_crp_crazy = {
 				name = "Crazy",
 				text = {
 					"{C:mult}+#1#{} Mult",
-					"Counts as {C:attention}3 Mad Jokers{}"
+					"Counts as {C:attention}3 Mad Jokers"
 				},
 			},
 			e_crp_insane = {
 				name = "Insane",
 				text = {
 					"{C:mult}+#1#{} Mult",
-					"Counts as {C:attention}3 Crazy Jokers{}",
+					"Counts as {C:attention}3 Crazy Jokers",
 					"{C:inactive}(AKA {C:attention}9 Mad Jokers{C:inactive})"
 				},
 			},
@@ -1745,7 +1890,7 @@ return {
 			v_crp_supremacy = {
 				name = "Supremacy",
 				text = {
-					"All blinds level up all hands by",
+					"All {C:attention}Blinds{} level up all hands by",
 					"{C:attention}ceil(log64([Blind Size])){} when beaten"
 				},
 			},
@@ -1753,16 +1898,15 @@ return {
 				name = "Godhood",
 				text = {
 					"Ante increases {C:attention}decrease Ante{} instead",
-					"(Can be toggled in Run Info)",
-					"{C:inactive}(currently doesnt do jack shit",
-					"{C:inactive}because idk how to code that lmao)"
+					"{C:inactive}(Can be toggled in Run Info)",
+					"{C:inactive,s:0.8}currently does nothing bc idk how to code that lmao",
 				},
 			},
 			v_crp_ascension = {
 				name = "Ascension",
 				text = {
-					"Sets Blind size to {C:attention}1{}",
-					"All {C:attention}Boss Blinds{} are {C:attention}disabled{}"
+					"Sets {C:attention}Blind Size{} to {C:attention}1",
+					"All {C:attention}Boss Blinds{} are {C:attention}disabled"
 				},
 			},
 			v_crp_patience = {
@@ -1804,8 +1948,63 @@ return {
 			v_crp_just_kidding = {
 				name = "Just Kidding, This Is The Real Payoff",
 				text = {
-					"Creates {C:attention}#1#{} {C:dark_edition}Negative{} {C:white,X:crp_all,E:1}All{}",
+					"Creates {C:attention}#1#{} {C:dark_edition}Negative {C:white,X:crp_all,E:1}All",
 					"{C:inactive}\"Took ya long enough.\""
+				},
+			},
+			v_crp_bulgoverstock = {
+				name = "Bulgoverstock",
+				text = {
+					"{C:attention}+#1#{} shop slot",
+					"Rightmost shop item is",
+					"always {C:edition,X:gray}Bulgoe",
+				},
+			},
+			v_crp_bulgoestocks = {
+				name = "Bulgoestocks",
+				text = {
+					"Earn {C:money}+#1#${} when",
+					"buying {C:edition,X:gray}Bulgoe",
+				},
+			},
+			v_crp_bulgadicioe = {
+				name = "Bulgadicioe",
+				text = {
+					"Create {C:edition,X:gray}Bulgoe{} and earn {C:money}+$#1#",
+					"when any {C:attention}Booster Pack{} is opened",
+				},
+			},
+			v_crp_rabbulgoe_hole = {
+				name = "Rabbulgoe Hole",
+				text = {
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Jokers{} give",
+					"{C:green}+X free Rerolls{}, where {C:attention}X{} is the",
+					"number of {C:edition,X:gray}Bulgoe{}-themed {C:attention}Jokers{} owned",
+				},
+			},
+			v_crp_bulgnation = {
+				name = "Bulgnation",
+				text = {
+					"{C:edition,X:gray}Bulgoes{} always appear",
+					"{C:dark_edition}Really Negative",
+					"{C:inactive,s:0.8}currently broken just makes bulgoes",
+					"{C:inactive,s:0.8}really negative when they're bought"
+				},
+			},
+			v_crp_bulgcrowd = {
+				name = "Bulgcrowd",
+				text = {
+					"{C:attention}Bulgnation{} and {C:attention}Bulgoestocks",
+					"now apply to all {C:edition,X:gray}Bulgoe{}-themed {C:attention}Jokers",
+					"Additionally, instead earn {C:money}+$#1#",
+				},
+			},
+			v_crp_bulgscension = {
+				name = "Bulgscension",
+				text = {
+					"{C:attention}Rightmost{} shop slot can",
+					"now create any {C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker",
+					"{C:inactive}(Unweighted)"
 				},
 			},
 		},
@@ -1814,7 +2013,7 @@ return {
 				name = "Violet Stake",
 				colour = "Violet",
 				text = {
-					"{C:attention}X2{} Blind size",
+					"{C:white,X:attention}X2{} Blind size",
 					"{C:inactive}(Applies Diamond Stake)"
 				}
 			},
@@ -1830,7 +2029,7 @@ return {
 				name = "Stencil Stake",
 				colour = "Stencil",
 				text = {
-					"{C:attention}-1{} Joker slot",
+					"{C:dark_edition}-1{} Joker slot",
 					"{C:inactive}(Applies Square Stake)"
 				}
 			}
@@ -1839,23 +2038,63 @@ return {
 			p_crp_very_rare_pack = {
 				name = "Very Rare Pack",
 				text = {
-					"Choose {C:attention}#1#{} of up to {C:attention}#2#{}",
-					"{C:dark_edition}very rare{} {C:attention}consumables{}",
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:dark_edition}very rare{} {C:attention}consumable#<s>2#",
 				},
 			},
 			p_crp_very_balanced_pack = {
 				name = "Very Balanced Pack",
 				text = {
-					"Choose {C:attention}#1#{} of up to {C:attention}#2#{}",
-					"{C:crp_exomythic}ExoMythic{} {C:attention}Jokers{}",
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:crp_exomythic}ExoMythic{} {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_bulgoe_pack = {
+				name = "Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_big_bulgoe_pack = {
+				name = "BIG Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
+				},
+			},
+			p_crp_bountiful_bulgoe_pack = {
+				name = "Bountiful Bulgoe Pack",
+				text = {
+					"Choose {C:attention}#1#{} of up to {C:attention}#2#",
+					"{C:edition,X:gray}Bulgoe{}-themed {C:attention}Joker#<s>2#",
 				},
 			},
 			remove_negative = {
 				name = "n",
 				text = {
-					"{C:inactive,s:0.9}(Removes {C:dark_edition,s:0.9}Negative{C:inactive,s:0.9}-related Editions from copy)"
+					"{C:inactive,s:0.9}(Removes {C:dark_edition,s:0.9}Negative{C:inactive,s:0.9}-themed Editions from copy)"
 				}
 			},
+			["bulgoe-themed_joker"] = {
+				name = "Bulgoe-themed Jokers",
+				text = {
+					"{C:attention,s:0.8}Bulgoe Bot{s:0.8}, {C:attention,s:0.8}EVIL Bulgoe{s:0.8}, {C:edition,X:gray,s:0.8}Bulgoe{s:0.8},",
+					"{C:attention,s:0.8}Bulgoe Prize{s:0.8}, {C:attention,s:0.8}Bulgoelatro{s:0.8},",
+					"{C:attention,s:0.8}One Bulgoe Bill{s:0.8}, {C:attention,s:0.8}Bulgoe Candy{s:0.8},",
+					"{C:attention,s:0.8}Bulgoe's Hiking Journey{s:0.8}, {C:attention,s:0.8}270° Bulgoescope{s:0.8},",
+					"{C:attention,s:0.8}Normalis{s:0.8}, {C:attention,s:0.8}Bulgoeship Card{s:0.8},",
+					"{C:attention,s:0.8}Bulgoelly West{s:0.8}, etc."
+				}
+			},
+			hyperoperation_brother = {
+				name = "Hyperoperation Brothers",
+				text = {
+					"{C:attention,s:0.8}tetration timmy{s:0.8}, {C:attention,s:0.8}pentation peter{s:0.8},",
+					"{C:attention,s:0.8}hexation henry{s:0.8}, {C:attention,s:0.8}heptation hank{s:0.8},",
+					"{C:attention,s:0.8}septingentiquinvigintation stevie{s:0.8}, etc."
+				}
+			}
 		}
 	},
 	misc = {
@@ -1868,7 +2107,7 @@ return {
 			["k_crp_:3"] = ":3",
 			k_crp_plentiful = "Plentiful",
 			k_crp_2common4me = "2Common4me",
-			k_crp_unplentiful = "Uncommon 2",
+			k_crp_unplentiful = "Unplentiful",
 			k_crp_unrare = "Unrare",
 			["k_crp_well-done"] = "Well-Done",
 			k_crp_refined = "Refined",

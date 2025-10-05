@@ -1,4 +1,4 @@
--- man.............. - rainstar
+-- yipee - rainstar
 SMODS.Joker {
 	key = "scones_bones",
 	name = "Scones, Bones, Skibidi Scones",
@@ -11,6 +11,7 @@ SMODS.Joker {
 	demicoloncompat = true,
 	perishable_compat = false,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
 		return { vars = { card.ability.extra.death_prevention_enabled, lenient_bignum(card.ability.extra.score_percentage), lenient_bignum(card.ability.extra.xchips), lenient_bignum(card.ability.extra.xchips_mod), lenient_bignum(card.ability.extra.stones) } }
 	end,
 	calculate = function(self, card, context)
@@ -186,7 +187,12 @@ SMODS.Joker {
 	cost = 8,
 	blueprint_compat = true,
 	demicoloncompat = true,
-	calculate = function()
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_mad
+		return { vars = {  } }
+	end,
+	calculate = function(self, card, context)
 		if context.setting_blind or context.forcetrigger then
 			SMODS.add_card({ key = "j_mad", edition = "e_negative" })
 		end
@@ -420,13 +426,14 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_grouchy_jimbo
 		return { vars = { lenient_bignum(card.ability.extra.xmult) } }
 	end,
 	cost = 6,
 	calculate = function(self, card, context)
 		if (context.cardarea == G.jokers and context.joker_main) or context.forcetrigger then
 			for i = 1, #G.jokers.cards do
-				if G.jokers.cards[i].config.center.key == "j_crp_grouchy_jimbo" then
+				if G.jokers.cards[i].config.center.key == "j_crp_grouchy" then
 					return {
 						xmult = card.ability.extra.xmult
 					}
@@ -452,6 +459,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
 		return { 
 			vars = { 
 				lenient_bignum(card.ability.extra.create),
@@ -569,6 +577,39 @@ SMODS.Joker {
 }
 ]]--
 
+SMODS.Joker { --Executioner
+    name = "Executioner",
+    key = "executioner",
+    config = { extra = { } },
+	atlas = "crp_placeholder",
+	pos = { x = 4, y = 0 },
+    cost = 6,
+    rarity = 3,
+    blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+        return {vars = {}}
+    end,
+    calculate = function(self, card, context)
+        if context.destroy_card and context.destroy_card.should_destroy and not context.blueprint then
+            return { remove = true }
+        end
+        if context.individual and context.cardarea == G.play and not context.blueprint then
+            context.other_card.should_destroy = false
+            if context.other_card:is_face() then
+                context.other_card.should_destroy = true
+                return {
+                    message = "Destroyed!"
+                }
+            end
+        end
+    end,
+	crp_credits = {
+		idea = { "Psychomaniac14" },
+		code = { "lunarisillustratez" }
+	}
+}
+
 SMODS.Joker {
 	key = "low-fat_milk",
 	name = "Low-Fat Milk",
@@ -619,6 +660,10 @@ SMODS.Joker {
 					colour = G.C.FILTER,
 				}
 			end
+			return {
+				message = "-" .. (lenient_bignum(card.ability.extra.mult)) .. " Mult",
+				colour = G.C.RED
+			}
 		end
 	end,
 	crp_credits = {
@@ -639,6 +684,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.xmult) } }
 	end,

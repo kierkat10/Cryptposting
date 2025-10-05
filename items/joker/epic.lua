@@ -10,6 +10,7 @@ SMODS.Joker {
 	blueprint_compat = false,
 	demicoloncompat = false,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_zany
 		return { vars = { lenient_bignum(card.ability.extra.eqmult), lenient_bignum(card.ability.extra.eqmult_mod) } }
 	end,
 	calculate = function(self, card, context)
@@ -49,6 +50,7 @@ SMODS.Joker {
 	pos = { x = 0, y = 7 },
 	cost = 13,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.perma_x_chips) } }
 	end,
@@ -75,7 +77,7 @@ SMODS.Joker {
 	rarity = "cry_epic",
 	atlas = "crp_placeholder",
 	pos = { x = 5, y = 0 },
-	cost = 20,
+	cost = 15,
 	blueprint_compat = false,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
@@ -105,9 +107,9 @@ SMODS.Joker {
 	name = "Coughing Baby vs. Hydrogen Bomb",
 	config = { extra = { eemult = 2 } },
 	rarity = "cry_epic",
-	atlas = "crp_placeholder",
-	pos = { x = 5, y = 0 },
-	cost = 20,
+	atlas = "crp_joker2",
+	pos = { x = 2, y = 0 },
+	cost = 14,
 	blueprint_compat = false,
 	demicoloncompat = false,
 	loc_vars = function(self, info_queue, card)

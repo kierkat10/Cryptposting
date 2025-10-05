@@ -10,18 +10,18 @@ SMODS.Joker {
 	demicoloncompat = true,
 	perishable_compat = false,
 	loc_vars = function(self, info_queue, card)
-		return { vars = { lenient_bignum(card.ability.extra.mult), lenient_bignum(card.ability.extra.xmult) } }
+		return { vars = { card.ability.extra.mult, card.ability.extra.xmult } }
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			card.ability.extra.mult = lenient_bignum(G.GAME.round)
-			card.ability.extra.xmult = lenient_bignum(G.GAME.round_resets.ante)
+			card.ability.extra.mult = G.GAME.round
+			card.ability.extra.xmult = G.GAME.round_resets.ante
 		end
 		if (context.joker_main) or context.forcetrigger then
 			return {
-				mult = lenient_bignum(card.ability.extra.mult),
+				mult = card.ability.extra.mult,
 				extra = {
-					xmult = lenient_bignum(card.ability.extra.xmult)
+					xmult = card.ability.extra.xmult
 				}
 			}
 		end

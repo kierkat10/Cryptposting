@@ -498,8 +498,6 @@ SMODS.Edition {
 	},
 }
 
-
-
 SMODS.Edition {
 	disable_base_shader = true,
 	disable_shadow = true,
@@ -596,23 +594,18 @@ SMODS.Edition {
 	},
 } ]]--
 
---[[ SMODS.Shader {
-	key = "really_negative",
-	path = "really_negative.fs"
-}
-]]
-
 SMODS.Edition {
 	key = "really_negative",
 	weight = 0.3,
-	shader = false,
+	shader = "negative",
+	prefix_config = { shader = false },
 	in_shop = true,
 	extra_cost = 5,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 3 },
-	loc_vars = function(self, info_queue)
+	loc_vars = function(self, info_queue, center)
 		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
@@ -624,14 +617,15 @@ SMODS.Edition {
 SMODS.Edition {
 	key = "super_negative",
 	weight = 0.15,
-	shader = false,
+	shader = "negative",
+	prefix_config = { shader = false },
 	in_shop = true,
 	extra_cost = 10,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 10 },
-	loc_vars = function(self, info_queue)
+	loc_vars = function(self, info_queue, center)
 		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
@@ -643,14 +637,15 @@ SMODS.Edition {
 SMODS.Edition {
 	key = "photon_readings_negative",
 	weight = 0.075,
-	shader = false,
+	shader = "negative",
+	prefix_config = { shader = false },
 	in_shop = true,
 	extra_cost = 20,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 66 },
-	loc_vars = function(self, info_queue)
+	loc_vars = function(self, info_queue, center)
 		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
@@ -662,14 +657,15 @@ SMODS.Edition {
 SMODS.Edition {
 	key = "photon_readings_really_negative",
 	weight = 0.0375,
-	shader = false,
+	shader = "negative",
+	prefix_config = { shader = false },
 	in_shop = true,
 	extra_cost = 50,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
 	config = { card_limit = 666666 },
-	loc_vars = function(self, info_queue)
+	loc_vars = function(self, info_queue, center)
 		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {
@@ -681,14 +677,15 @@ SMODS.Edition {
 SMODS.Edition {
 	key = "photon_readings_gone",
 	weight = 0.1875,
-	shader = false,
+	shader = "negative",
+	prefix_config = { shader = false },
 	in_shop = false,
 	extra_cost = 100,
 	get_weight = function(self)
 		return G.GAME.edition_rate * self.weight
 	end,
-	config = { card_limit = 2^1024 },
-	loc_vars = function(self, info_queue)
+	config = { card_limit = 1e100 },
+	loc_vars = function(self, info_queue, center)
 		return { vars = { self.config.card_limit } }
 	end,
 	crp_credits = {

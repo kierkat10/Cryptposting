@@ -9,6 +9,7 @@ SMODS.Joker {
 	pos = { x = 0, y = 0 },
 	cost = 1,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.chips) } }
 	end,
@@ -27,7 +28,39 @@ SMODS.Joker {
 	}
 }
 
-SMODS.Joker {
+SMODS.Joker { -- the reanimation is fucking real
+	key = "dead_joker",
+	config = { extra = { chips = 0, chips_mod = 25 } },
+	rarity = 1,
+	atlas = "crp_joker",
+	pos = { x = 6, y = 0 },
+	cost = 6,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		return { vars = { lenient_bignum(card.ability.extra.chips), lenient_bignum(card.ability.extra.chips_mod) } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				chips = card.ability.extra.chips
+			}
+		end
+		if (context.remove_playing_cards and context.cardarea == G.jokers) or context.forcetrigger then
+			card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) + lenient_bignum(card.ability.extra.chips_mod)
+			return {
+				message = "Upgraded!"
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "Poker The Poker" },
+		art = { "GudUsername" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Joker { -- SOMEBODY FIX PILLARING JOKER PRETTY PLEASE
 	key = "pillaring",
 	name = "Pillaring Joker",
 	pos = { x = 7, y = 2 },
@@ -41,8 +74,10 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.extra.mult) } }
 	end,
 	calculate = function(self, card, context)
-		if context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante then
-			return { mult = lenient_bignum(card.ability.extra.mult) }
+		if (context.individual and context.cardarea == G.play and context.other_card.ability.played_this_ante) or context.forcetrigger then
+			return {
+				mult = lenient_bignum(card.ability.extra.mult)
+			}
 		end
 	end,
 	crp_credits = {
@@ -85,7 +120,7 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-	key = "apple", -- right now doesn't do anything that good but will be for THE HORSE.
+	key = "apple",
 	name = "Apple",
 	config = { extra = { mult = 1, rounds_remaining = 10 } },
 	rarity = 1,
@@ -104,18 +139,9 @@ SMODS.Joker {
 				mult = lenient_bignum(card.ability.extra.mult)
 			}
 		end
-		if
-			(context.end_of_round
-			and not context.blueprint
-			and not context.individual
-			and not context.repetition
-			and not context.retrigger_joker)
-			or context.forcetrigger
-		then
+		if (context.end_of_round and not context.blueprint and context.main_eval and not context.retrigger_joker) or context.forcetrigger then
 			card.ability.extra.rounds_remaining = lenient_bignum(lenient_bignum(card.ability.extra.rounds_remaining) - 1)
-			if
-				lenient_bignum(card.ability.extra.rounds_remaining) <= 0
-			then
+			if lenient_bignum(card.ability.extra.rounds_remaining) <= 0 then
 				G.E_MANAGER:add_event(Event({
 					func = function()
 						play_sound("crp_eat")
@@ -142,6 +168,10 @@ SMODS.Joker {
 					colour = G.C.FILTER,
 				}
 			end
+			return {
+				message = "-" .. (lenient_bignum(card.ability.extra.rounds_remaining)) .. " Round",
+				colour = G.C.FILTER
+			}
 		end
 	end,
 	crp_credits = {
@@ -189,6 +219,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_bulgoe
 		return { vars = { lenient_bignum(card.ability.extra.create) } }
@@ -288,14 +319,17 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-	key = "blank", --
+	key = "blank", -- 
 	name = "Blank Joker",
 	rarity = 1,
-	atlas = "crp_placeholder",
-	pos = { x = 2, y = 0 },
-	cost = 0,
+	atlas = "crp_joker2",
+	pos = { x = 8, y = 1 },
+	cost = 1,
+	blueprint_compat = false,
+	demicoloncompat = false,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
+		art = { "candycanearter" },
 		code = { "wilfredlam0418" }
 	}
 }
@@ -305,9 +339,10 @@ SMODS.Joker {
 	name = "Antimatter Joker",
 	config = { extra = { jokerslots = 1, jokerslots_mod = 1 } },
 	rarity = 1,
-	atlas = "crp_placeholder",
-	pos = { x = 2, y = 0 },
+	atlas = "crp_joker2",
+	pos = { x = 9, y = 1 },
 	cost = 10,
+	blueprint_compat = false,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
 		return { vars = { lenient_bignum(card.ability.extra.jokerslots), lenient_bignum(card.ability.extra.jokerslots_mod) } }
@@ -319,11 +354,11 @@ SMODS.Joker {
 		G.jokers.config.card_limit = G.jokers.config.card_limit - lenient_bignum(card.ability.extra.jokerslots)
 	end,
 	calculate = function(self, card, context)
-		if (context.end_of_round and G.GAME.blind.boss) or context.forcetrigger then
+		if (context.beat_boss and context.end_of_round and not context.blueprint and not context.retrigger and context.main_eval) or context.forcetrigger then
 			card.ability.extra.jokerslots = card.ability.extra.jokerslots + lenient_bignum(card.ability.extra.jokerslots_mod)
 			G.jokers.config.card_limit = G.jokers.config.card_limit + lenient_bignum(card.ability.extra.jokerslots_mod)
 			return {
-				message = "+" .. lenient_bignum(card.ability.extra.jokerslots_mod) .. " slots",
+				message = "+" .. lenient_bignum(card.ability.extra.jokerslots_mod) .. " Joker slots",
 				colour = G.C.DARK_EDITION
 			}
 		end
@@ -338,6 +373,7 @@ SMODS.Joker {
 	end,
 	crp_credits = {
 		idea = { "Glitchkat10", "BuilderBosc" },
+		art = { "candycanearter" },
 		code = { "wilfredlam0418" }
 	}
 }
@@ -425,7 +461,9 @@ SMODS.Joker {
 	pos = { x = 6, y = 9 },
 	blueprint_compat = true,
 	demicoloncompat = true,
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Other", key = "bulgoe-themed_joker" }
 		local bulgoe_jokers = lenient_bignum(0)
 		if G.jokers and G.jokers.cards then
 			for i = 1, #G.jokers.cards do

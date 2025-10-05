@@ -9,6 +9,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	pools = { Bulgoe = true },
+	pronouns = "bulgoe",
 	loc_vars = function(self, info_queue, card)
 		return {
 			vars = {
@@ -64,7 +65,7 @@ SMODS.Joker {
 	rarity = "crp_abysmal",
 	atlas = "crp_placeholder",
 	evil = "j_riff_raff",
-	pos = { x = 0, y = 0 },
+	pos = { x = 4, y = 1 },
 	cost = 0,
 	blueprint_compat = true,
 	demicoloncompat = true,
@@ -99,15 +100,16 @@ SMODS.Joker {
 	config = { immutable = { arrows = 5, self_destruct = 10 ^ 10 ^ 1.1 }, extra = { mantissa = 0.9 } },
 	rarity = "crp_abysmal",
 	atlas = "crp_placeholder",
-	pos = { x = 0, y = 0 },
+	pos = { x = 4, y = 1 },
 	cost = 0,
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Other", key = "hyperoperation_brother" }
 		return {
 			vars = {
 				lenient_bignum(card.ability.extra.mantissa),
-				lenient_bignum(math.log10(math.log10(card.ability.immutable.self_destruct))),
+				lenient_bignum(math.log10(math.log10(card.ability.immutable.self_destruct)))
 			}
 		}
 	end,

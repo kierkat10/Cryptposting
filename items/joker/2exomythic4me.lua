@@ -13,51 +13,69 @@ SMODS.Joker {
 		return { vars = { lenient_bignum(card.ability.extra.chipsmult), "{", "}" } }
 	end,
 	calculate = function(self, card, context)
-		-- jokers, doesnt work as of now
-
-	    --if context.other_card ~= self and context.cardarea == G.jokers then
-		--	local arrow_number_jokers = 0
-		--	for i = 1, #G.jokers.cards do
-		--		if context.other_card == G.jokers.cards[i] then
-		--			arrow_number_jokers = i
-		--		end
-		--	end
-		--	if context.post_trigger and context.other_card == G.jokers.cards[arrow_number_jokers] then
-		--		if arrow_number_jokers == 1 then
-		--			return {
-		--				message = localize({
-		--					type = "variable",
-		--					key = "a_powmultchips",
-		--					vars = { number_format(lenient_bignum(card.ability.extra.chipsmult)) },
-		--				}),
-		--				Echip_mod = card.ability.extra.chipsmult,
-		--				Emult_mod = card.ability.extra.chipsmult
-		--			}
-		--		elseif arrow_number_jokers == 2 then
-		--			return {
-		--				message = "^^" .. lenient_bignum(card.ability.extra.chipsmult) .. " Chips & Mult",
-		--				colour = G.C.EDITION,
-		--				EEchip_mod = card.ability.extra.chipsmult,
-		--				EEmult_mod = card.ability.extra.chipsmult
-		--			}
-		--		elseif arrow_number_jokers == 3 then
-		--			return {
-		--				message = "^^^" .. lenient_bignum(card.ability.extra.chipsmult) .. " Chips & Mult",
-		--				colour = G.C.EDITION,
-		--				EEEchip_mod = card.ability.extra.chipsmult,
-		--				EEEmult_mod = card.ability.extra.chipsmult
-		--			}
-		--		elseif arrow_number_jokers >= 4 then
-		--			return {
-		--				message = "{" .. arrow_number_jokers .. "} " .. lenient_bignum(card.ability.extra.chipsmult) .. " Chips & Mult",
-		--				colour = G.C.EDITION,
-		--				hyperchip_mod = {arrow_number_jokers, card.ability.extra.chipsmult},
-		--				hypermult_mod = {arrow_number_jokers, card.ability.extra.chipsmult}
-		--			}
-		--		end
-		--	end
-		--end
-
+		-- jokers, still doesnt work
+		--[[
+	    if context.other_joker then
+			local arrow_number_jokers = 0
+			for k, v in ipairs(G.jokers.cards) do
+				if v == context.other_joker then
+					arrow_number_jokers = k
+					break
+				end
+			end
+			if to_big(arrow_number_jokers) == to_big(1) then
+				return {
+					echips = lenient_bignum(card.ability.extra.chipsmult),
+					Emult_mod = lenient_bignum(card.ability.extra.chipsmult),
+					echip_message = {
+						message = "^" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
+						colour = G.C.DARK_EDITION,
+						sound = "crp_exponentialchipsmult"
+					}
+				}
+			elseif to_big(arrow_number_jokers) == to_big(2) then
+				return {
+					eechips = lenient_bignum(card.ability.extra.chipsmult),
+					EEmult_mod = lenient_bignum(card.ability.extra.chipsmult),
+					eechip_message = {
+						message = "^^" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
+						colour = G.C.DARK_EDITION,
+						sound = "crp_tetrationalchipsmult"
+					}
+				}
+			elseif to_big(arrow_number_jokers) == to_big(3) then
+				return {
+					eeechips = lenient_bignum(card.ability.extra.chipsmult),
+					EEEmult_mod = lenient_bignum(card.ability.extra.chipsmult),
+					eeechip_message = {
+						message = "^^^" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
+						colour = G.C.EDITION,
+						sound = "crp_pentationalchipsmult"
+					}
+				}
+			elseif to_big(arrow_number_jokers) == to_big(4) then
+				return {
+					hyperchips = {lenient_bignum(arrow_number_jokers), lenient_bignum(card.ability.extra.chipsmult)},
+					hypermult_mod = {lenient_bignum(arrow_number_jokers), lenient_bignum(card.ability.extra.chipsmult)},
+					hyperchip_message = {
+						message = "{" .. number_format(lenient_bignum(arrow_number_jokers)) .. "}" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
+						colour = G.C.EDITION,
+						sound = "crp_hexationalchipsmult"
+					}
+				}
+			elseif to_big(arrow_number_jokers) >= to_big(5) then -- big elseif
+				return {
+					hyperchips = {lenient_bignum(arrow_number_cards), lenient_bignum(card.ability.extra.chipsmult)},
+					hypermult_mod = {lenient_bignum(arrow_number_cards), lenient_bignum(card.ability.extra.chipsmult)},
+					hyperchip_message = {
+						message = "{" .. number_format(lenient_bignum(arrow_number_jokers)) .. "}" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
+						colour = G.C.EDITION,
+						sound = "crp_heptationalchipsmult"
+					}
+				}
+			end
+		end
+		]]
 		-- playing cards
 		local arrow_number_cards = 0
 		if context.individual and context.cardarea == G.play then
@@ -90,9 +108,9 @@ SMODS.Joker {
 				}
 			elseif to_big(arrow_number_cards) == to_big(3) then
 				return {
-					eechips = lenient_bignum(card.ability.extra.chipsmult),
+					eeechips = lenient_bignum(card.ability.extra.chipsmult),
 					EEEmult_mod = lenient_bignum(card.ability.extra.chipsmult),
-					eechip_message = {
+					eeechip_message = {
 						message = "^^^" .. number_format(lenient_bignum(card.ability.extra.chipsmult)) .. " Chips & Mult",
 						colour = G.C.EDITION,
 						sound = "crp_pentationalchipsmult"
@@ -140,6 +158,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
 		return { vars = { "{", lenient_bignum(card.ability.immutable.arrows), "}", lenient_bignum(card.ability.extra.hypermult) } }
 	end,
 	calculate = function(self, card, context)
