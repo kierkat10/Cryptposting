@@ -188,6 +188,7 @@ SMODS.Rarity({
 SMODS.Rarity({
 	key = "m",
 	badge_colour = m,
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({
@@ -235,7 +236,7 @@ SMODS.Rarity({
 })
 
 SMODS.Rarity({
-	key = "exotic_2",
+	key = "outlandish",
 	badge_colour = m,
 	pools = { ["Joker"] = true }
 })
@@ -256,24 +257,29 @@ SMODS.Rarity({
 SMODS.Rarity({
 	key = "2exomythic4me",
 	badge_colour = exomythic4me_gradient,
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({
 	key = "22exomythic4mecipe",
 	badge_colour = exomythic4mecipe_gradient,
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({
 	key = "exomythicepicawesomeuncommon2mexotic22exomythic4mecipe",
 	badge_colour = exomythicepicawesomeuncommon2mexotic22exomythic4mecipe_gradient,
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({
 	key = "supa_rare",
-	badge_colour = HEX("000000")
+	badge_colour = HEX("000000"),
+	pools = { ["Joker"] = true }
 })
 
 SMODS.Rarity({
 	key = "all",
-	badge_colour = HEX("000000")
+	badge_colour = HEX("000000"),
+	pools = { ["Joker"] = true }
 })
