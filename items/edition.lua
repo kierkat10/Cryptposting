@@ -1,3 +1,44 @@
+
+SMODS.Edition {
+	key = "infinitesimal",
+	weight = 0.3,
+	shader = "negative",
+	prefix_config = { shader = false },
+	in_shop = true,
+	extra_cost = 5,
+	get_weight = function(self)
+		return G.GAME.edition_rate * self.weight
+	end,
+	config = { extra_slots_used = -1 },
+	loc_vars = function(self, info_queue, center)
+		return { vars = { self.config.extra_slots_used } }
+	end,
+	crp_credits = {
+		idea = { "Unknown" },
+		code = { "Rainstar" }
+	}
+}
+
+SMODS.Edition {
+	key = "positive",
+	weight = 0.3,
+	shader = "negative",
+	prefix_config = { shader = false },
+	in_shop = true,
+	extra_cost = 5,
+	get_weight = function(self)
+		return G.GAME.edition_rate * self.weight
+	end,
+	config = { extra_slots_used = -0.5 },
+	loc_vars = function(self, info_queue, center)
+		return { vars = { self.config.extra_slots_used } }
+	end,
+	crp_credits = {
+		idea = { "superb_thing" },
+		code = { "Rainstar" }
+	}
+}
+
 SMODS.Edition {
 	key = "zany",
 	weight = 0,

@@ -436,6 +436,15 @@ SMODS.Blind {
             end
         end
 	end,
+	defeat = function(self, card, from_blind)
+        for i, v in pairs(G.jokers.cards) do
+            local check = false
+            if not Card.no(G.jokers.cards[i], "immutable", true) then
+                check = true
+				Cryptid.manipulate(G.jokers.cards[i], { value = 2 })
+            end
+        end
+	end,
 	boss_colour = HEX("4fb1db"),
     crp_credits = {
 		idea = { "Unknown" },
@@ -463,7 +472,7 @@ SMODS.Blind {
 	key = "roadblock",
 	name = "The Roadblock (L+)",
 	pos = { x = 0, y = 3 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 8, max = 10 },
 	boss_colour = HEX("98a1b2"), -- same color as the pre-existing art
 	blindrarity = "Legendary",	
 	in_pool = function(self)
@@ -502,7 +511,7 @@ SMODS.Blind {
 	key = "roulette",
 	name = "The Roulette (L+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 8, max = 10 },
 	boss_colour = HEX("98a1b2"),
 	blindrarity = "Legendary",
 	in_pool = function(self)
@@ -554,7 +563,7 @@ SMODS.Blind {
 	key = "empty_pockets",
 	name = "The Empty Pockets (E+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 16, max = 10 },
 	blindrarity = "Exotic",
 	mult = 5,
 	dollars = 0,
@@ -590,7 +599,7 @@ SMODS.Blind {
 	key = "nanny",
 	name = "The Nanny (E+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 16, max = 10 },
 	blindrarity = "Exotic",
 	mult = 2,
 	dollars = 0,
@@ -627,7 +636,7 @@ SMODS.Blind {
 	key = "tetra",
 	name = "The Tetra (E+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 16, max = 10 },
 	blindrarity = "Exotic",
 	mult = 1,
 	dollars = 0,
@@ -666,7 +675,7 @@ SMODS.Blind {
 	key = "random_rubellite",
 	name = "Random Rubellite (S, E+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 16, max = 10 },
 	blindrarity = "Exotic",
 	mult = 1,
 	dollars = 0,
@@ -717,7 +726,7 @@ SMODS.Blind {
 	key = "malevolent_mirror",
 	name = "Malevolent Mirror (S, M+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 32, max = 10 },
 	blindrarity = "Mythic",
 	mult = 1,
 	dollars = 0,
@@ -790,7 +799,7 @@ SMODS.Blind {
 	key = "epioxus",
 	name = "Epioxus (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 64, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
 	dollars = 0,
@@ -823,7 +832,7 @@ SMODS.Blind {
 	key = "calamitus",
 	name = "Calamitus (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 64, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1e100, -- a miniscule amount of trolling
 	dollars = 0,
@@ -859,7 +868,7 @@ SMODS.Blind {
 	key = "ascensios",
 	name = "Ascensios (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 64, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 8,
 	defeat = function(self, card, from_blind)
@@ -916,7 +925,7 @@ SMODS.Blind {
 	key = "pokios",
 	name = "Pokios (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 64, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 2,
 	defeat = function(self, card, from_blind)
@@ -947,7 +956,7 @@ SMODS.Blind {
 	key = "poseidon",
 	name = "Poseidon (S, EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10, showdown = true },
+	boss = { min = 64, max = 10, showdown = true },
 	blindrarity = "ExoMythic",
 	mult = 1e300,
 	defeat = function(self, card, from_blind)
@@ -990,7 +999,7 @@ SMODS.Blind {
 	key = "quettus",
 	name = "Quettus (S, EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10, showdown = true },
+	boss = { min = 64, max = 10, showdown = true },
 	blindrarity = "ExoMythic",
 	mult = 1,
 	defeat = function(self, card, from_blind)
@@ -1049,7 +1058,7 @@ SMODS.Blind {
 	key = "hermes",
 	name = "Hermes (S, EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10, showdown = true },
+	boss = { min = 64, max = 10, showdown = true },
 	blindrarity = "ExoMythic",
 	mult = 1e100,
 	defeat = function(self, card, from_blind)
@@ -1083,7 +1092,7 @@ SMODS.Blind {
 	key = "manus_acus",
 	name = "Manus Acus (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10 },
+	boss = { min = 32, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1,
 	dollars = 0,
@@ -1128,7 +1137,7 @@ SMODS.Blind {
 	key = "lacum_draconis",
 	name = "Lacum Draconis (S, EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 2, max = 10, showdown = true },
+	boss = { min = 64, max = 10, showdown = true },
 	blindrarity = "ExoMythic",
 	mult = 1e100,
 	defeat = function(self, card, from_blind)
