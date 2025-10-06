@@ -383,6 +383,6 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "j man the f-zero/weezer fan" },
 		art = { "Alien Banana" },
-		code = { "wilfredlam048", "Glitchkat10" }
+		code = { "wilfredlam0418", "Glitchkat10" }
 	}
 }

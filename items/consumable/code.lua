@@ -22,7 +22,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Unknown" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 

@@ -39,7 +39,7 @@ SMODS.Back {
         y = 0
     },
     crp_credits = {
-        idea = { "Poker the Poker" },
+        idea = { "Poker The Poker" },
         art = { "GudUsername" },
         code = { "ScarredOut" }
     }
