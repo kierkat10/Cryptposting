@@ -628,7 +628,8 @@ return {
 			j_crp_gomble = {
 				name = "Gomble",
 				text = {
-					"{C:red}Fixed {C:green}50%{} chance to create a {C:attention}Goblin",
+					"{C:red}Fixed {C:green}50%{} chance to",
+					"create a {C:attention}Goblin",
 					"{C:inactive}(Does not require room)"
 				}
 			},
@@ -1125,6 +1126,14 @@ return {
 					"{C:inactive,s:0.8}(Minimum of {C:chips,s:0.8}1{C:inactive,s:0.8} Chip)",
 					"Earn {X:money,C:white}X$#3#{} at the end of round,",
 					"increases by {X:money,C:white}X$#2#{} when shop rerolled"
+				}
+			},
+			j_crp_average_cryptposting_experience = {
+				name = "average cryptposting experience",
+				text = {
+					"be me, go to shop, order {C:attention}one quadrillion bulgoe{},",
+					"laugh since they can't possibly have {C:attention}one quadrillion bulgoe{},",
+					"five minutes later they call my name, {C:attention}one quadrillion bulgoe"
 				}
 			},
 			j_crp_weather_machine = {
@@ -1745,6 +1754,14 @@ return {
 					"{C:inactive}(Must have room)"
 				}
 			},
+			["tag_crp_worse_top-up_tag"] = {
+				name = "Worse Top-up Tag",
+				text = {
+					"Create up to {C:attention}#1#",
+					"{C:crp_abysmal}Abysmal{} {C:attention}Joker#<s>1#",
+					"{C:inactive}(Must have room)"
+				}
+			},
 			["tag_crp_trash_top-up_tag"] = {
 				name = "Trash Top-up Tag",
 				text = {
@@ -1778,6 +1795,20 @@ return {
 			},
 		},
 		Edition = {
+			e_crp_infinitesimal = {
+				name = "Infinitesimal",
+				text = {
+					"Takes up {C:attention}0{}",
+					"Card Slots"
+				},
+			},
+			e_crp_positive = {
+				name = "Positive",
+				text = {
+					"Takes up {C:attention}0.5{}",
+					"Card Slots"
+				},
+			},
 			e_crp_overloaded = {
 				name = "Overloaded",
 				text = {
@@ -2119,7 +2150,7 @@ return {
 			k_crp_extraordinary = "Extraordinary",
 			k_crp_awesome = "Awesome",
 			k_crp_divine = "Divine",
-			k_crp_exotic_2 = "Exotic 2",
+			k_crp_outlandish = "Outlandish",
 			k_crp_mythic = "Mythic",
 			k_crp_exomythic = "ExoMythic",
 			k_crp_2exomythic4me = "2ExoMythic4me",
@@ -2134,6 +2165,8 @@ return {
 			k_crp_saved = "Saved by #1#"
 		},
 		labels = {
+			crp_infinitesimal = "Infinitesimal",
+			crp_positive = "Positive",
 			crp_overloaded = "Overloaded",
 			["crp_four-dimensional"] = "Four-Dimensional",
 			crp_zany = "Zany",

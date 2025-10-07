@@ -25,6 +25,6 @@ SMODS.Joker {
 	end,
 	crp_credits =  {
 		idea = { "wilfredlam0418" },
-		code = { "wilfredlm0418", "Glitchkat10" }
+		code = { "wilfredlam0418", "Glitchkat10" }
 	}
 }

@@ -156,7 +156,7 @@ SMODS.Joker { -- IT'S ALIVE
 		return true, { allow_duplicates = true }
 	end,
 	crp_credits = {
-		idea = { "lunarisIllustratez", "Glitchkat10" },
+		idea = { "lunarisillustratez", "Glitchkat10" },
 		art = { "thingifithinker" },
 		code = { "Glitchkat10", "Rainstar" },
 		custom = { key = "music", text = "ottermatter" }

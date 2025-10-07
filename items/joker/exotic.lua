@@ -260,7 +260,7 @@ SMODS.Joker {
 			crp_incredible = "crp_incredible",
 			crp_extraordinary = "crp_extraordinary",
 			crp_awesome = "crp_awesome",
-			crp_exotic_2 = "crp_exotic_2",
+			crp_outlandish = "crp_outlandish",
 			crp_mythic = "crp_mythic",
 			crp_2exomythic4me = "crp_2exomythic4me",
 			crp_22exomythic4mecipe = "crp_22exomythic4mecipe",
@@ -330,7 +330,7 @@ SMODS.Joker {
 				[4] = "cry_epic",
 				crp_awesome = "crp_cipe",
 				cry_exotic = "Legendary",
-				crp_exotic_2 = "crp_awesome",
+				crp_outlandish = "crp_awesome",
 				crp_mythic = "cry_exotic",
 				crp_exomythic = "crp_mythic",
 				crp_2exomythic4me = "crp_exomythic",
@@ -383,6 +383,6 @@ SMODS.Joker {
 	crp_credits = {
 		idea = { "j man the f-zero/weezer fan" },
 		art = { "Alien Banana" },
-		code = { "wilfredlam048", "Glitchkat10" }
+		code = { "wilfredlam0418", "Glitchkat10" }
 	}
 }

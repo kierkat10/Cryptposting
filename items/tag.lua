@@ -547,6 +547,39 @@ SMODS.Tag {
 }
 
 SMODS.Tag {
+    key = "worse_top-up_tag",
+    atlas = "crp_tag",
+    pos = { x = 5, y = 2 },
+    config = { extra = { amount = 2 } },
+    loc_vars = function(self, info_queue, tag)
+        return { vars = { lenient_bignum(tag.config.extra.amount) } }
+    end,
+    apply = function(self, tag, context)
+        if context.type == "immediate" then
+			tag:yep("+", G.C.RED, function()
+				for i = 1, lenient_bignum(tag.config.extra.amount) do
+					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
+						local hittable = {
+        					set = "Joker",
+        					rarity = "crp_abysmal"
+    					}
+						SMODS.add_card(hittable)
+					end
+				end
+				return true
+			end)
+			tag.triggered = true
+			return true
+		end
+    end,
+	crp_credits = {
+		idea = { "Grahkon" },
+		art = { "Grahkon" },
+		code = { "ScarredOut" }
+	},
+}
+
+SMODS.Tag {
 	key = "trash_top-up_tag",
 	name = "Trash Top-Up Tag",
 	atlas = "crp_tag",
@@ -849,48 +882,7 @@ SMODS.Tag {
 			return card
 		end
 	end, ]]--
-
 --[[
-SMODS.Tag {
-    key = "worse_worse_top-up_tag",
-    atlas = "crp_tag",
-    pos = { x = 5, y = 2 },
-    config = { extra = { amount = 2 } },
-    loc_txt = {
-        name = "Worse Worse Top-down Tag",
-        text = {
-            "Create up to #1#",
-            "{C:crp_abysmal}Abysmal{} {C:attention}Jokers{}",
-            "{C:inactive}(Must have room){}"
-        }
-    },
-    loc_vars = function(self, info_queue, tag)
-        return { vars = { lenient_bignum(tag.config.extra.amount) } }
-    end,
-	crp_credits = {
-		idea = { "Grahkon" },
-		art = { "Grahkon" },
-		code = { "ScarredOut" }
-	},
-    apply = function(self, tag, context)
-        if context.type == "immediate" then
-			tag:yep("+", G.C.RED, function()
-				for i = 1, lenient_bignum(tag.config.extra.amount) do
-					if G.jokers and #G.jokers.cards < G.jokers.config.card_limit then
-						local hittable = {
-        					set = "Joker",
-        					rarity = "crp_abysmal"
-    					}
-						SMODS.add_card(hittable)
-					end
-				end
-				return true
-			end)
-			tag.triggered = true
-			return true
-		end
-    end
-}
 SMODS.Tag {
     key = "besttopuptag",
     atlas = "crp_tag",

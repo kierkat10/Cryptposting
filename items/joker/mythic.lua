@@ -129,37 +129,6 @@ SMODS.Joker {
 	}
 }
 
--- tetrationa's effect
-local scie = SMODS.calculate_individual_effect
-SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
-local ret = scie(effect, scored_card, key, amount, from_edition)
-	if
-		(
-			key == "e_mult"
-			or key == "emult"
-			or key == "Emult"
-			or key == "e_mult_mod"
-			or key == "emult_mod"
-			or key == "Emult_mod"
-		)
-		and amount ~= 1
-	then
-		for k, v in pairs(SMODS.find_card("j_crp_tetrationa")) do
-			local old = v.ability.extra.eemult
-			v.ability.extra.eemult = lenient_bignum(to_big(v.ability.extra.eemult) + v.ability.extra.eemult_mod)
-			card_eval_status_text(v, "extra", nil, nil, nil, {
-				message = "Upgraded!",
-			})
-			Cryptid.apply_scale_mod(v, v.ability.extra.eemult_mod, old, v.ability.extra.eemult, {
-				base = { { "extra", "eemult" } },
-				scaler = { { "extra", "eemult_mod" } },
-				scaler_base = { v.ability.extra.eemult_mod },
-			})
-		end
-	end
-	return ret
-end
-
 SMODS.Joker {
 	key = "tetrationa",
 	name = "Tetrationa",

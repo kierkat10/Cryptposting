@@ -95,7 +95,7 @@ SMODS.Joker {
 				"m",
 				"cipe",
 				"awesome",
-				"exotic 2",
+				"outlandish",
 				"mythic",
 				"exomythic",
 				"2exomythic4me",

@@ -155,7 +155,7 @@ SMODS.Joker {
 				[4] = true,
 				["crp_awesome"] = true,
 				["cry_exotic"] = true,
-				["crp_exotic_2"] = true,
+				["crp_outlandish"] = true,
 				["crp_mythic"] = true,
 				["crp_exomythic"] = true,
 				["crp_2exomythic4me"] = true,

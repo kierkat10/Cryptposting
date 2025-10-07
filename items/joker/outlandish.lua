@@ -2,7 +2,7 @@ SMODS.Joker {
 	key = "duplex",
 	name = "Duplex",
 	config = { extra = { xmult = 1, xmult_gain = 0.25, retriggers = 1 } },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_joker",
 	pos = { x = 7, y = 5 },
 	soul_pos = { x = 9, y = 5, extra = { x = 8, y = 5 } },
@@ -49,42 +49,11 @@ SMODS.Joker {
 	}
 }
 
--- potentia's scaling effect
-local scie = SMODS.calculate_individual_effect
-SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
-local ret = scie(effect, scored_card, key, amount, from_edition)
-	if
-		(
-			key == "e_mult"
-			or key == "emult"
-			or key == "Emult"
-			or key == "e_mult_mod"
-			or key == "emult_mod"
-			or key == "Emult_mod"
-		)
-		and amount ~= 1
-	then
-		for k, v in pairs(SMODS.find_card("j_crp_potentia")) do
-			local old = v.ability.extra.emult
-			v.ability.extra.emult = lenient_bignum(to_big(v.ability.extra.emult) + v.ability.extra.emult_mod)
-			card_eval_status_text(v, "extra", nil, nil, nil, {
-				message = "Upgraded!",
-			})
-			Cryptid.apply_scale_mod(v, v.ability.extra.emult_mod, old, v.ability.extra.emult, {
-				base = { { "extra", "emult" } },
-				scaler = { { "extra", "emult_mod" } },
-				scaler_base = { v.ability.extra.emult_mod },
-			})
-		end
-	end
-	return ret
-end
-
 SMODS.Joker {
 	key = "potentia",
 	name = "Potentia",
 	config = { extra = { emult = 1, emult_mod = 0.3 } },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 100,
@@ -105,6 +74,7 @@ SMODS.Joker {
 				}
 			}
 		end
+		-- scaling effect is in mythic.lua
 	end,
 	crp_credits = {
 		idea = { "Poker The Poker" },
@@ -117,7 +87,7 @@ SMODS.Joker {
 	key = "repetitio",
 	name = "Repetitio",
 	config = { extra = { xmult = 1.05, retriggers = 10 }, immutable = { max_retriggers = 400 }, },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_joker",
 	pos = { x = 4, y = 5 },
 	soul_pos = { x = 5, y = 5, extra = { x = 6, y = 5 } },
@@ -161,7 +131,7 @@ SMODS.Joker {
 	key = "resurgo",
 	name = "Resurgo",
 	config = { extra = { emult = 1 } },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 50,
@@ -198,7 +168,7 @@ SMODS.Joker {
 	key = "peripheria_ad_diametrum",
 	name = "Peripheria ad Diametrum",
 	config = { immutable = { digit = 1, pi = "314159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316527120190914564856692346034861045432664821339360726024914127" } }, -- i memorized all 300 digits here - wilfredlam0418
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 31,
@@ -248,7 +218,7 @@ SMODS.Joker {
 	key = "difficile",
 	name = "Difficile",
 	config = { extra = { emult = 10, total_triggers = 3, current_triggers = 0 } },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 50,
@@ -287,7 +257,7 @@ SMODS.Joker {
 	key = "libum",
 	name = "Libum",
 	config = { extra = { chips_loss = 4, xmoney_per_reroll = 0.1, xmoney = 1 } },
-	rarity = "crp_exotic_2",
+	rarity = "crp_outlandish",
 	atlas = "crp_placeholder",
 	pos = { x = 7, y = 0 },
 	cost = 50,
@@ -325,5 +295,33 @@ SMODS.Joker {
 		idea = { "Unknown" },
 		code = { "Rainstar" },
 		custom = { key = "alt", text = "Crustulum" }
+	}
+}
+
+SMODS.Joker {
+	key = "average_cryptposting_experience",
+	name = "average cryptposting experience",
+	config = { immutable = { chips = 2700000000000000 } }, -- 1 quadrillion bulgoes
+	atlas = "crp_placeholder",
+	pos = { x = 7, y = 0 },
+	rarity = "crp_outlandish",
+	cost = 50,
+	blueprint_compat = true,
+	demicoloncompat = true,
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = G.P_CENTERS.j_crp_bulgoe
+		return { vars = {  } }
+	end,
+	calculate = function(self, card, context)
+		if (context.joker_main) or context.forcetrigger then
+			return {
+				chips = lenient_bignum(card.ability.immutable.chips)
+			}
+		end
+	end,
+	crp_credits = {
+		idea = { "j man the f-zero/weezer fan" },
+		code = { "Glitchkat10" },
+		custom = { key = "alt", text = "average cryptid experience" }
 	}
 }

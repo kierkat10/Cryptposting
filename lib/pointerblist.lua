@@ -1,4 +1,4 @@
-Cryptid.pointerblistifytype("rarity", "crp_exotic_2", nil)
+Cryptid.pointerblistifytype("rarity", "crp_outlandish", nil)
 Cryptid.pointerblistifytype("rarity", "crp_mythic", nil)
 Cryptid.pointerblistifytype("rarity", "crp_exomythic", nil)
 Cryptid.pointerblistifytype("rarity", "crp_2exomythic4me", nil)

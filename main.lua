@@ -32,7 +32,7 @@ local files = {
     "items/joker/legendary",
     "items/joker/divine",
     "items/joker/exotic",
-    "items/joker/exotic2",
+    "items/joker/outlandish",
     "items/joker/mythic",
     "items/joker/exomythic",
     "items/joker/2exomythic4me",
@@ -58,6 +58,7 @@ local files = {
     "lib/music",
     "lib/pointerblist",
     "lib/pronouns",
+    "lib/scale",
 }
 for i, v in pairs(files) do
 	assert(SMODS.load_file(v..".lua"))()

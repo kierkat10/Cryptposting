@@ -52,7 +52,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 SMODS.Consumable {
@@ -76,7 +76,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -98,7 +98,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -122,7 +122,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -146,7 +146,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -171,7 +171,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -198,7 +198,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -225,7 +225,7 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Psychomaniac14" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
 
@@ -252,6 +252,6 @@ SMODS.Consumable {
 	end,
 	crp_credits = {
 		idea = { "Grahkon" },
-		code = { "wlfredlam0418" }
+		code = { "wilfredlam0418" }
 	}
 }
