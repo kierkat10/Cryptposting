@@ -85,8 +85,8 @@ SMODS.Sound({
 })
 
 -- hook into the music_exotic select_music_track function thing to add outlandish
-local original_select_music_track = SMODS.Sounds.cry_music_exotic.select_music_track
+local og_track = SMODS.Sounds.cry_music_exotic.select_music_track
 SMODS.Sounds.cry_music_exotic.select_music_track = function()
-    return (original_select_music_track and original_select_music_track())
+    return (og_track and og_track())
         or next(Cryptid.advanced_find_joker(nil, "crp_outlandish", nil, nil, true)) ~= nil
 end
