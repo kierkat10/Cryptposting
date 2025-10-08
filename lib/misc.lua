@@ -57,7 +57,7 @@ SMODS.Joker:take_ownership("invisible", {
 			for _, joker in ipairs(G.jokers.cards) do
 				if joker.edition and (joker.edition.negative or joker.edition.crp_really_negative or joker.edition.crp_super_negative or joker.edition.crp_photon_readings_negative or joker.edition.crp_photon_readings_really_negative or joker.edition.crp_photon_readings_gone) then
 					main_end = {}
-					localize { type = "other", key = "remove_negative", nodes = main_end, vars = {} }
+					localize { type = "other", key = "remove_negative", nodes = main_end, vars = {} } -- this currently doesn't show anything so still needs to be fixed
 					break
 				end
 			end
@@ -65,7 +65,7 @@ SMODS.Joker:take_ownership("invisible", {
 		return { vars = { card.ability.extra, card.ability.invis_rounds }, main_end = main_end }
 	end,
 	calculate = function(self, card, context)
-		if (context.selling_self and (card.ability.extra.invis_rounds >= card.ability.extra.total_rounds) and not context.blueprint) or context.forcetrigger then
+		if (context.selling_self and (card.ability.invis_rounds >= card.ability.extra) and not context.blueprint) or context.forcetrigger then
 			local jokers = {}
 			for i = 1, #G.jokers.cards do
 				if G.jokers.cards[i] ~= card then
@@ -88,15 +88,13 @@ SMODS.Joker:take_ownership("invisible", {
 			end
 		end
 		if (context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint) or context.forcetrigger then
-			card.ability.extra.invis_rounds = card.ability.extra.invis_rounds + 1
-			if card.ability.extra.invis_rounds == card.ability.extra.total_rounds then
+			card.ability.invis_rounds = card.ability.invis_rounds + 1
+			if card.ability.invis_rounds == card.ability.extra then 
 				local eval = function(card) return not card.REMOVED end
 				juice_card_until(card, eval, true)
 			end
 			return {
-				message = (card.ability.extra.invis_rounds < card.ability.extra.total_rounds) and
-					(card.ability.extra.invis_rounds .. "/" .. card.ability.extra.total_rounds) or
-					localize("k_active_ex"),
+				message = (card.ability.invis_rounds < card.ability.extra) and (card.ability.invis_rounds..'/'..card.ability.extra) or localize('k_active_ex'),
 				colour = G.C.FILTER
 			}
 		end
