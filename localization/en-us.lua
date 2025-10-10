@@ -718,6 +718,12 @@ return {
 					"{C:edition,X:dark_edition}^^#1#{} Mult against {C:attention}Small Blinds"
 				}
 			},
+			j_crp_how_many_pickles = {
+				name = "How Many Pickles?",
+				text = {
+					"{C:mult}+Mult{} equal to the number of pickles", "{C:inactive}(Currently {C:code}#1#{C:inactive} pickles.#2#)"
+				}
+			},
 			j_crp_inside_joker = {
 				name = "Inside Joke r",
 				text = {
@@ -765,6 +771,13 @@ return {
 				text = {
 					"{C:white,X:mult}X#1#{} Mult if",
 					"{C:attention}Grouchy Jimbo{} is owned"
+				}
+			},
+			j_crp_the_three = {
+				name = "The Three",
+				text = {
+					"{C:red}Fixed {C:green}1 in 3{} chance for",
+					"{C:white,X:chips}X#1#{} Chips, {C:white,X:mult}X#2#{} Mult, and {C:money}+$#3#"
 				}
 			},
 			j_crp_dumpster_diver = {

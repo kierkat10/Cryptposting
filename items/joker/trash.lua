@@ -196,3 +196,39 @@ SMODS.Joker {
 		code = { "Glitchkat10" }
 	}
 }
+
+SMODS.Joker {
+	key = "useless_time",
+	name = "Useless Time",
+	config = { immutable = { start = 0 }, extra = { chips = 0, chips_mod = 1 } }
+	rarity = "crp_trash",
+	atlas = "crp_placeholder",
+	pos = { x = 1, y = 0 },
+	cost = 0,
+	blueprint_compat = false,
+	demicoloncompat = false,
+	loc_vars = function(self, info_queue, card)
+		return { math.ceil(13 - (os.time() - card.ability.immutable.start) / 315360000000000000000000000) }
+	end,
+	add_to_deck = function(self, card, from_debuff)
+		if not from_debuff then
+			card.ability.immutable.start = os.time()
+		end
+	end,
+	calculate = function(self, card, context)
+		if context.joker_main then
+			if os.time - card.ability.immutable.start >= 4099680000000000000000000000 then
+				card.ability.extra.chips = lenient_bignum(card.ability.extra.chips) + lenient_bignum(card.ability.extra.chips_mod)
+			end
+			if card.ability.extra.chips > 0 then
+				return {
+					chips = card.ability.extra.chips
+				}
+			end
+		end
+	end,
+	crp_credits = {
+		idea = { "Realnarwhal" },
+		code = { "wilfredlam0418" }
+	}
+}
