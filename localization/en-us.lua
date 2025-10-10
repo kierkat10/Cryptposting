@@ -986,6 +986,8 @@ return {
 				name = "tetration timmy",
 				text = {
 					"{C:edition,X:dark_edition}^^#1#{} Mult",
+					"{C:inactive}\"Not the brightest of the brothers,",
+					"{C:inactive}but certainly the most optimistic\""
 				}
 			},
 			j_crp_perdurantes = {
@@ -1144,6 +1146,8 @@ return {
 				name = "pentation peter",
 				text = {
 					"{C:dark_edition,X:edition}^^^#1#{} Mult",
+					"{C:inactive}\"He's a bit oblivious, but he",
+					"{C:inactive}cares the most for his brothers\""
 				}
 			},
 			j_crp_tetrationa = {
@@ -1190,6 +1194,8 @@ return {
 				name = "hexation henry",
 				text = {
 					"{C:dark_edition,X:edition}^^^^#1#{} Mult",
+					"{C:inactive}\"Be careful around him, or he might prank you.",
+					"{C:inactive}His brothers have gotten used to his antics\""
 				},
 			},
 			j_crp_morble = {
@@ -1320,6 +1326,7 @@ return {
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
 					"{C:dark_edition,X:edition}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#1#{} Mult",
+					"{C:inactive}\"The smartest of the brothers, but he's somewhat introverted\""
 				},
 			},
 			j_crp_expansion = {
@@ -2146,7 +2153,6 @@ return {
 			k_crp_hyperexomythicepicawesomeuncommon2mexotic2gigaomegaalphaomnipotranscendant2exomythic4mecipe = "HyperExoMythicEpicAwesomeUncommon2MExotic2GigaOmegaAlphaOmnipotranscendant2ExoMythic4meCipe",
 			k_crp_supa_rare = "supa rare",
 			k_crp_all = "All",
-
 			k_crp_bulgoe_spawn = "+1 Bulgoe",
 			bl_crp_debuff_monochrome_m = "Must play only Pairs",
 			k_crp_saved = "Saved by #1#"

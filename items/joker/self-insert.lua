@@ -45,7 +45,7 @@ SMODS.Joker {
 				"my name is glitchkat10. i made the cryptposting.",
 				"i'm cryptposting it",
 				"\"i have no idea why this isn't affecting the speed rn\"",
-				"my favorite song is nanachi by mrkolii",
+				"my favorite song is who's she by mrkolii",
 				"can we ban grahkon he's taking up too much space",
 				"ultrakill",
 				"joe kerr",
@@ -55,11 +55,11 @@ SMODS.Joker {
 				"i also suggestions for cryptid",
 				"i also drew for ascensio",
 				"i also made suggestions for ascensio",
-				--"polterworx (formerly twitter)",
+				"aifughilafghlk",
 				"tbh i work more on cryptposting than poker",
 				"icl ts pmo sm :broken_heart:",
-				"i use vs code for coding",
-				"i use zen for browsing",
+				"i use windsurf for coding",
+				"i use vivaldi for browsing",
 				"i use aseprite for drawing",
 				"hey guys, did you know that in terms of male human and female pokémon breeding, vaporeon is the most compatible pokémon for humans? not only are they in the field egg group, which is mostly comprised of mammals, vaporeon are an average of 3\"03' tall and 63.9 pounds, this means they're large enough to be able handle human dicks, and with their impressive base stats for hp and access to acid armor, you can be rough with one. due to their mostly water based biology, there's no doubt in my mind that an aroused vaporeon would be incredibly wet, so wet that you could easily have sex with one for hours without getting sore. they can also learn the moves attract, baby-doll eyes, captivate, charm, and tail whip, along with not having fur to hide nipples, so it'd be incredibly easy for one to get you in the mood. with their abilities water absorb and hydration, they can easily recover from fatigue with enough water. no other pokémon comes close to this level of compatibility. also, fun fact, if you pull out enough, you can make your vaporeon turn white. vaporeon is literally built for human dick. ungodly defense stat+high hp pool+acid armor means it can take cock all day, all shapes and sizes and still come for more.",
 				"what the smegma",
@@ -67,7 +67,7 @@ SMODS.Joker {
 				"metal pipe sound effect",
 				"collecting \"code = { \"glitchkat10\" }\" like the cuts on my body",
 				"what the freak bro",
-				"schedule 1 is peam",
+				"balala",
 				"this will be PEAM",
 				"#f04360",
 				"#322136",
@@ -115,7 +115,7 @@ SMODS.Joker {
 				"just the two of us",
 				"bulgoe",
 				"hd bulgoe",
-				"bulgoeship card has gained ^^0.1 mult",
+				"bulgoeship card has gained ^^0.27 mult",
 				"*you're",
 				"*your",
 				"if only we could",
@@ -131,15 +131,15 @@ SMODS.Joker {
 			}
 			local quote = quotes[math.random(#quotes)]
             return {
-	            chips = -lenient_bignum(card.ability.extra.chips),
-	            extra = {
+				chips = -lenient_bignum(card.ability.extra.chips),
+				extra = {
                     mult = -lenient_bignum(card.ability.extra.mult),
                     extra = {
-		                Xchip_mod = 1 / lenient_bignum(card.ability.extra.Xchips),
+						Xchip_mod = 1 / lenient_bignum(card.ability.extra.Xchips),
                         message = "÷" .. lenient_bignum(card.ability.extra.Xchips),
                         colour = G.C.CHIPS,
                         extra = {
-		                    Xmult_mod = 1 / lenient_bignum(card.ability.extra.Xmult),
+							Xmult_mod = 1 / lenient_bignum(card.ability.extra.Xmult),
                             message = "÷" .. lenient_bignum(card.ability.extra.Xmult) .. " Mult",
                             colour = G.C.MULT,
                             extra = {
@@ -148,7 +148,7 @@ SMODS.Joker {
                             }
                         }
                     }
-	            }
+				}
             }
 		end
 	end,
@@ -204,14 +204,14 @@ SMODS.Joker {
 		local quote = quotes[math.random(#quotes)]
 		if (context.joker_main and not next(context.poker_hands["Flush"])) or context.forcetrigger then
             return {
-	            chips = -lenient_bignum(card.ability.extra.chips),
-	            extra = {
+				chips = -lenient_bignum(card.ability.extra.chips),
+				extra = {
                     mult = -lenient_bignum(card.ability.extra.mult),
-                	extra = {
-                	    message = quote,
-                	    colour = G.C.RARITY["crp_self-insert"]
-                	}
-	            }
+					extra = {
+						message = quote,
+						colour = G.C.RARITY["crp_self-insert"]
+					}
+				}
             }
 		elseif context.joker_main then
 			return {
