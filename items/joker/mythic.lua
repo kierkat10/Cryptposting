@@ -101,6 +101,7 @@ SMODS.Joker {
 	blueprint_compat = true,
 	demicoloncompat = true,
 	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Other", key = "hyperoperation_brother" }
 		return { vars = { lenient_bignum(card.ability.extra.EEEmult) } }
 	end,
 	calculate = function(self, card, context)

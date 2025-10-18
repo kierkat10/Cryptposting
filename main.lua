@@ -52,6 +52,7 @@ local files = {
     "lib/cardanim",
     "lib/cardanim_macros/skim",
     "lib/abysmal",
+    "lib/hooks",
     "lib/http",
     "lib/misc",
     "lib/modbadge",

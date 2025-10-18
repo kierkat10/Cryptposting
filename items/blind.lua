@@ -1092,7 +1092,7 @@ SMODS.Blind {
 	key = "manus_acus",
 	name = "Manus Acus (EM+)",
 	pos = { x = 0, y = 0 },
-	boss = { min = 32, max = 10 },
+	boss = { min = 64, max = 10 },
 	blindrarity = "ExoMythic",
 	mult = 1,
 	dollars = 0,
